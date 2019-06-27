@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.theme-switcher" path="/org/theme-switcher/">
+    <key type="s" name="daytime">
+      <default>"6"</default>
+      <summary>Daytime for theme switch</summary>
+      <description>When theme should be switched.</description>
+    </key>
+    <key type="b" name="auto-switch">
+      <default>true</default>
+      <summary>Enabling auto-switch</summary>
+      <description>Determine whether it will be auto switch theme or not</description>
+    </key>
+    <key type="s" name="path-to-day-wallpaper">
+      <default>""</default>
+      <summary>Path to day wallpaper</summary>
+      <description>Path to the wallpapers that should be in a daytime.</description>
+    </key>
+    <key type="s" name="path-to-night-wallpaper">
+      <default>""</default>
+      <summary>Path to night wallpaper</summary>
+      <description>Path to the wallpapers that should be in a nighttime.</description>
+    </key>
+    <key type="s" name="nighttime">
+      <default>"20"</default>
+      <summary>Nighttime for theme switch</summary>
+      <description>When theme should be switched on night.</description>
+    </key>
+  </schema>
+</schemalist>

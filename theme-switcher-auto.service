@@ -1,0 +1,9 @@
+[Unit]
+Description=Switch dark/light GTK theme automatically during day/night
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/theme-switcher-auto.sh
+
+[Install]
+WantedBy=multi-user.target
