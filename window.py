@@ -71,44 +71,28 @@ class MyWindow(Gtk.ApplicationWindow):
         filter_text.add_mime_type("image/png")
         dialog.add_filter(filter_text)
         
-    def on_set_daytime_button_clicked(self, button):
+    def on_day_entry_changed(self, button):
         entry_text = self.day_entry.get_text()
-        try:
-            entry_text = int(entry_text)
-        except ValueError:
-            message_dialog = Gtk.MessageDialog(self, 0, Gtk.MessageType.ERROR,
-                Gtk.ButtonsType.CANCEL, "Please enter a correct number")
-            message_dialog.run()
-
-            message_dialog.destroy()
-        if entry_text > 23:
-            message_dialog = Gtk.MessageDialog(self, 0, Gtk.MessageType.ERROR,
-                Gtk.ButtonsType.CANCEL, "Please enter a correct time")
-            message_dialog.format_secondary_text("Please enter a number between 00 and 23.")
-            message_dialog.run()
-
-            message_dialog.destroy()
+        
+        if entry_text == '' or entry_text == None:
+            entry_text = "0"
+            
+        if int(entry_text) > 23:
+            self.day_entry.set_text("23")
+            entry_text = self.day_entry.get_text()
+        #TODO add check that night bigger than day
         else:
             self.settings.set_string("daytime", str(entry_text))
         
-    def on_set_nighttime_button_clicked(self, button):
+    def on_night_entry_changed(self, button):
         entry_text = self.night_entry.get_text()
-        try:
-            entry_text = int(entry_text)
-        except ValueError:
-            message_dialog = Gtk.MessageDialog(self, 0, Gtk.MessageType.ERROR,
-                Gtk.ButtonsType.CANCEL, "Please enter a correct number")
-            message_dialog.run()
-
-            message_dialog.destroy()
+        
+        if entry_text == '' or entry_text == None:
+            entry_text = "0"
             
-        if entry_text > 23:
-            message_dialog = Gtk.MessageDialog(self, 0, Gtk.MessageType.ERROR,
-                Gtk.ButtonsType.CANCEL, "Please enter a correct time")
-            message_dialog.format_secondary_text("Please enter a number between 00 and 23.")
-            message_dialog.run()
-
-            message_dialog.destroy()
+        if int(entry_text) > 23:
+            self.night_entry.set_text("23")
+            entry_text = self.night_entry.get_text()
         #TODO add check that night bigger than day
         else:
             self.settings.set_string("nighttime", str(entry_text))
@@ -132,6 +116,11 @@ class MyWindow(Gtk.ApplicationWindow):
         self.settings.set_string("path-to-night-wallpaper", "")
         self.settings.set_string("path-to-day-wallpaper", "")
         self.settings.set_boolean("auto-switch", True)
+        self.day_entry.set_text(self.settings.get_string("daytime"))
+        self.night_entry.set_text(self.settings.get_string("nighttime"))
+        self.auto_button.set_active(self.settings.get_boolean("auto-switch"))
+        self.file_button_night.set_label("Choose Night Wallpaper")
+        self.file_button_day.set_label("Choose Day Wallpaper")
         
     def init_headerbar(self):
         self.header_bar = Gtk.HeaderBar()
@@ -168,11 +157,12 @@ class MyWindow(Gtk.ApplicationWindow):
         self.upper_grid.add(label_day)
         
         self.file_button_day = Gtk.Button("Choose Day Wallpaper")
+        self.file_button_day.set_margin_right(10)
         self.file_button_day.connect("clicked", self.on_day_wallpaper_choose)
         self.upper_grid.attach_next_to(self.file_button_day, label_day, Gtk.PositionType.BOTTOM, 1, 1)
         
         label_night = Gtk.Label("File for night:")
-        self.upper_grid.attach_next_to(label_night, self.file_button_day, Gtk.PositionType.BOTTOM, 1, 1)
+        self.upper_grid.attach_next_to(label_night, label_day, Gtk.PositionType.RIGHT, 1, 1)
         
         self.file_button_night = Gtk.Button("Choose Night Wallpaper")
         self.file_button_night.connect("clicked", self.on_night_wallpaper_choose)
@@ -195,11 +185,8 @@ class MyWindow(Gtk.ApplicationWindow):
         self.day_entry = Gtk.Entry()
         self.day_entry.set_input_purpose(Gtk.InputPurpose.NUMBER)
         self.day_entry.set_text(self.settings.get_string("daytime"))
+        self.day_entry.connect("changed", self.on_day_entry_changed)
         daytime_box.add(self.day_entry)
-        
-        set_daytime_button = Gtk.Button("Set")
-        set_daytime_button.connect("clicked", self.on_set_daytime_button_clicked)
-        daytime_box.add(set_daytime_button)
         
         nighttime_box = Gtk.Box()
         nighttime_box.set_homogeneous(True)
@@ -210,11 +197,8 @@ class MyWindow(Gtk.ApplicationWindow):
         self.night_entry = Gtk.Entry()
         self.night_entry.set_input_purpose(Gtk.InputPurpose.NUMBER)
         self.night_entry.set_text(self.settings.get_string("nighttime"))
+        self.night_entry.connect("changed", self.on_night_entry_changed)
         nighttime_box.add(self.night_entry)
-        
-        set_nighttime_button = Gtk.Button("Set")
-        set_nighttime_button.connect("clicked", self.on_set_nighttime_button_clicked)
-        nighttime_box.add(set_nighttime_button)
         
         self.bottom_grid.attach_next_to(daytime_box, time_label, Gtk.PositionType.BOTTOM, 1, 1)
         self.bottom_grid.attach_next_to(nighttime_box, daytime_box, Gtk.PositionType.BOTTOM, 1, 1)
