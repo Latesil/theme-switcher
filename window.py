@@ -82,6 +82,23 @@ class MyWindow(Gtk.ApplicationWindow):
     def on_auto_switch_change(self, settings, key, auto_button):
         self.auto_button.set_active(settings.get_boolean("auto-switch"))
         
+    def on_main_button_clicked(self, button):
+        self.popover.set_relative_to(button)
+        self.popover.show_all()
+        self.popover.popup()
+        
+    def on_reset_wallpapers(self, button):
+        self.settings.set_string("path-to-night-wallpaper", "")
+        self.settings.set_string("path-to-day-wallpaper", "")
+        self.file_button_night.set_label("Choose Night Wallpaper")
+        self.file_button_day.set_label("Choose Day Wallpaper")
+        
+    def reset_time(self, button):
+        self.settings.set_int("nighttime", 20)
+        self.settings.set_int("daytime", 6)
+        self.day_scale.set_value(self.settings.get_int("daytime"))
+        self.night_scale.set_value(self.settings.get_int("nighttime"))
+        
     def reset(self, button):
         
         #maybe there is another way to reset?
@@ -118,9 +135,31 @@ class MyWindow(Gtk.ApplicationWindow):
         
         self.header_bar.pack_start(header_box)
         
-        reset_button = Gtk.Button(label="Reset")
+        reset_button = Gtk.Button(label="Reset all")
         reset_button.connect("clicked", self.reset)
-        self.header_bar.pack_end(reset_button)
+        
+        reset_wallpapers_button = Gtk.Button(label="Reset Wallpapers")
+        reset_wallpapers_button.connect("clicked", self.on_reset_wallpapers)
+        
+        reset_time_button = Gtk.Button(label="Reset Time")
+        reset_time_button.connect("clicked", self.reset_time)
+        
+        main_button = Gtk.MenuButton()
+        self.popover = Gtk.Popover()
+        print(dir(self.popover))
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        vbox.pack_start(reset_button, False, True, 10)
+        vbox.pack_start(reset_time_button, False, True, 10)
+        vbox.pack_start(reset_wallpapers_button, False, True, 10)
+        self.popover.add(vbox)
+        self.popover.set_position(Gtk.PositionType.BOTTOM)
+        main_button.set_popover(self.popover)
+        main_button.connect("clicked", self.on_main_button_clicked)
+        self.header_bar.pack_end(main_button)
+        
+#        reset_button = Gtk.Button(label="Reset")
+#        reset_button.connect("clicked", self.reset)
+#        self.header_bar.pack_end(reset_button)
         
     def init_upper_grid(self):
         self.upper_grid = Gtk.Grid()
