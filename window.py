@@ -70,32 +70,6 @@ class MyWindow(Gtk.ApplicationWindow):
         filter_text.add_mime_type("image/jpeg")
         filter_text.add_mime_type("image/png")
         dialog.add_filter(filter_text)
-        
-    def on_day_entry_changed(self, button):
-        entry_text = self.day_entry.get_text()
-        
-        if entry_text == '' or entry_text == None:
-            entry_text = "0"
-            
-        if int(entry_text) > 23:
-            self.day_entry.set_text("23")
-            entry_text = self.day_entry.get_text()
-        #TODO add check that night bigger than day
-        else:
-            self.settings.set_string("daytime", str(entry_text))
-        
-    def on_night_entry_changed(self, button):
-        entry_text = self.night_entry.get_text()
-        
-        if entry_text == '' or entry_text == None:
-            entry_text = "0"
-            
-        if int(entry_text) > 23:
-            self.night_entry.set_text("23")
-            entry_text = self.night_entry.get_text()
-        #TODO add check that night bigger than day
-        else:
-            self.settings.set_string("nighttime", str(entry_text))
                 
     def on_auto_toggled(self, auto_button, gparam):
         if self.auto_button.get_active():
@@ -111,13 +85,13 @@ class MyWindow(Gtk.ApplicationWindow):
     def reset(self, button):
         
         #maybe there is another way to reset?
-        self.settings.set_string("nighttime", "20")
-        self.settings.set_string("daytime", "6")
+        self.settings.set_int("nighttime", 20)
+        self.settings.set_int("daytime", 6)
         self.settings.set_string("path-to-night-wallpaper", "")
         self.settings.set_string("path-to-day-wallpaper", "")
         self.settings.set_boolean("auto-switch", True)
-        self.day_entry.set_text(self.settings.get_string("daytime"))
-        self.night_entry.set_text(self.settings.get_string("nighttime"))
+        self.day_scale.set_value(self.settings.get_int("daytime"))
+        self.night_scale.set_value(self.settings.get_int("nighttime"))
         self.auto_button.set_active(self.settings.get_boolean("auto-switch"))
         self.file_button_night.set_label("Choose Night Wallpaper")
         self.file_button_day.set_label("Choose Day Wallpaper")
@@ -168,6 +142,12 @@ class MyWindow(Gtk.ApplicationWindow):
         self.file_button_night.connect("clicked", self.on_night_wallpaper_choose)
         self.upper_grid.attach_next_to(self.file_button_night, label_night, Gtk.PositionType.BOTTOM, 1, 1)
         
+    def on_day_value_changed(self, scale):
+        self.settings.set_int("daytime", scale.get_value())
+        
+    def on_night_value_changed(self, scale):
+        self.settings.set_int("nighttime", scale.get_value())
+        
     def init_bottom_grid(self):
         self.bottom_grid = Gtk.Grid()
         self.bottom_grid.set_column_homogeneous(True)
@@ -182,11 +162,14 @@ class MyWindow(Gtk.ApplicationWindow):
         day_label = Gtk.Label("Daytime: ")
         daytime_box.add(day_label)
         
-        self.day_entry = Gtk.Entry()
-        self.day_entry.set_input_purpose(Gtk.InputPurpose.NUMBER)
-        self.day_entry.set_text(self.settings.get_string("daytime"))
-        self.day_entry.connect("changed", self.on_day_entry_changed)
-        daytime_box.add(self.day_entry)
+        self.day_scale = Gtk.Scale()
+        self.day_scale.set_range(0, 23)
+        self.day_scale.set_digits(0)
+        self.day_scale.set_draw_value(True)
+        self.day_scale.set_value_pos(Gtk.PositionType.LEFT)
+        self.day_scale.set_value(self.settings.get_int("daytime"))
+        self.day_scale.connect("value_changed", self.on_day_value_changed)
+        daytime_box.add(self.day_scale)
         
         nighttime_box = Gtk.Box()
         nighttime_box.set_homogeneous(True)
@@ -194,11 +177,14 @@ class MyWindow(Gtk.ApplicationWindow):
         night_label = Gtk.Label("Night: ")
         nighttime_box.add(night_label)
         
-        self.night_entry = Gtk.Entry()
-        self.night_entry.set_input_purpose(Gtk.InputPurpose.NUMBER)
-        self.night_entry.set_text(self.settings.get_string("nighttime"))
-        self.night_entry.connect("changed", self.on_night_entry_changed)
-        nighttime_box.add(self.night_entry)
+        self.night_scale = Gtk.Scale()
+        self.night_scale.set_range(0, 23)
+        self.night_scale.set_digits(0)
+        self.night_scale.set_draw_value(True)
+        self.night_scale.set_value_pos(Gtk.PositionType.LEFT)
+        self.night_scale.set_value(self.settings.get_int("nighttime"))
+        self.night_scale.connect("value_changed", self.on_night_value_changed)
+        nighttime_box.add(self.night_scale)
         
         self.bottom_grid.attach_next_to(daytime_box, time_label, Gtk.PositionType.BOTTOM, 1, 1)
         self.bottom_grid.attach_next_to(nighttime_box, daytime_box, Gtk.PositionType.BOTTOM, 1, 1)

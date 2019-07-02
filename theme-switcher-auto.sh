@@ -8,18 +8,26 @@ time=$(date +"%H")
 #terminal_light='b4bd0ffd-117e-4778-82ef-da4ccdf4cb2c'
 night=$(gsettings get org.theme-switcher nighttime)
 daytime=$(gsettings get org.theme-switcher daytime)
+firstletter=${daytime:1:1}
 night_wallpapers=$(gsettings get org.theme-switcher path-to-night-wallpaper)
 day_wallpapers=$(gsettings get org.theme-switcher path-to-day-wallpaper)
-day="0$daytime"
+if [[ $firstletter == "0" ]]; then
+    day="$daytime"
+else
+    day="0$daytime"
+fi
+
+echo $day
+echo $night
 
 if [[ $time > $night ]] || [[ $time < $day ]]; then
-    gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
-    gsettings set org.gnome.desktop.background picture-uri "$night_wallpapers"
+    #gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+    #gsettings set org.gnome.desktop.background picture-uri "$night_wallpapers"
     #gsettings set org.gnome.Terminal.ProfilesList default $terminal_dark
     exit 0
 else
-    gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita'
-    gsettings set org.gnome.desktop.background picture-uri "$day_wallpapers"
+    #gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita'
+    #gsettings set org.gnome.desktop.background picture-uri "$day_wallpapers"
     #gsettings set org.gnome.Terminal.ProfilesList default $terminal_light
     exit 0
 fi
