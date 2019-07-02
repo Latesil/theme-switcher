@@ -13,12 +13,16 @@ day_wallpapers=$(gsettings get org.theme-switcher path-to-day-wallpaper)
 
 if (( $time > $night )) || (( $time < $daytime )); then
     gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
-    #gsettings set org.gnome.desktop.background picture-uri "$night_wallpapers"
+    if [ "$night_wallpapers" != "''" ]; then
+        gsettings set org.gnome.desktop.background picture-uri "$night_wallpapers"
+    fi
     #gsettings set org.gnome.Terminal.ProfilesList default $terminal_dark
     exit 0
 else
     gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita'
-    #gsettings set org.gnome.desktop.background picture-uri "$day_wallpapers"
+    if [ "$day_wallpapers" != "''" ]; then
+        gsettings set org.gnome.desktop.background picture-uri "$day_wallpapers"
+    fi
     #gsettings set org.gnome.Terminal.ProfilesList default $terminal_light
     exit 0
 fi
