@@ -157,10 +157,6 @@ class MyWindow(Gtk.ApplicationWindow):
         main_button.connect("clicked", self.on_main_button_clicked)
         self.header_bar.pack_end(main_button)
         
-#        reset_button = Gtk.Button(label="Reset")
-#        reset_button.connect("clicked", self.reset)
-#        self.header_bar.pack_end(reset_button)
-        
     def init_upper_grid(self):
         self.upper_grid = Gtk.Grid()
         self.upper_grid.set_column_homogeneous(True)

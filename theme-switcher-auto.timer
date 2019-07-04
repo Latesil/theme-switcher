@@ -3,8 +3,7 @@ Description=Switch dark/light GTK theme automatically during day/night
 After=suspend.target
 
 [Timer]
-OnBootSec=1 min
-#OnUnitActiveSec=15 min
+OnBootSec=3 min
 OnCalendar=hourly
 Persistent=true
 
