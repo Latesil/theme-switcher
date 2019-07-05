@@ -87,6 +87,12 @@ class MyWindow(Gtk.ApplicationWindow):
         self.popover.show_all()
         self.popover.popup()
         
+    def on_change_theme_button(self, button):
+        try:
+            subprocess.call(['theme-switcher-manual.sh'])
+        except:
+            pass
+        
     def on_reset_wallpapers(self, button):
         self.settings.set_string("path-to-night-wallpaper", "")
         self.settings.set_string("path-to-day-wallpaper", "")
@@ -135,7 +141,8 @@ class MyWindow(Gtk.ApplicationWindow):
         
         self.header_bar.pack_start(header_box)
         
-        reset_button = Gtk.ModelButton(label="Reset all")
+        reset_button = Gtk.ModelButton()
+        reset_button.set_label("Reset all")
         reset_button.centered = False
         reset_button.connect("clicked", self.reset)
         
@@ -145,6 +152,9 @@ class MyWindow(Gtk.ApplicationWindow):
         reset_time_button = Gtk.ModelButton(label="Reset Time")
         reset_time_button.connect("clicked", self.reset_time)
         
+        change_theme_button = Gtk.ModelButton("Change theme")
+        change_theme_button.connect("clicked", self.on_change_theme_button)
+        
         main_button = Gtk.Button.new_from_icon_name("open-menu-symbolic", Gtk.IconSize.BUTTON)
         self.popover = Gtk.Popover()
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
@@ -152,6 +162,7 @@ class MyWindow(Gtk.ApplicationWindow):
         vbox.set_margin_right(10)
         vbox.set_margin_bottom(10)
         vbox.set_margin_top(10)
+        vbox.pack_start(change_theme_button, False, False, 0)
         vbox.pack_start(reset_button, False, False, 0)
         vbox.pack_start(reset_time_button, False, False, 0)
         vbox.pack_start(reset_wallpapers_button, False, False, 0)
