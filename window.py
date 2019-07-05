@@ -135,25 +135,28 @@ class MyWindow(Gtk.ApplicationWindow):
         
         self.header_bar.pack_start(header_box)
         
-        reset_button = Gtk.Button(label="Reset all")
+        reset_button = Gtk.ModelButton(label="Reset all")
+        reset_button.centered = False
         reset_button.connect("clicked", self.reset)
         
-        reset_wallpapers_button = Gtk.Button(label="Reset Wallpapers")
+        reset_wallpapers_button = Gtk.ModelButton(label="Reset Wallpapers")
         reset_wallpapers_button.connect("clicked", self.on_reset_wallpapers)
         
-        reset_time_button = Gtk.Button(label="Reset Time")
+        reset_time_button = Gtk.ModelButton(label="Reset Time")
         reset_time_button.connect("clicked", self.reset_time)
         
-        main_button = Gtk.MenuButton()
+        main_button = Gtk.Button.new_from_icon_name("open-menu-symbolic", Gtk.IconSize.BUTTON)
         self.popover = Gtk.Popover()
-        print(dir(self.popover))
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        vbox.pack_start(reset_button, False, True, 10)
-        vbox.pack_start(reset_time_button, False, True, 10)
-        vbox.pack_start(reset_wallpapers_button, False, True, 10)
+        vbox.set_margin_left(10)
+        vbox.set_margin_right(10)
+        vbox.set_margin_bottom(10)
+        vbox.set_margin_top(10)
+        vbox.pack_start(reset_button, False, False, 0)
+        vbox.pack_start(reset_time_button, False, False, 0)
+        vbox.pack_start(reset_wallpapers_button, False, False, 0)
         self.popover.add(vbox)
         self.popover.set_position(Gtk.PositionType.BOTTOM)
-        main_button.set_popover(self.popover)
         main_button.connect("clicked", self.on_main_button_clicked)
         self.header_bar.pack_end(main_button)
         
@@ -163,17 +166,29 @@ class MyWindow(Gtk.ApplicationWindow):
         self.upper_grid.set_row_homogeneous(True)
         
         label_day = Gtk.Label("File for day:")
+        label_day.set_halign(Gtk.Align.START)
         self.upper_grid.add(label_day)
         
-        self.file_button_day = Gtk.Button("Choose Day Wallpaper")
+        self.file_button_day = Gtk.Button()
+        if not self.settings.get_string("path-to-day-wallpaper"):
+            self.file_button_day.set_label("Choose Day Wallpaper")
+        else:
+            day_wallpaper = self.settings.get_string("path-to-day-wallpaper")
+            self.file_button_day.set_label(day_wallpaper.split("/")[-1])
         self.file_button_day.set_margin_right(10)
         self.file_button_day.connect("clicked", self.on_day_wallpaper_choose)
         self.upper_grid.attach_next_to(self.file_button_day, label_day, Gtk.PositionType.BOTTOM, 1, 1)
         
         label_night = Gtk.Label("File for night:")
+        label_night.set_halign(Gtk.Align.START)
         self.upper_grid.attach_next_to(label_night, label_day, Gtk.PositionType.RIGHT, 1, 1)
         
-        self.file_button_night = Gtk.Button("Choose Night Wallpaper")
+        self.file_button_night = Gtk.Button()
+        if not self.settings.get_string("path-to-night-wallpaper"):
+            self.file_button_night.set_label("Choose Night Wallpaper")
+        else:
+            night_wallpaper = self.settings.get_string("path-to-night-wallpaper")
+            self.file_button_night.set_label(night_wallpaper.split("/")[-1])
         self.file_button_night.connect("clicked", self.on_night_wallpaper_choose)
         self.upper_grid.attach_next_to(self.file_button_night, label_night, Gtk.PositionType.BOTTOM, 1, 1)
         
@@ -195,6 +210,7 @@ class MyWindow(Gtk.ApplicationWindow):
         daytime_box.set_homogeneous(True)
         daytime_box.set_orientation(Gtk.Orientation.HORIZONTAL)
         day_label = Gtk.Label("Daytime: ")
+        day_label.set_halign(Gtk.Align.START)
         daytime_box.add(day_label)
         
         self.day_scale = Gtk.Scale()
@@ -210,6 +226,7 @@ class MyWindow(Gtk.ApplicationWindow):
         nighttime_box.set_homogeneous(True)
         nighttime_box.set_orientation(Gtk.Orientation.HORIZONTAL)
         night_label = Gtk.Label("Night: ")
+        night_label.set_halign(Gtk.Align.START)
         nighttime_box.add(night_label)
         
         self.night_scale = Gtk.Scale()
