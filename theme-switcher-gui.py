@@ -129,7 +129,7 @@ class MyWindow(Gtk.Window):
         header_box = Gtk.Box(spacing=6)
         header_box.set_orientation(Gtk.Orientation.HORIZONTAL)
         
-        header_label = Gtk.Label("Auto:")
+        header_label = Gtk.Label(label="Auto:")
         header_box.add(header_label)
         
         self.auto_button = Gtk.Switch()
@@ -154,14 +154,13 @@ class MyWindow(Gtk.Window):
         reset_time_button = Gtk.ModelButton(label="Reset Time")
         reset_time_button.connect("clicked", self.reset_time)
         
-        change_theme_button = Gtk.ModelButton("Change theme")
+        change_theme_button = Gtk.ModelButton(label="Change theme")
         change_theme_button.connect("clicked", self.on_change_theme_button)
         
         main_button = Gtk.Button.new_from_icon_name("open-menu-symbolic", Gtk.IconSize.BUTTON)
         self.popover = Gtk.Popover()
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        vbox.set_margin_left(10)
-        vbox.set_margin_right(10)
+        vbox.set_margin_start(10)
         vbox.set_margin_bottom(10)
         vbox.set_margin_top(10)
         vbox.pack_start(change_theme_button, False, False, 0)
@@ -178,7 +177,7 @@ class MyWindow(Gtk.Window):
         self.upper_grid.set_column_homogeneous(True)
         self.upper_grid.set_row_homogeneous(True)
         
-        label_day = Gtk.Label("File for day:")
+        label_day = Gtk.Label(label="File for day:")
         label_day.set_halign(Gtk.Align.START)
         self.upper_grid.add(label_day)
         
@@ -188,11 +187,11 @@ class MyWindow(Gtk.Window):
         else:
             day_wallpaper = self.settings.get_string("path-to-day-wallpaper")
             self.file_button_day.set_label(day_wallpaper.split("/")[-1])
-        self.file_button_day.set_margin_right(10)
+        self.file_button_day.set_margin_end(10)
         self.file_button_day.connect("clicked", self.on_day_wallpaper_choose)
         self.upper_grid.attach_next_to(self.file_button_day, label_day, Gtk.PositionType.BOTTOM, 1, 1)
         
-        label_night = Gtk.Label("File for night:")
+        label_night = Gtk.Label(label="File for night:")
         label_night.set_halign(Gtk.Align.START)
         self.upper_grid.attach_next_to(label_night, label_day, Gtk.PositionType.RIGHT, 1, 1)
         
@@ -216,13 +215,13 @@ class MyWindow(Gtk.Window):
         self.bottom_grid.set_column_homogeneous(True)
         self.bottom_grid.set_row_homogeneous(True)
         
-        time_label = Gtk.Label("Time Manage:")
+        time_label = Gtk.Label(label="Time Manage:")
         self.bottom_grid.add(time_label)
         
         daytime_box = Gtk.Box()
         daytime_box.set_homogeneous(True)
         daytime_box.set_orientation(Gtk.Orientation.HORIZONTAL)
-        day_label = Gtk.Label("Daytime: ")
+        day_label = Gtk.Label(label="Daytime: ")
         day_label.set_halign(Gtk.Align.START)
         daytime_box.add(day_label)
         
@@ -238,7 +237,7 @@ class MyWindow(Gtk.Window):
         nighttime_box = Gtk.Box()
         nighttime_box.set_homogeneous(True)
         nighttime_box.set_orientation(Gtk.Orientation.HORIZONTAL)
-        night_label = Gtk.Label("Night: ")
+        night_label = Gtk.Label(label="Night: ")
         night_label.set_halign(Gtk.Align.START)
         nighttime_box.add(night_label)
         
