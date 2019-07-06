@@ -1,9 +1,11 @@
+#!/usr/bin/python3
+
 import gi
 import subprocess
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gio
 
-class MyWindow(Gtk.ApplicationWindow):
+class MyWindow(Gtk.Window):
 
     BASE_KEY = "org.theme-switcher"
 
@@ -251,3 +253,9 @@ class MyWindow(Gtk.ApplicationWindow):
         
         self.bottom_grid.attach_next_to(daytime_box, time_label, Gtk.PositionType.BOTTOM, 1, 1)
         self.bottom_grid.attach_next_to(nighttime_box, daytime_box, Gtk.PositionType.BOTTOM, 1, 1)
+        
+        
+win = MyWindow()
+win.connect("destroy", Gtk.main_quit)
+win.show_all()
+Gtk.main()
