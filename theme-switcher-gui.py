@@ -2,12 +2,15 @@
 
 import gi
 import subprocess
+import datetime
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gio
 
 class MyWindow(Gtk.Window):
 
     BASE_KEY = "org.theme-switcher"
+    WALLPAPER_KEY = "org.gnome.desktop.background"
+    current_time = datetime.datetime.now()
 
     def __init__(self):
     
@@ -28,6 +31,10 @@ class MyWindow(Gtk.Window):
         
         self.box.pack_start(self.upper_grid, True, True, 0)
         self.box.pack_start(self.bottom_grid, True, True, 0)
+        
+    def set_wallpaper(self, wallpaper):
+        wallpaper_settings = Gio.Settings.new(self.WALLPAPER_KEY)
+        wallpaper_settings.set_string("picture-uri", wallpaper)
         
     def state_off(self):
         self.settings.set_boolean("auto-switch", self.auto_button.get_active())
@@ -50,7 +57,9 @@ class MyWindow(Gtk.Window):
             day_wallpaper = dialog.get_filename()
             self.settings.set_string("path-to-day-wallpaper", day_wallpaper)
             self.file_button_day.set_label(day_wallpaper.split("/")[-1])
-        dialog.destroy()
+            if (self.current_time.hour <= self.settings.get_int("daytime")):
+                self.set_wallpaper(day_wallpaper)
+        dialog.destroy()            
         
     def on_night_wallpaper_choose(self, widget):
         dialog = Gtk.FileChooserDialog("Choose a file", self, Gtk.FileChooserAction.OPEN, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
@@ -63,7 +72,8 @@ class MyWindow(Gtk.Window):
             night_wallpaper = dialog.get_filename()
             self.settings.set_string("path-to-night-wallpaper", night_wallpaper)
             self.file_button_night.set_label(night_wallpaper.split("/")[-1])
-            
+            if (self.current_time.hour >= self.settings.get_int("nighttime")):
+                self.set_wallpaper(night_wallpaper)
         dialog.destroy()
             
     def add_filters(self, dialog):
