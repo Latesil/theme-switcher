@@ -1,5 +1,13 @@
 # theme-switcher
-Switch dark/light GTK theme automatically during day/night
+
+A global automated switcher for dark/light GTK theme during day/night and more.
+
+Theme-switcher automatically can switch your:
+
+* GTK theme
+* GNOME Terminal profiles
+* Wallpapers
+* More will come...
 
 ### Prerequisites
 

@@ -1,10 +1,10 @@
-%global commit      0b5a714676f109400f670a1b7aaf03e7a378c5d6
+%global commit      71e219ad0c58a51ac7bc0def992db41454e4fae6
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global date        20190706
+%global date        20190707
 
 Name:           theme-switcher
 Version:        0
-Release:        2.beta1.%{date}git%{shortcommit}%{?dist}
+Release:        6.beta1.%{date}git%{shortcommit}%{?dist}
 Summary:        Switch dark/light GTK theme automatically during day/night
 
 License:        GPLv3+
@@ -19,12 +19,18 @@ Requires:       hicolor-icon-theme
 Requires:       python3-gobject
 
 %description
-%{summary}.
+A global automated switcher for dark/light GTK theme during day/night and more.
 
-You need to setup your light/dark profiles in gnome-terminal in order to switch
-terminal themes automatically. Configure them by edit:
+Theme-switcher automatically can switch your:
 
-sudoedit /usr/bin/theme-switcher-auto.sh
+• GTK theme
+• GNOME Terminal profiles
+• Wallpapers
+• More will come...
+
+To read docs run:
+
+xdg-open /usr/share/doc/theme-switcher/README.md
 
 %prep
 %autosetup -n Latesil-%{name}-%{shortcommit}
@@ -59,7 +65,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 %systemd_user_postun_with_restart %{name}-auto.timer
 
 %files
-%doc README.md
+%doc README.md CREDITS
 %license LICENSE
 %{_bindir}/%{name}-auto.sh
 %{_bindir}/%{name}-manual.sh
