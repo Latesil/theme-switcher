@@ -169,43 +169,16 @@ You should have received a copy of the GNU General Public License along with The
         header_box.add(self.auto_button)
         
         self.header_bar.pack_start(header_box)
-        
-        reset_button = Gtk.ModelButton()
-        reset_button.set_halign(Gtk.Align.START)
-        reset_button.set_label(_("Reset all"))
-        reset_button.connect("clicked", self.reset)
-        
-        reset_wallpapers_button = Gtk.ModelButton(label=_("Reset Wallpapers"))
-        reset_wallpapers_button.set_halign(Gtk.Align.START)
-        reset_wallpapers_button.connect("clicked", self.on_reset_wallpapers)
-        
-        reset_time_button = Gtk.ModelButton(label=_("Reset Time"))
-        reset_time_button.set_halign(Gtk.Align.START)
-        reset_time_button.connect("clicked", self.reset_time)
-        
-        change_theme_button = Gtk.ModelButton(label=_("Change theme"))
-        change_theme_button.set_halign(Gtk.Align.START)
-        change_theme_button.connect("clicked", self.on_change_theme_button)
 
-        about_button = Gtk.ModelButton(label=_("About"))
-        about_button.set_halign(Gtk.Align.START)
-        about_button.connect("clicked", self.on_about)
+        self.builder = Gtk.Builder()
+        self.builder.add_from_file('ui/popover.ui')
+
+        self.popover = self.builder.get_object('_main_popover')
+
+        self.builder.connect_signals(self)
         
         main_button = Gtk.Button.new_from_icon_name("open-menu-symbolic", Gtk.IconSize.BUTTON)
-        self.popover = Gtk.Popover()
-        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        vbox.set_margin_start(10)
-        vbox.set_margin_bottom(10)
-        vbox.set_margin_top(10)
-        vbox.pack_start(change_theme_button, False, False, 0)
-        vbox.pack_start(Gtk.Separator(), False, False, 0)
-        vbox.pack_start(reset_button, False, False, 0)
-        vbox.pack_start(reset_time_button, False, False, 0)
-        vbox.pack_start(reset_wallpapers_button, False, False, 0)
-        vbox.pack_start(Gtk.Separator(), False, False, 0)
-        vbox.pack_start(about_button, False, False, 0)
-        self.popover.add(vbox)
-        self.popover.set_position(Gtk.PositionType.BOTTOM)
+        
         main_button.connect("clicked", self.on_main_button_clicked)
         self.header_bar.pack_end(main_button)
         
