@@ -1,8 +1,10 @@
 #!/usr/bin/python3
 
-import gi
 import subprocess
 import datetime
+from gettext import gettext as _
+
+import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gio
 
@@ -14,7 +16,7 @@ class MyWindow(Gtk.Window):
 
     def __init__(self):
     
-        Gtk.Window.__init__(self, title="Theme Switcher")
+        Gtk.Window.__init__(self, title=_("Theme Switcher"))
         
         self.set_border_width(10)
         self.set_default_size(400, 200)
@@ -47,7 +49,7 @@ class MyWindow(Gtk.Window):
         subprocess.call(['systemctl','enable','--user','theme-switcher-auto.timer'])
         
     def on_day_wallpaper_choose(self, widget):
-        dialog = Gtk.FileChooserDialog("Choose a file", self, Gtk.FileChooserAction.OPEN, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+        dialog = Gtk.FileChooserDialog(_("Choose a file"), self, Gtk.FileChooserAction.OPEN, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
         Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
         
         self.add_filters(dialog)
@@ -62,7 +64,7 @@ class MyWindow(Gtk.Window):
         dialog.destroy()            
         
     def on_night_wallpaper_choose(self, widget):
-        dialog = Gtk.FileChooserDialog("Choose a file", self, Gtk.FileChooserAction.OPEN, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+        dialog = Gtk.FileChooserDialog(_("Choose a file"), self, Gtk.FileChooserAction.OPEN, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
         Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
         
         self.add_filters(dialog)
@@ -108,8 +110,8 @@ class MyWindow(Gtk.Window):
     def on_reset_wallpapers(self, button):
         self.settings.set_string("path-to-night-wallpaper", "")
         self.settings.set_string("path-to-day-wallpaper", "")
-        self.file_button_night.set_label("Choose Night Wallpaper")
-        self.file_button_day.set_label("Choose Day Wallpaper")
+        self.file_button_night.set_label(_("Choose Night Wallpaper"))
+        self.file_button_day.set_label(_("Choose Day Wallpaper"))
         
     def reset_time(self, button):
         self.settings.set_int("nighttime", 20)
@@ -128,18 +130,18 @@ class MyWindow(Gtk.Window):
         self.day_scale.set_value(self.settings.get_int("daytime"))
         self.night_scale.set_value(self.settings.get_int("nighttime"))
         self.auto_button.set_active(self.settings.get_boolean("auto-switch"))
-        self.file_button_night.set_label("Choose Night Wallpaper")
-        self.file_button_day.set_label("Choose Day Wallpaper")
+        self.file_button_night.set_label(_("Choose Night Wallpaper"))
+        self.file_button_day.set_label(_("Choose Day Wallpaper"))
         
     def init_headerbar(self):
         self.header_bar = Gtk.HeaderBar()
         self.header_bar.set_show_close_button(True)
-        self.header_bar.props.title = "Theme Switcher"
+        self.header_bar.props.title = _("Theme Switcher")
         
         header_box = Gtk.Box(spacing=6)
         header_box.set_orientation(Gtk.Orientation.HORIZONTAL)
         
-        header_label = Gtk.Label(label="Auto:")
+        header_label = Gtk.Label(label=_("Auto:"))
         header_box.add(header_label)
         
         self.auto_button = Gtk.Switch()
@@ -154,17 +156,17 @@ class MyWindow(Gtk.Window):
         self.header_bar.pack_start(header_box)
         
         reset_button = Gtk.ModelButton()
-        reset_button.set_label("Reset all")
+        reset_button.set_label(_("Reset all"))
         reset_button.centered = False
         reset_button.connect("clicked", self.reset)
         
-        reset_wallpapers_button = Gtk.ModelButton(label="Reset Wallpapers")
+        reset_wallpapers_button = Gtk.ModelButton(label=_("Reset Wallpapers"))
         reset_wallpapers_button.connect("clicked", self.on_reset_wallpapers)
         
-        reset_time_button = Gtk.ModelButton(label="Reset Time")
+        reset_time_button = Gtk.ModelButton(label=_("Reset Time"))
         reset_time_button.connect("clicked", self.reset_time)
         
-        change_theme_button = Gtk.ModelButton(label="Change theme")
+        change_theme_button = Gtk.ModelButton(label=_("Change theme"))
         change_theme_button.connect("clicked", self.on_change_theme_button)
         
         main_button = Gtk.Button.new_from_icon_name("open-menu-symbolic", Gtk.IconSize.BUTTON)
@@ -187,13 +189,13 @@ class MyWindow(Gtk.Window):
         self.upper_grid.set_column_homogeneous(True)
         self.upper_grid.set_row_homogeneous(True)
         
-        label_day = Gtk.Label(label="File for day:")
+        label_day = Gtk.Label(label=_("File for day:"))
         label_day.set_halign(Gtk.Align.START)
         self.upper_grid.add(label_day)
         
         self.file_button_day = Gtk.Button()
         if not self.settings.get_string("path-to-day-wallpaper"):
-            self.file_button_day.set_label("Choose Day Wallpaper")
+            self.file_button_day.set_label(_("Choose Day Wallpaper"))
         else:
             day_wallpaper = self.settings.get_string("path-to-day-wallpaper")
             self.file_button_day.set_label(day_wallpaper.split("/")[-1])
@@ -201,13 +203,13 @@ class MyWindow(Gtk.Window):
         self.file_button_day.connect("clicked", self.on_day_wallpaper_choose)
         self.upper_grid.attach_next_to(self.file_button_day, label_day, Gtk.PositionType.BOTTOM, 1, 1)
         
-        label_night = Gtk.Label(label="File for night:")
+        label_night = Gtk.Label(label=_("File for night:"))
         label_night.set_halign(Gtk.Align.START)
         self.upper_grid.attach_next_to(label_night, label_day, Gtk.PositionType.RIGHT, 1, 1)
         
         self.file_button_night = Gtk.Button()
         if not self.settings.get_string("path-to-night-wallpaper"):
-            self.file_button_night.set_label("Choose Night Wallpaper")
+            self.file_button_night.set_label(_("Choose Night Wallpaper"))
         else:
             night_wallpaper = self.settings.get_string("path-to-night-wallpaper")
             self.file_button_night.set_label(night_wallpaper.split("/")[-1])
@@ -225,13 +227,13 @@ class MyWindow(Gtk.Window):
         self.bottom_grid.set_column_homogeneous(True)
         self.bottom_grid.set_row_homogeneous(True)
         
-        time_label = Gtk.Label(label="Time Manage:")
+        time_label = Gtk.Label(label=_("Time Manage:"))
         self.bottom_grid.add(time_label)
         
         daytime_box = Gtk.Box()
         daytime_box.set_homogeneous(True)
         daytime_box.set_orientation(Gtk.Orientation.HORIZONTAL)
-        day_label = Gtk.Label(label="Daytime: ")
+        day_label = Gtk.Label(label=_("Daytime: "))
         day_label.set_halign(Gtk.Align.START)
         daytime_box.add(day_label)
         
@@ -247,7 +249,7 @@ class MyWindow(Gtk.Window):
         nighttime_box = Gtk.Box()
         nighttime_box.set_homogeneous(True)
         nighttime_box.set_orientation(Gtk.Orientation.HORIZONTAL)
-        night_label = Gtk.Label(label="Night: ")
+        night_label = Gtk.Label(label=_("Night: "))
         night_label.set_halign(Gtk.Align.START)
         nighttime_box.add(night_label)
         
