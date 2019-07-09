@@ -37,16 +37,31 @@ class MyWindow(Gtk.Window):
     def set_wallpaper(self, wallpaper):
         wallpaper_settings = Gio.Settings.new(self.WALLPAPER_KEY)
         wallpaper_settings.set_string("picture-uri", wallpaper)
+
+    def on_about(self, button):
+        about = Gtk.AboutDialog()
+        about.set_program_name("Theme Switcher")
+        about.set_version("0.1")
+        about.set_authors(["Letalis", 'atim77'])
+        about.set_copyright("(c) copylefted")
+        about.set_comments("A global automated switcher for dark/light GTK theme during day/night and more.")
+        about.set_website("https://github.com/Latesil/theme-switcher")
+        about.set_wrap_license(True)
+        about.set_license("""Theme Switcher is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+
+Theme Switcher is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with Theme Switcher; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.""")
+        about.run()
+        about.destroy()
         
     def state_off(self):
         self.settings.set_boolean("auto-switch", self.auto_button.get_active())
-        subprocess.call(['systemctl','stop','--user','theme-switcher-auto.timer'])
-        subprocess.call(['systemctl','disable','--user','theme-switcher-auto.timer'])
+        subprocess.call(['systemctl','--user','disable', '--now','theme-switcher-auto.timer'])
         
     def state_on(self):
         self.settings.set_boolean("auto-switch", self.auto_button.get_active())
-        subprocess.call(['systemctl','start','--user','theme-switcher-auto.timer'])
-        subprocess.call(['systemctl','enable','--user','theme-switcher-auto.timer'])
+        subprocess.call(['systemctl','--user','enable', '--now','theme-switcher-auto.timer'])
         
     def on_day_wallpaper_choose(self, widget):
         dialog = Gtk.FileChooserDialog(_("Choose a file"), self, Gtk.FileChooserAction.OPEN, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
@@ -87,10 +102,10 @@ class MyWindow(Gtk.Window):
                 
     def on_auto_toggled(self, auto_button, gparam):
         if self.auto_button.get_active():
-            state = "on"
+            #state = "on"
             self.state_on()
         else:
-            state = "off"
+            #state = "off"
             self.state_off()
             
     def on_auto_switch_change(self, settings, key, auto_button):
@@ -156,18 +171,25 @@ class MyWindow(Gtk.Window):
         self.header_bar.pack_start(header_box)
         
         reset_button = Gtk.ModelButton()
+        reset_button.set_halign(Gtk.Align.START)
         reset_button.set_label(_("Reset all"))
-        reset_button.centered = False
         reset_button.connect("clicked", self.reset)
         
         reset_wallpapers_button = Gtk.ModelButton(label=_("Reset Wallpapers"))
+        reset_wallpapers_button.set_halign(Gtk.Align.START)
         reset_wallpapers_button.connect("clicked", self.on_reset_wallpapers)
         
         reset_time_button = Gtk.ModelButton(label=_("Reset Time"))
+        reset_time_button.set_halign(Gtk.Align.START)
         reset_time_button.connect("clicked", self.reset_time)
         
         change_theme_button = Gtk.ModelButton(label=_("Change theme"))
+        change_theme_button.set_halign(Gtk.Align.START)
         change_theme_button.connect("clicked", self.on_change_theme_button)
+
+        about_button = Gtk.ModelButton(label=_("About"))
+        about_button.set_halign(Gtk.Align.START)
+        about_button.connect("clicked", self.on_about)
         
         main_button = Gtk.Button.new_from_icon_name("open-menu-symbolic", Gtk.IconSize.BUTTON)
         self.popover = Gtk.Popover()
@@ -176,9 +198,12 @@ class MyWindow(Gtk.Window):
         vbox.set_margin_bottom(10)
         vbox.set_margin_top(10)
         vbox.pack_start(change_theme_button, False, False, 0)
+        vbox.pack_start(Gtk.Separator(), False, False, 0)
         vbox.pack_start(reset_button, False, False, 0)
         vbox.pack_start(reset_time_button, False, False, 0)
         vbox.pack_start(reset_wallpapers_button, False, False, 0)
+        vbox.pack_start(Gtk.Separator(), False, False, 0)
+        vbox.pack_start(about_button, False, False, 0)
         self.popover.add(vbox)
         self.popover.set_position(Gtk.PositionType.BOTTOM)
         main_button.connect("clicked", self.on_main_button_clicked)
