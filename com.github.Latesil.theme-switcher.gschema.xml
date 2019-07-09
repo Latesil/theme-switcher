@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-  <schema id="org.theme-switcher" path="/org/theme-switcher/">
+  <schema id="com.github.Latesil.theme-switcher" path="/com/github.Latesil/theme-switcher/">
     <key type="i" name="daytime">
       <default>6</default>
       <summary>Daytime for theme switch</summary>
