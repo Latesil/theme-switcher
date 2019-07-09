@@ -1,2 +1,4 @@
 .git/
 __pycache__/
+ui/popover.ui~
+.gitignore

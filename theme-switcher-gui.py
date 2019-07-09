@@ -43,6 +43,7 @@ class MyWindow(Gtk.Window):
         about.set_program_name("Theme Switcher")
         about.set_version("0.1")
         about.set_authors(["Letalis", 'atim77'])
+        # about.set_icon('light-dark-icon.png')
         about.set_copyright("(c) copylefted")
         about.set_comments("A global automated switcher for dark/light GTK theme during day/night and more.")
         about.set_website("https://github.com/Latesil/theme-switcher")
@@ -178,7 +179,7 @@ You should have received a copy of the GNU General Public License along with The
         self.builder.connect_signals(self)
         
         main_button = Gtk.Button.new_from_icon_name("open-menu-symbolic", Gtk.IconSize.BUTTON)
-        
+
         main_button.connect("clicked", self.on_main_button_clicked)
         self.header_bar.pack_end(main_button)
         

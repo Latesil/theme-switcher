@@ -4,10 +4,16 @@
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkPopoverMenu" id="_main_popover">
     <property name="can_focus">False</property>
+    <property name="margin_left">10</property>
+    <property name="margin_right">10</property>
     <child>
       <object class="GtkBox" id="_popover_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="margin_left">10</property>
+        <property name="margin_right">10</property>
+        <property name="margin_top">10</property>
+        <property name="margin_bottom">9</property>
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkModelButton" id="_change_theme_button">
@@ -68,7 +74,7 @@
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="text" translatable="yes">Reset Wallpapers</property>
-            <signal name="clicked" handler="app.on_reset_wallpapers" swapped="no"/>
+            <signal name="clicked" handler="on_reset_wallpapers" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>
