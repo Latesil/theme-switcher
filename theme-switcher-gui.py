@@ -10,7 +10,7 @@ from gi.repository import Gtk, Gio
 
 class MyWindow(Gtk.Window):
 
-    BASE_KEY = "org.theme-switcher"
+    BASE_KEY = "com.github.Latesil.theme-switcher"
     WALLPAPER_KEY = "org.gnome.desktop.background"
     current_time = datetime.datetime.now()
 
