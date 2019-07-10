@@ -343,14 +343,21 @@ class BottomBox(Gtk.Box):
     def __init__(self):
         super().__init__()
 
+        #init settings
+        self.settings = Gio.Settings.new(BASE_KEY)
+
+        #get values from gsettings after start programm
+        self._day_scale.set_value(self.settings.get_int("daytime"))
+        self._night_scale.set_value(self.settings.get_int("nighttime"))
+
     #set two callbacks for scale
     @Gtk.Template.Callback()
     def on__day_adjustment_value_changed(self, scale):
-        print("on__day_adjustment_value_changed")
+        self.settings.set_int("daytime", scale.get_value())
 
     @Gtk.Template.Callback()
     def on__night_adjustment_value_changed(self, scale):
-        print("on__night_adjustment_value_changed")
+        self.settings.set_int("nighttime", scale.get_value())
 
 
 @Gtk.Template(filename='ui/main_window.ui')
@@ -392,7 +399,7 @@ class HeaderBar(Gtk.HeaderBar):
         super().__init__()
 
         #init main settings
-        self.settings = Gio.Settings.new(self.BASE_KEY)
+        self.settings = Gio.Settings.new(BASE_KEY)
 
         #connect signal for tracking changes in both directions
         #from programm to GSettings, and vice versa
@@ -427,7 +434,9 @@ class HeaderBar(Gtk.HeaderBar):
     def state_on(self):
         self.settings.set_boolean("auto-switch", self._left_switch.get_active())
         subprocess.call(['systemctl','--user','enable', '--now','theme-switcher-auto.timer'])
-        
+
+BASE_KEY = "com.github.Latesil.theme-switcher"
+
 #init main window
 win = Window()
 
