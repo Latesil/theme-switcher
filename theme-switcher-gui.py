@@ -47,9 +47,7 @@ from gi.repository import Gtk, Gio
 #         about.set_comments("A global automated switcher for dark/light GTK theme during day/night and more.")
 #         about.set_website("https://github.com/Latesil/theme-switcher")
 #         about.set_wrap_license(True)
-#         about.set_license("""Theme Switcher is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
-# Theme Switcher is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
-# You should have received a copy of the GNU General Public License along with Theme Switcher; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.""")
+#         about.set_license(Gtk.License.GPL3)
 #         about.run()
 #         about.destroy()
         
@@ -299,7 +297,18 @@ class Popover(Gtk.PopoverMenu):
 
     @Gtk.Template.Callback()
     def on__about_button_clicked(self, button):
-        print("on__about_button_clicked")
+        about = Gtk.AboutDialog()
+        about.set_program_name("Theme Switcher")
+        about.set_version("0.1")
+        about.set_authors(["Letalis", 'atim77'])
+        # about.set_icon('light-dark-icon.png')
+        about.set_copyright("(c) Copylefted")
+        about.set_comments("A global automated switcher for dark/light GTK theme during day/night and more.")
+        about.set_website("https://github.com/Latesil/theme-switcher")
+        about.set_wrap_license(True)
+        about.set_license_type(Gtk.License.GPL_3_0)
+        about.run()
+        about.destroy()
 
 
 @Gtk.Template(filename='ui/upper_grid.ui')
