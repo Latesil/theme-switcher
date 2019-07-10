@@ -155,7 +155,7 @@ class UpperGrid(Gtk.Grid):
     #helper function for filter choosing file dialog
     def add_filters(self, dialog):
         filter_text = Gtk.FileFilter()
-        filter_text.set_name("Text files")
+        filter_text.set_name("Pictures")
         filter_text.add_mime_type("image/jpeg")
         filter_text.add_mime_type("image/png")
         dialog.add_filter(filter_text)
