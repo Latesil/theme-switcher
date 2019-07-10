@@ -75,6 +75,8 @@ class UpperGrid(Gtk.Grid):
 
     _day_button = Gtk.Template.Child()
     _night_button = Gtk.Template.Child()
+    _day_label = Gtk.Template.Child()
+    _night_label = Gtk.Template.Child()
 
     def __init__(self):
         super().__init__()
@@ -88,6 +90,10 @@ class UpperGrid(Gtk.Grid):
         #init button names
         self.set_day_button_label()
         self.set_night_button_label()
+
+        self._day_label.set_halign(Gtk.Align.START)
+        self._night_label.set_halign(Gtk.Align.START)
+        self._day_button.set_margin_end(10)
 
     #callbacks for changes in wallpapers
     def on__day_button_change(self, settings, key, button):
@@ -167,6 +173,8 @@ class BottomBox(Gtk.Box):
 
     _day_scale = Gtk.Template.Child()
     _night_scale = Gtk.Template.Child()
+    _bottom_day_label = Gtk.Template.Child()
+    _bottom_night_label = Gtk.Template.Child()
 
     def __init__(self):
         super().__init__()
@@ -180,6 +188,9 @@ class BottomBox(Gtk.Box):
 
         #get values from gsettings after start programm
         self.get_scales_values()
+
+        self._bottom_day_label.set_halign(Gtk.Align.START)
+        self._bottom_night_label.set_halign(Gtk.Align.START)
 
     def on__day_scale_change(self, settings, key, button):
         self._day_scale.set_value(self.settings.get_int("daytime"))
@@ -210,6 +221,8 @@ class Window(Gtk.Window):
 
     def __init__(self):
         super().__init__()
+
+        self._main_box.set_border_width(10)
 
         #init header_bar
         self.header_bar = HeaderBar()

@@ -18,7 +18,6 @@
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="orientation">vertical</property>
-    <property name="homogeneous">True</property>
     <child>
       <object class="GtkLabel" id="_bottom_label">
         <property name="visible">True</property>
