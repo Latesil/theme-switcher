@@ -274,6 +274,9 @@ class Popover(Gtk.PopoverMenu):
     def __init__(self):
         super().__init__()
 
+        #init settings
+        self.settings = Gio.Settings.new(BASE_KEY)
+
     #callback for change theme now
     @Gtk.Template.Callback()
     def on__change_theme_button_clicked(self, button):
@@ -285,15 +288,23 @@ class Popover(Gtk.PopoverMenu):
     #other callbacks in our popover menu
     @Gtk.Template.Callback()
     def on__reset_all_button_clicked(self, button):
-        print("on__reset_all_button_clicked")
+        self.settings.set_int("nighttime", 20)
+        self.settings.set_int("daytime", 6)
+        self.settings.set_string("path-to-night-wallpaper", "")
+        self.settings.set_string("path-to-day-wallpaper", "")
+        self.settings.set_boolean("auto-switch", True)
+        # self.file_button_night.set_label(_("Choose Night Wallpaper"))
+        # self.file_button_day.set_label(_("Choose Day Wallpaper"))
 
     @Gtk.Template.Callback()
     def on__reset_time_button_clicked(self, button):
-        print("on__reset_time_button_clicked")
+        self.settings.set_int("nighttime", 20)
+        self.settings.set_int("daytime", 6)
 
     @Gtk.Template.Callback()
     def on__reset_wallpapers_clicked(self, button):
-        print("on__reset_wallpapers_clicked")
+        self.settings.set_string("path-to-night-wallpaper", "")
+        self.settings.set_string("path-to-day-wallpaper", "")
 
     @Gtk.Template.Callback()
     def on__about_button_clicked(self, button):
@@ -346,7 +357,20 @@ class BottomBox(Gtk.Box):
         #init settings
         self.settings = Gio.Settings.new(BASE_KEY)
 
+        #monitor changes in gsettings
+        self.settings.connect("changed::daytime", self.on__day_scale_change, self._day_scale)
+        self.settings.connect("changed::nighttime", self.on__night_scale_change, self._night_scale)
+
         #get values from gsettings after start programm
+        self.get_scales_values()
+
+    def on__day_scale_change(self, settings, key, button):
+        self._day_scale.set_value(self.settings.get_int("daytime"))
+
+    def on__night_scale_change(self, settings, key, button):
+        self._night_scale.set_value(self.settings.get_int("nighttime"))
+
+    def get_scales_values(self):
         self._day_scale.set_value(self.settings.get_int("daytime"))
         self._night_scale.set_value(self.settings.get_int("nighttime"))
 
@@ -388,8 +412,6 @@ class Window(Gtk.Window):
 class HeaderBar(Gtk.HeaderBar):
 
     __gtype_name__ = "HeaderBar"
-
-    BASE_KEY = "com.github.Latesil.theme-switcher"
 
     _left_label = Gtk.Template.Child()
     _left_switch = Gtk.Template.Child()
@@ -434,6 +456,7 @@ class HeaderBar(Gtk.HeaderBar):
     def state_on(self):
         self.settings.set_boolean("auto-switch", self._left_switch.get_active())
         subprocess.call(['systemctl','--user','enable', '--now','theme-switcher-auto.timer'])
+
 
 BASE_KEY = "com.github.Latesil.theme-switcher"
 
