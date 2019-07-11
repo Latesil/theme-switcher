@@ -12,7 +12,11 @@ from gi.repository import Gtk, Gio
 #locales
 locale.textdomain('com.github.Latesil.theme-switcher')
 
-@Gtk.Template(filename='ui/popover.ui')
+BASE_KEY = "com.github.Latesil.theme-switcher"
+WALLPAPER_KEY = "org.gnome.desktop.background"
+UI_PATH = '/com/github/Latesil/theme-switcher/ui/'
+
+@Gtk.Template(resource_path = UI_PATH + 'popover.ui')
 class Popover(Gtk.PopoverMenu):
 
     __gtype_name__ = "Popover"
@@ -72,7 +76,7 @@ class Popover(Gtk.PopoverMenu):
         about.destroy()
 
 
-@Gtk.Template(filename='ui/upper_grid.ui')
+@Gtk.Template(resource_path = UI_PATH + 'upper_grid.ui')
 class UpperGrid(Gtk.Grid):
 
     __gtype_name__ = "UpperGrid"
@@ -170,7 +174,7 @@ class UpperGrid(Gtk.Grid):
         wallpaper_settings.set_string("picture-uri", wallpaper)
 
 
-@Gtk.Template(filename='ui/bottom_box.ui')
+@Gtk.Template(resource_path = UI_PATH + 'bottom_box.ui')
 class BottomBox(Gtk.Box):
 
     __gtype_name__ = "BottomBox"
@@ -216,7 +220,7 @@ class BottomBox(Gtk.Box):
         self.settings.set_int("nighttime", scale.get_value())
 
 
-@Gtk.Template(filename='ui/main_window.ui')
+@Gtk.Template(resource_path = UI_PATH + 'main_window.ui')
 class Window(Gtk.Window):
 
     __gtype_name__ = "Window"
@@ -242,7 +246,7 @@ class Window(Gtk.Window):
         self._main_box.add(self.bottom_box)
 
 
-@Gtk.Template(filename='ui/header_bar.ui')
+@Gtk.Template(resource_path = UI_PATH + 'header_bar.ui')
 class HeaderBar(Gtk.HeaderBar):
 
     __gtype_name__ = "HeaderBar"
@@ -291,9 +295,6 @@ class HeaderBar(Gtk.HeaderBar):
         self.settings.set_boolean("auto-switch", self._left_switch.get_active())
         subprocess.call(['systemctl','--user','enable', '--now','theme-switcher-auto.timer'])
 
-
-BASE_KEY = "com.github.Latesil.theme-switcher"
-WALLPAPER_KEY = "org.gnome.desktop.background"
 
 #init main window
 win = Window()
