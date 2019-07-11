@@ -6,10 +6,10 @@ time=$(date +"%H")
 # gsettings get org.gnome.Terminal.ProfilesList list
 terminal_dark='88173e30-df6e-4442-b012-4e1119c7385f'
 terminal_light='b4bd0ffd-117e-4778-82ef-da4ccdf4cb2c'
-night=$(gsettings get org.theme-switcher nighttime)
-daytime=$(gsettings get org.theme-switcher daytime)
-night_wallpapers=$(gsettings get org.theme-switcher path-to-night-wallpaper)
-day_wallpapers=$(gsettings get org.theme-switcher path-to-day-wallpaper)
+night=$(gsettings get com.github.Latesil.theme-switcher nighttime)
+daytime=$(gsettings get com.github.Latesil.theme-switcher daytime)
+night_wallpapers=$(gsettings get com.github.Latesil.theme-switcher path-to-night-wallpaper)
+day_wallpapers=$(gsettings get com.github.Latesil.theme-switcher path-to-day-wallpaper)
 
 if (( $time >= $night )) || (( $time <= $daytime )); then
     gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
