@@ -2,11 +2,15 @@
 
 import subprocess
 import datetime
-from gettext import gettext as _
+import locale
+from locale import gettext as _
 
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gio
+
+#locales
+locale.textdomain('com.github.Latesil.theme-switcher')
 
 @Gtk.Template(filename='ui/popover.ui')
 class Popover(Gtk.PopoverMenu):
@@ -122,9 +126,9 @@ class UpperGrid(Gtk.Grid):
     def on__night_button_clicked(self, button):
         dialog = Gtk.FileChooserDialog(_("Choose a file for night"), None, Gtk.FileChooserAction.OPEN, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
         Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
-        
+
         self.add_filters(dialog)
-        
+
         response = dialog.run()
         if response == Gtk.ResponseType.OK:
             night_wallpaper = dialog.get_filename()
@@ -139,9 +143,9 @@ class UpperGrid(Gtk.Grid):
     def on__day_button_clicked(self, button):
         dialog = Gtk.FileChooserDialog(_("Choose a file for day"), None, Gtk.FileChooserAction.OPEN, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
         Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
-        
+
         self.add_filters(dialog)
-        
+
         response = dialog.run()
         if response == Gtk.ResponseType.OK:
             day_wallpaper = dialog.get_filename()
@@ -214,7 +218,7 @@ class BottomBox(Gtk.Box):
 
 @Gtk.Template(filename='ui/main_window.ui')
 class Window(Gtk.Window):
-    
+
     __gtype_name__ = "Window"
 
     _main_box = Gtk.Template.Child()
@@ -281,7 +285,7 @@ class HeaderBar(Gtk.HeaderBar):
     def state_off(self):
         self.settings.set_boolean("auto-switch", self._left_switch.get_active())
         subprocess.call(['systemctl','--user','disable', '--now','theme-switcher-auto.timer'])
-        
+
     #if switch state is on
     def state_on(self):
         self.settings.set_boolean("auto-switch", self._left_switch.get_active())
