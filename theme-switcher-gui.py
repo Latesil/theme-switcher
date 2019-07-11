@@ -17,9 +17,7 @@ BASE_KEY = "com.github.Latesil.theme-switcher"
 WALLPAPER_KEY = "org.gnome.desktop.background"
 UI_PATH = '/com/github/Latesil/theme-switcher/ui/'
 
-base_path = os.path.abspath(os.path.dirname(__file__))
-resource_path = os.path.join(base_path, '/usr/share/theme-switcher/theme-switcher.gresource')
-resource = Gio.Resource.load(resource_path)
+resource = Gio.Resource.load("/usr/share/theme-switcher/theme-switcher.gresource")
 resource._register()
 
 @Gtk.Template(resource_path = UI_PATH + 'popover.ui')
