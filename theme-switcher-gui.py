@@ -3,6 +3,7 @@
 import subprocess
 import datetime
 import locale
+import os
 from locale import gettext as _
 
 import gi
@@ -15,6 +16,11 @@ locale.textdomain('com.github.Latesil.theme-switcher')
 BASE_KEY = "com.github.Latesil.theme-switcher"
 WALLPAPER_KEY = "org.gnome.desktop.background"
 UI_PATH = '/com/github/Latesil/theme-switcher/ui/'
+
+base_path = os.path.abspath(os.path.dirname(__file__))
+resource_path = os.path.join(base_path, '/usr/share/theme-switcher/theme-switcher.gresource')
+resource = Gio.Resource.load(resource_path)
+resource._register()
 
 @Gtk.Template(resource_path = UI_PATH + 'popover.ui')
 class Popover(Gtk.PopoverMenu):
