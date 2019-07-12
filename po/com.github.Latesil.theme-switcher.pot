@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-12 16:32+0300\n"
+"POT-Creation-Date: 2019-07-12 17:20+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -73,14 +73,62 @@ msgstr ""
 msgid "Current dark theme."
 msgstr ""
 
-#: ../theme-switcher-gui.py:167
-msgid "Choose Day Wallpaper"
+#: ../ui/bottom_box.ui.h:1
+msgid "Time Manage:"
 msgstr ""
 
-#: ../theme-switcher-gui.py:174
-msgid "Choose Night Wallpaper"
+#: ../ui/bottom_box.ui.h:2
+msgid "Day:"
 msgstr ""
 
-#: ../theme-switcher-gui.py:180
-msgid "Choose a file"
+#: ../ui/bottom_box.ui.h:3
+msgid "Night:"
+msgstr ""
+
+#: ../ui/header_bar.ui.h:1
+msgid "Theme Switcher"
+msgstr ""
+
+#: ../ui/header_bar.ui.h:2
+msgid "Auto:"
+msgstr ""
+
+#: ../ui/popover.ui.h:1
+msgid "Change Theme"
+msgstr ""
+
+#: ../ui/popover.ui.h:2
+msgid "Reset All"
+msgstr ""
+
+#: ../ui/popover.ui.h:3
+msgid "Reset Time"
+msgstr ""
+
+#: ../ui/popover.ui.h:4
+msgid "Reset Themes"
+msgstr ""
+
+#: ../ui/popover.ui.h:5
+msgid "Reset Wallpapers"
+msgstr ""
+
+#: ../ui/popover.ui.h:6
+msgid "About"
+msgstr ""
+
+#: ../ui/upper_grid.ui.h:1
+msgid "File for day: "
+msgstr ""
+
+#: ../ui/upper_grid.ui.h:2
+msgid "File for night:"
+msgstr ""
+
+#: ../ui/upper_grid.ui.h:3
+msgid "Choose Day Wallpapers"
+msgstr ""
+
+#: ../ui/upper_grid.ui.h:4
+msgid "Choose NIght Wallpapers"
 msgstr ""
