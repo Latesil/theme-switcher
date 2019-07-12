@@ -110,8 +110,8 @@ class Popover(Gtk.PopoverMenu):
     def on__about_button_clicked(self, button):
         about = Gtk.AboutDialog()
         about.set_program_name("Theme Switcher")
-        about.set_version("0.1")
-        about.set_authors(["Letalis", 'atim77'])
+        about.set_version("0.9")
+        about.set_authors(["Letalis", 'Artem Polishchuk'])
         # about.set_icon('light-dark-icon.png')
         about.set_copyright("(c) Copylefted")
         about.set_comments("A global automated switcher for dark/light GTK theme during day/night and more.")
