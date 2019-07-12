@@ -16,6 +16,7 @@ locale.textdomain('com.github.Latesil.theme-switcher')
 
 BASE_KEY = "com.github.Latesil.theme-switcher"
 WALLPAPER_KEY = "org.gnome.desktop.background"
+THEME_KEY = "org.gnome.desktop.interface"
 UI_PATH = '/com/github/Latesil/theme-switcher/ui/'
 
 resource = Gio.Resource.load("/usr/share/theme-switcher/theme-switcher.gresource")
@@ -53,7 +54,7 @@ def walk_directories(dirs, filter_func):
 
     return valid
 
-themes = _get_valid_themes()
+themes = sorted(_get_valid_themes())
 
 @Gtk.Template(resource_path = UI_PATH + 'popover.ui')
 class Popover(Gtk.PopoverMenu):
@@ -81,13 +82,6 @@ class Popover(Gtk.PopoverMenu):
             pass
 
     #other callbacks in our popover menu
-    @Gtk.Template.Callback()
-    def on__reset_all_button_clicked(self, button):
-        self.settings.set_int("nighttime", 20)
-        self.settings.set_int("daytime", 6)
-        self.settings.set_string("path-to-night-wallpaper", "")
-        self.settings.set_string("path-to-day-wallpaper", "")
-        self.settings.set_boolean("auto-switch", True)
 
     @Gtk.Template.Callback()
     def on__reset_time_button_clicked(self, button):
@@ -98,6 +92,12 @@ class Popover(Gtk.PopoverMenu):
     def on__reset_wallpapers_clicked(self, button):
         self.settings.set_string("path-to-night-wallpaper", "")
         self.settings.set_string("path-to-day-wallpaper", "")
+
+    @Gtk.Template.Callback()
+    def on__reset_all_button_clicked(self, button):
+        self.on__reset_time_button_clicked(button)
+        self.on__reset_wallpapers_clicked(button)
+        self.settings.set_boolean("auto-switch", True)
 
     @Gtk.Template.Callback()
     def on__about_button_clicked(self, button):
@@ -208,16 +208,14 @@ class UpperGrid(Gtk.Grid):
 
 
 @Gtk.Template(resource_path = UI_PATH + 'middle_box.ui')
-class MiddleBox(Gtk.Box):
+class MiddleGrid(Gtk.Grid):
 
-    __gtype_name__ = "MiddleBox"
+    __gtype_name__ = "MiddleGrid"
     
-    _middle_box_label = Gtk.Template.Child()
     _dark_theme_label = Gtk.Template.Child()
     _light_theme_label = Gtk.Template.Child()
     _light_combo_box = Gtk.Template.Child()
     _dark_combo_box = Gtk.Template.Child()
-    _middle_box_grid = Gtk.Template.Child()
     _light_tree_model = Gtk.Template.Child()
     _dark_tree_model = Gtk.Template.Child()
 
@@ -226,16 +224,37 @@ class MiddleBox(Gtk.Box):
 
         self.set_margin_top(10)
 
+        self.theme_settings = Gio.Settings.new(THEME_KEY)
+        self.current_theme = self.theme_settings.get_string("gtk-theme")
+
+        self.main_settings = Gio.Settings.new(BASE_KEY)
+        self.current_light_theme = self.main_settings.get_string("light-theme")
+        self.current_dark_theme = self.main_settings.get_string("dark-theme")
+
         self._light_theme_label.set_halign(Gtk.Align.START)
         self._dark_theme_label.set_halign(Gtk.Align.START)
         self._light_combo_box.set_margin_end(10)
         self._light_combo_box.set_name("light_box")
         self._dark_combo_box.set_name("dark_box")
+        if self.current_theme not in themes:
+            self._light_tree_model.append([self.current_theme])
 
         #populate theme list
         for i in themes:
             self._light_tree_model.append([i])
             self._dark_tree_model.append([i])
+
+        #retrieve current light theme and set it as a default option in combo box
+        self._light_model = self._light_combo_box.get_model()
+        for row in self._light_model:
+            if row[0] == self.current_light_theme:
+                self._light_combo_box.set_active_iter(row.iter)
+
+        #retrieve current dark theme and set it as a default option in combo box
+        self._dark_model = self._dark_combo_box.get_model()
+        for row in self._dark_model:
+            if row[0] == self.current_dark_theme:
+                self._dark_combo_box.set_active_iter(row.iter)
 
         #init light box
         self._light_combo_box.connect("changed", self.combo_box_changed)
@@ -255,12 +274,23 @@ class MiddleBox(Gtk.Box):
         tree_iter = combo.get_active_iter()
         if tree_iter is not None:
             model = combo.get_model()
+            combo.set_active_iter(tree_iter)
             theme = model[tree_iter][0]
+
             if name == 'light_box':
-                print("Selected light theme: %s" % theme)
+                self.main_settings.set_string('light-theme', theme)
+                current_time = datetime.datetime.now()
+                if (current_time.hour >= self.main_settings.get_int("daytime")):
+                    self.set_theme(theme)
+
             if name == 'dark_box':
-                print("Selected dark theme: %s" % theme)
+                self.main_settings.set_string('dark-theme', theme)
+                current_time = datetime.datetime.now()
+                if (current_time.hour >= self.main_settings.get_int("nighttime")):
+                    self.set_theme(theme)
         
+    def set_theme(self, theme):
+        self.theme_settings.set_string("gtk-theme", theme)
 
 @Gtk.Template(resource_path = UI_PATH + 'bottom_box.ui')
 class BottomBox(Gtk.Box):
@@ -329,7 +359,7 @@ class Window(Gtk.Window):
 
         #init two containers for our widgets
         self.upper_grid = UpperGrid()
-        self.middle_box = MiddleBox()
+        self.middle_box = MiddleGrid()
         self.bottom_box = BottomBox()
 
         #add our containers to the main one

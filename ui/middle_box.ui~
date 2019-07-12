@@ -10,6 +10,8 @@
   </object>
   <object class="GtkListStore" id="_light_tree_model">
     <columns>
+      <!-- column-name id -->
+      <column type="gint"/>
       <!-- column-name Theme -->
       <column type="gchararray"/>
     </columns>

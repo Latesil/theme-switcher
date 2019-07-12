@@ -26,5 +26,15 @@
       <summary>Nighttime for theme switch</summary>
       <description>When theme should be switched on night.</description>
     </key>
+    <key type="s" name="light-theme">
+      <default>"Adwaita"</default>
+      <summary>Light theme</summary>
+      <description>Current light theme.</description>
+    </key>
+    <key type="s" name="dark-theme">
+      <default>"Adwaita-dark"</default>
+      <summary>Dark theme</summary>
+      <description>Current dark theme.</description>
+    </key>
   </schema>
 </schemalist>
