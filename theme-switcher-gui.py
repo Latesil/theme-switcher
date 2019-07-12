@@ -4,11 +4,12 @@ import subprocess
 import datetime
 import locale
 import os
+import itertools
 from locale import gettext as _
 
 import gi
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, Gio
+from gi.repository import Gtk, Gio, GLib
 
 #locales
 locale.textdomain('com.github.Latesil.theme-switcher')
@@ -19,6 +20,40 @@ UI_PATH = '/com/github/Latesil/theme-switcher/ui/'
 
 resource = Gio.Resource.load("/usr/share/theme-switcher/theme-switcher.gresource")
 resource._register()
+
+#helper functions
+def get_resource_dirs(resource):
+    dirs = [os.path.join(dir, resource)
+            for dir in itertools.chain(GLib.get_system_data_dirs())]
+    dirs += [os.path.join(os.path.expanduser("~"), ".{}".format(resource))]
+
+    return [dir for dir in dirs if os.path.isdir(dir)]
+
+def _get_valid_themes():
+    gtk_ver = Gtk.MINOR_VERSION
+    if gtk_ver % 2: # Want even number
+        gtk_ver += 1
+
+    valid = ['Adwaita', 'HighContrast', 'HighContrastInverse']
+    valid += walk_directories(get_resource_dirs("themes"), lambda d:
+                os.path.exists(os.path.join(d, "gtk-3.0", "gtk.css")) or \
+                     os.path.exists(os.path.join(d, "gtk-3.{}".format(gtk_ver))))
+    return set(valid)
+    
+def walk_directories(dirs, filter_func):
+    valid = []
+    try:
+        for thdir in dirs:
+            if os.path.isdir(thdir):
+                for t in os.listdir(thdir):
+                    if filter_func(os.path.join(thdir, t)):
+                        valid.append(t)
+    except:
+        pass
+
+    return valid
+
+themes = _get_valid_themes()
 
 @Gtk.Template(resource_path = UI_PATH + 'popover.ui')
 class Popover(Gtk.PopoverMenu):
@@ -189,6 +224,8 @@ class MiddleBox(Gtk.Box):
     _light_combo_box = Gtk.Template.Child()
     _dark_combo_box = Gtk.Template.Child()
     _middle_box_grid = Gtk.Template.Child()
+    _light_tree_model = Gtk.Template.Child()
+    _dark_tree_model = Gtk.Template.Child()
 
     def __init__(self):
         super().__init__()
@@ -198,6 +235,37 @@ class MiddleBox(Gtk.Box):
         self._light_theme_label.set_halign(Gtk.Align.START)
         self._dark_theme_label.set_halign(Gtk.Align.START)
         self._light_combo_box.set_margin_end(10)
+
+        #populate theme list
+        for i in themes:
+            self._light_tree_model.append([i])
+            self._dark_tree_model.append([i])
+
+        #init light box
+        self._light_combo_box.connect("changed", self.on__light_combo_box_changed)
+        renderer_text = Gtk.CellRendererText()
+        self._light_combo_box.pack_start(renderer_text, True)
+        self._light_combo_box.add_attribute(renderer_text, "text", 0)
+
+        #init dark box
+        self._dark_combo_box.connect("changed", self.on__dark_combo_box_changed)
+        renderer_text = Gtk.CellRendererText()
+        self._dark_combo_box.pack_start(renderer_text, True)
+        self._dark_combo_box.add_attribute(renderer_text, "text", 0)
+
+
+    def on__light_combo_box_changed(self, combo):
+        self.combo_box_changed(combo)
+
+    def on__dark_combo_box_changed(self, combo):
+        self.combo_box_changed(combo)
+
+    def combo_box_changed(self, combo):
+        tree_iter = combo.get_active_iter()
+        if tree_iter is not None:
+            model = combo.get_model()
+            theme = model[tree_iter][0]
+            print("Selected: %s" % theme)
         
 
 @Gtk.Template(resource_path = UI_PATH + 'bottom_box.ui')

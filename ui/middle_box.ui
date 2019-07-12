@@ -2,6 +2,18 @@
 <!-- Generated with glade 3.22.1 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
+  <object class="GtkListStore" id="_dark_tree_model">
+    <columns>
+      <!-- column-name Theme -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkListStore" id="_light_tree_model">
+    <columns>
+      <!-- column-name Theme -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
   <template class="MiddleBox" parent="GtkBox">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -52,6 +64,7 @@
           <object class="GtkComboBox" id="_light_combo_box">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="model">_light_tree_model</property>
             <property name="button_sensitivity">on</property>
             <property name="id_column">1</property>
           </object>
@@ -64,6 +77,7 @@
           <object class="GtkComboBox" id="_dark_combo_box">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="model">_dark_tree_model</property>
           </object>
           <packing>
             <property name="left_attach">1</property>
