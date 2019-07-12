@@ -129,6 +129,11 @@ class UpperGrid(Gtk.Grid):
         super().__init__()
 
         self.settings = Gio.Settings.new(BASE_KEY)
+        self._day_button.set_name("day_button")
+        self._night_button.set_name("night_button")
+
+        self._day_button.connect("clicked", self.wallpaper_button_clicked)
+        self._night_button.connect("clicked", self.wallpaper_button_clicked)
 
         #monitor changes in gsettings
         self.settings.connect("changed::path-to-day-wallpaper", self.on__day_button_change, self._day_button)
@@ -164,41 +169,30 @@ class UpperGrid(Gtk.Grid):
             night_wallpaper = self.settings.get_string("path-to-night-wallpaper")
             self._night_button.set_label(night_wallpaper.split("/")[-1])
 
-    #set two callbacks for wallpapers buttons
-    @Gtk.Template.Callback()
-    def on__night_button_clicked(self, button):
-        dialog = Gtk.FileChooserDialog(_("Choose a file for night"), None, Gtk.FileChooserAction.OPEN, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+    def wallpaper_button_clicked(self, button):
+        dialog = Gtk.FileChooserDialog(_("Choose a file"), None, Gtk.FileChooserAction.OPEN, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
         Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
 
         self.add_filters(dialog)
 
         response = dialog.run()
         if response == Gtk.ResponseType.OK:
-            night_wallpaper = dialog.get_filename()
-            self.settings.set_string("path-to-night-wallpaper", night_wallpaper)
-            self._night_button.set_label(night_wallpaper.split("/")[-1])
-            current_time = datetime.datetime.now()
-            if (current_time.hour >= self.settings.get_int("nighttime")):
-                self.set_wallpaper(night_wallpaper)
+            wallpaper = dialog.get_filename()
+            name = button.get_name()
+            if name == "night_button":
+                self.settings.set_string("path-to-night-wallpaper", wallpaper)
+                self._night_button.set_label(wallpaper.split("/")[-1])
+                current_time = datetime.datetime.now()
+                if (current_time.hour >= self.settings.get_int("nighttime")):
+                    self.set_wallpaper(wallpaper)
+            elif name == "day_button":
+                self.settings.set_string("path-to-day-wallpaper", wallpaper)
+                self._night_button.set_label(wallpaper.split("/")[-1])
+                current_time = datetime.datetime.now()
+                if (current_time.hour >= self.settings.get_int("daytime")):
+                    self.set_wallpaper(wallpaper)
         dialog.destroy()
-
-    @Gtk.Template.Callback()
-    def on__day_button_clicked(self, button):
-        dialog = Gtk.FileChooserDialog(_("Choose a file for day"), None, Gtk.FileChooserAction.OPEN, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
-        Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
-
-        self.add_filters(dialog)
-
-        response = dialog.run()
-        if response == Gtk.ResponseType.OK:
-            day_wallpaper = dialog.get_filename()
-            self.settings.set_string("path-to-day-wallpaper", day_wallpaper)
-            self._day_button.set_label(day_wallpaper.split("/")[-1])
-            current_time = datetime.datetime.now()
-            if (current_time.hour >= self.settings.get_int("daytime")):
-                self.set_wallpaper(day_wallpaper)
-        dialog.destroy()
-
+        
     #helper function for filter choosing file dialog
     def add_filters(self, dialog):
         filter_text = Gtk.FileFilter()
@@ -235,6 +229,8 @@ class MiddleBox(Gtk.Box):
         self._light_theme_label.set_halign(Gtk.Align.START)
         self._dark_theme_label.set_halign(Gtk.Align.START)
         self._light_combo_box.set_margin_end(10)
+        self._light_combo_box.set_name("light_box")
+        self._dark_combo_box.set_name("dark_box")
 
         #populate theme list
         for i in themes:
@@ -242,30 +238,28 @@ class MiddleBox(Gtk.Box):
             self._dark_tree_model.append([i])
 
         #init light box
-        self._light_combo_box.connect("changed", self.on__light_combo_box_changed)
+        self._light_combo_box.connect("changed", self.combo_box_changed)
         renderer_text = Gtk.CellRendererText()
         self._light_combo_box.pack_start(renderer_text, True)
         self._light_combo_box.add_attribute(renderer_text, "text", 0)
 
         #init dark box
-        self._dark_combo_box.connect("changed", self.on__dark_combo_box_changed)
+        self._dark_combo_box.connect("changed", self.combo_box_changed)
         renderer_text = Gtk.CellRendererText()
         self._dark_combo_box.pack_start(renderer_text, True)
         self._dark_combo_box.add_attribute(renderer_text, "text", 0)
 
 
-    def on__light_combo_box_changed(self, combo):
-        self.combo_box_changed(combo)
-
-    def on__dark_combo_box_changed(self, combo):
-        self.combo_box_changed(combo)
-
     def combo_box_changed(self, combo):
+        name = combo.get_name()
         tree_iter = combo.get_active_iter()
         if tree_iter is not None:
             model = combo.get_model()
             theme = model[tree_iter][0]
-            print("Selected: %s" % theme)
+            if name == 'light_box':
+                print("Selected light theme: %s" % theme)
+            if name == 'dark_box':
+                print("Selected dark theme: %s" % theme)
         
 
 @Gtk.Template(resource_path = UI_PATH + 'bottom_box.ui')
