@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-12 17:20+0300\n"
+"POT-Creation-Date: 2019-07-12 17:31+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -115,6 +115,14 @@ msgstr ""
 
 #: ../ui/popover.ui.h:6
 msgid "About"
+msgstr ""
+
+#: ../ui/middle_box.ui.h:1
+msgid "Light Theme:"
+msgstr ""
+
+#: ../ui/middle_box.ui.h:2
+msgid "Dark Theme:"
 msgstr ""
 
 #: ../ui/upper_grid.ui.h:1

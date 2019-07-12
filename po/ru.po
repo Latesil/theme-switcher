@@ -87,11 +87,11 @@ msgstr "Ночь:"
 
 #: ../ui/header_bar.ui.h:1
 msgid "Theme Switcher"
-msgstr "Переключитель тем"
+msgstr "Переключатель тем"
 
 #: ../ui/header_bar.ui.h:2
 msgid "Auto:"
-msgstr "Авто:"
+msgstr "Авто"
 
 #: ../ui/popover.ui.h:1
 msgid "Change Theme"
@@ -117,13 +117,21 @@ msgstr "Сбросить обои"
 msgid "About"
 msgstr "О программе"
 
+#: ../ui/middle_box.ui.h:1
+msgid "Light Theme:"
+msgstr "Светлая тема:"
+
+#: ../ui/middle_box.ui.h:2
+msgid "Dark Theme:"
+msgstr "Темная тема:"
+
 #: ../ui/upper_grid.ui.h:1
 msgid "File for day: "
 msgstr "Файл для дня:"
 
 #: ../ui/upper_grid.ui.h:2
 msgid "File for night:"
-msgstr "Файл для ночи"
+msgstr "Файл для ночи:"
 
 #: ../ui/upper_grid.ui.h:3
 msgid "Choose Day Wallpapers"
