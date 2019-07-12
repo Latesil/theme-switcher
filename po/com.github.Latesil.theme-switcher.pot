@@ -1,75 +1,86 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR ORGANIZATION
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2019-07-09 07:26+0300\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-07-12 16:32+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: pygettext.py 1.5\n"
 
-
-#: theme-switcher-gui.py:18 theme-switcher-gui.py:138
-msgid "Theme Switcher"
+#: ../com.github.Latesil.theme-switcher.gschema.xml.h:1
+msgid "Daytime for theme switch"
 msgstr ""
 
-#: theme-switcher-gui.py:51 theme-switcher-gui.py:66
-msgid "Choose a file"
+#: ../com.github.Latesil.theme-switcher.gschema.xml.h:2
+msgid "When theme should be switched."
 msgstr ""
 
-#: theme-switcher-gui.py:112 theme-switcher-gui.py:132
-#: theme-switcher-gui.py:211
-msgid "Choose Night Wallpaper"
+#: ../com.github.Latesil.theme-switcher.gschema.xml.h:3
+msgid "Enabling auto-switch"
 msgstr ""
 
-#: theme-switcher-gui.py:113 theme-switcher-gui.py:133
-#: theme-switcher-gui.py:197
+#: ../com.github.Latesil.theme-switcher.gschema.xml.h:4
+msgid "Determine whether it will be auto switch theme or not"
+msgstr ""
+
+#: ../com.github.Latesil.theme-switcher.gschema.xml.h:5
+msgid "Path to day wallpaper"
+msgstr ""
+
+#: ../com.github.Latesil.theme-switcher.gschema.xml.h:6
+msgid "Path to the wallpapers that should be in a daytime."
+msgstr ""
+
+#: ../com.github.Latesil.theme-switcher.gschema.xml.h:7
+msgid "Path to night wallpaper"
+msgstr ""
+
+#: ../com.github.Latesil.theme-switcher.gschema.xml.h:8
+msgid "Path to the wallpapers that should be in a nighttime."
+msgstr ""
+
+#: ../com.github.Latesil.theme-switcher.gschema.xml.h:9
+msgid "Nighttime for theme switch"
+msgstr ""
+
+#: ../com.github.Latesil.theme-switcher.gschema.xml.h:10
+msgid "When theme should be switched on night."
+msgstr ""
+
+#: ../com.github.Latesil.theme-switcher.gschema.xml.h:11
+msgid "Light theme"
+msgstr ""
+
+#: ../com.github.Latesil.theme-switcher.gschema.xml.h:12
+msgid "Current light theme."
+msgstr ""
+
+#: ../com.github.Latesil.theme-switcher.gschema.xml.h:13
+msgid "Dark theme"
+msgstr ""
+
+#: ../com.github.Latesil.theme-switcher.gschema.xml.h:14
+msgid "Current dark theme."
+msgstr ""
+
+#: ../theme-switcher-gui.py:167
 msgid "Choose Day Wallpaper"
 msgstr ""
 
-#: theme-switcher-gui.py:143
-msgid "Auto:"
+#: ../theme-switcher-gui.py:174
+msgid "Choose Night Wallpaper"
 msgstr ""
 
-#: theme-switcher-gui.py:158
-msgid "Reset all"
+#: ../theme-switcher-gui.py:180
+msgid "Choose a file"
 msgstr ""
-
-#: theme-switcher-gui.py:162
-msgid "Reset Wallpapers"
-msgstr ""
-
-#: theme-switcher-gui.py:165
-msgid "Reset Time"
-msgstr ""
-
-#: theme-switcher-gui.py:168
-msgid "Change theme"
-msgstr ""
-
-#: theme-switcher-gui.py:191
-msgid "File for day:"
-msgstr ""
-
-#: theme-switcher-gui.py:205
-msgid "File for night:"
-msgstr ""
-
-#: theme-switcher-gui.py:229
-msgid "Time Manage:"
-msgstr ""
-
-#: theme-switcher-gui.py:235
-msgid "Daytime: "
-msgstr ""
-
-#: theme-switcher-gui.py:251
-msgid "Night: "
-msgstr ""
-

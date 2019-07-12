@@ -4,5 +4,5 @@ ui/header_bar.ui
 ui/main_window.ui
 ui/middle_box.ui
 ui/popover.ui
-ui/upper_grid.py
+ui/upper_grid.ui
 theme-switcher-gui.py
