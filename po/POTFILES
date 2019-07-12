@@ -1,0 +1,8 @@
+com.github.Latesil.theme-switcher.gschema.xml
+ui/bottom_box.ui
+ui/header_bar.ui
+ui/main_window.ui
+ui/middle_box.ui
+ui/popover.ui
+ui/upper_grid.py
+theme-switcher-gui.py
