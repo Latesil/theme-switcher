@@ -10,16 +10,18 @@ night=$(gsettings get com.github.Latesil.theme-switcher nighttime)
 daytime=$(gsettings get com.github.Latesil.theme-switcher daytime)
 night_wallpapers=$(gsettings get com.github.Latesil.theme-switcher path-to-night-wallpaper)
 day_wallpapers=$(gsettings get com.github.Latesil.theme-switcher path-to-day-wallpaper)
+light_theme=$(gsettings get com.github.Latesil.theme-switcher light-theme)
+dark_theme=$(gsettings get com.github.Latesil.theme-switcher dark-theme)
 
 if (( $time >= $night )) || (( $time <= $daytime )); then
-    gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+    gsettings set org.gnome.desktop.interface gtk-theme "$dark_theme"
     if [ "$night_wallpapers" != "''" ]; then
         gsettings set org.gnome.desktop.background picture-uri "$night_wallpapers"
     fi
     gsettings set org.gnome.Terminal.ProfilesList default $terminal_dark
     exit 0
 else
-    gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita'
+    gsettings set org.gnome.desktop.interface gtk-theme "$light_theme"
     if [ "$day_wallpapers" != "''" ]; then
         gsettings set org.gnome.desktop.background picture-uri "$day_wallpapers"
     fi
