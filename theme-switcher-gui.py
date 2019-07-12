@@ -178,11 +178,34 @@ class UpperGrid(Gtk.Grid):
         wallpaper_settings.set_string("picture-uri", wallpaper)
 
 
+@Gtk.Template(resource_path = UI_PATH + 'middle_box.ui')
+class MiddleBox(Gtk.Box):
+
+    __gtype_name__ = "MiddleBox"
+    
+    _middle_box_label = Gtk.Template.Child()
+    _dark_theme_label = Gtk.Template.Child()
+    _light_theme_label = Gtk.Template.Child()
+    _light_combo_box = Gtk.Template.Child()
+    _dark_combo_box = Gtk.Template.Child()
+    _middle_box_grid = Gtk.Template.Child()
+
+    def __init__(self):
+        super().__init__()
+
+        self.set_margin_top(10)
+
+        self._light_theme_label.set_halign(Gtk.Align.START)
+        self._dark_theme_label.set_halign(Gtk.Align.START)
+        self._light_combo_box.set_margin_end(10)
+        
+
 @Gtk.Template(resource_path = UI_PATH + 'bottom_box.ui')
 class BottomBox(Gtk.Box):
 
     __gtype_name__ = "BottomBox"
 
+    _bottom_label = Gtk.Template.Child()
     _day_scale = Gtk.Template.Child()
     _night_scale = Gtk.Template.Child()
     _bottom_day_label = Gtk.Template.Child()
@@ -193,6 +216,7 @@ class BottomBox(Gtk.Box):
 
         #init settings
         self.settings = Gio.Settings.new(BASE_KEY)
+        self.set_margin_top(20)
 
         #monitor changes in gsettings
         self.settings.connect("changed::daytime", self.on__day_scale_change, self._day_scale)
@@ -243,10 +267,12 @@ class Window(Gtk.Window):
 
         #init two containers for our widgets
         self.upper_grid = UpperGrid()
+        self.middle_box = MiddleBox()
         self.bottom_box = BottomBox()
 
         #add our containers to the main one
         self._main_box.add(self.upper_grid)
+        self._main_box.add(self.middle_box)
         self._main_box.add(self.bottom_box)
 
 

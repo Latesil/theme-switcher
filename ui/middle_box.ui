@@ -2,27 +2,17 @@
 <!-- Generated with glade 3.22.1 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
-  <object class="GtkAdjustment" id="_day_adjustment">
-    <property name="upper">23</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
-    <signal name="value-changed" handler="on__day_adjustment_value_changed" swapped="no"/>
-  </object>
-  <object class="GtkAdjustment" id="_night_adjustment">
-    <property name="upper">23</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
-    <signal name="value-changed" handler="on__night_adjustment_value_changed" swapped="no"/>
-  </object>
-  <template class="BottomBox" parent="GtkBox">
+  <template class="MiddleBox" parent="GtkBox">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="orientation">vertical</property>
+    <property name="spacing">5</property>
     <child>
-      <object class="GtkLabel" id="_bottom_label">
+      <object class="GtkLabel" id="_middle_box_label">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="label" translatable="yes">Time Manage:</property>
+        <property name="margin_top">10</property>
+        <property name="label" translatable="yes">Themes:</property>
       </object>
       <packing>
         <property name="expand">False</property>
@@ -31,16 +21,16 @@
       </packing>
     </child>
     <child>
-      <object class="GtkGrid" id="_botton_grid">
+      <object class="GtkGrid" id="_middle_box_grid">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="row_homogeneous">True</property>
         <property name="column_homogeneous">True</property>
         <child>
-          <object class="GtkLabel" id="_bottom_day_label">
+          <object class="GtkLabel" id="_light_theme_label">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Day:</property>
+            <property name="label" translatable="yes">Light Theme:</property>
           </object>
           <packing>
             <property name="left_attach">0</property>
@@ -48,24 +38,10 @@
           </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="_bottom_night_label">
+          <object class="GtkLabel" id="_dark_theme_label">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Night:</property>
-          </object>
-          <packing>
-            <property name="left_attach">0</property>
-            <property name="top_attach">1</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkScale" id="_day_scale">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="adjustment">_day_adjustment</property>
-            <property name="round_digits">1</property>
-            <property name="digits">0</property>
-            <property name="value_pos">left</property>
+            <property name="label" translatable="yes">Dark Theme:</property>
           </object>
           <packing>
             <property name="left_attach">1</property>
@@ -73,13 +49,21 @@
           </packing>
         </child>
         <child>
-          <object class="GtkScale" id="_night_scale">
+          <object class="GtkComboBox" id="_light_combo_box">
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="adjustment">_night_adjustment</property>
-            <property name="round_digits">1</property>
-            <property name="digits">0</property>
-            <property name="value_pos">left</property>
+            <property name="can_focus">False</property>
+            <property name="button_sensitivity">on</property>
+            <property name="id_column">1</property>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkComboBox" id="_dark_combo_box">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
           </object>
           <packing>
             <property name="left_attach">1</property>
