@@ -196,7 +196,7 @@ class UpperGrid(Gtk.Grid):
                 self.settings.set_string("path-to-day-wallpaper", wallpaper)
                 self._day_button.set_label(wallpaper.split("/")[-1])
                 current_time = datetime.datetime.now()
-                if (current_time.hour >= self.settings.get_int("daytime")):
+                if (current_time.hour <= self.settings.get_int("daytime")):
                     self.set_wallpaper(wallpaper)
         dialog.destroy()
 
@@ -303,7 +303,7 @@ class MiddleGrid(Gtk.Grid):
             if name == 'light_box':
                 self.main_settings.set_string('light-theme', theme)
                 current_time = datetime.datetime.now()
-                if (current_time.hour >= self.main_settings.get_int("daytime")):
+                if (current_time.hour <= self.main_settings.get_int("daytime")):
                     self.set_theme(theme)
 
             if name == 'dark_box':
