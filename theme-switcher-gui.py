@@ -9,7 +9,7 @@ from locale import gettext as _
 
 import gi
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, Gio, GLib
+from gi.repository import Gtk, Gio, GLib, GdkPixbuf
 
 #locales
 locale.textdomain('com.github.Latesil.theme-switcher')
@@ -108,14 +108,17 @@ class Popover(Gtk.PopoverMenu):
 
     @Gtk.Template.Callback()
     def on__about_button_clicked(self, button):
+        image = GdkPixbuf.Pixbuf.new_from_file("light-dark-icon-256x256.png")
+
         about = Gtk.AboutDialog()
-        about.set_program_name("Theme Switcher")
+        about.set_program_name(_("Theme Switcher"))
         about.set_version("0.9")
         about.set_authors(["Letalis", 'Artem Polishchuk'])
-        # about.set_icon('light-dark-icon.png')
+        about.set_logo(image)
         about.set_copyright("(c) Copylefted")
-        about.set_comments("A global automated switcher for dark/light GTK theme during day/night and more.")
+        about.set_comments(_("A global automated switcher for dark/light GTK theme during day/night and more."))
         about.set_website("https://github.com/Latesil/theme-switcher")
+        about.set_website_label(_("Report bugs or ideas"))
         about.set_wrap_license(True)
         about.set_license_type(Gtk.License.GPL_3_0)
         about.run()
