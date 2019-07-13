@@ -7,7 +7,7 @@
       <description>When theme should be switched.</description>
     </key>
     <key type="b" name="auto-switch">
-      <default>true</default>
+      <default>false</default>
       <summary>Enabling auto-switch</summary>
       <description>Determine whether it will be auto switch theme or not</description>
     </key>
