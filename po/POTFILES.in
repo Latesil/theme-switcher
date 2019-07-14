@@ -1,0 +1,8 @@
+com.github.Latesil.theme-switcher.gschema.xml
+[type: gettext/glade] ui/bottom_box.ui
+[type: gettext/glade] ui/header_bar.ui
+[type: gettext/glade] ui/main_window.ui
+[type: gettext/glade] ui/popover.ui
+[type: gettext/glade] ui/middle_box.ui
+[type: gettext/glade] ui/upper_grid.ui
+

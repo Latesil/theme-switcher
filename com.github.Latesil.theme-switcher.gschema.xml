@@ -7,7 +7,7 @@
       <description>When theme should be switched.</description>
     </key>
     <key type="b" name="auto-switch">
-      <default>true</default>
+      <default>false</default>
       <summary>Enabling auto-switch</summary>
       <description>Determine whether it will be auto switch theme or not</description>
     </key>
@@ -25,6 +25,16 @@
       <default>20</default>
       <summary>Nighttime for theme switch</summary>
       <description>When theme should be switched on night.</description>
+    </key>
+    <key type="s" name="light-theme">
+      <default>"Adwaita"</default>
+      <summary>Light theme</summary>
+      <description>Current light theme.</description>
+    </key>
+    <key type="s" name="dark-theme">
+      <default>"Adwaita-dark"</default>
+      <summary>Dark theme</summary>
+      <description>Current dark theme.</description>
     </key>
   </schema>
 </schemalist>
