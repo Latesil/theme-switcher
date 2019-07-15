@@ -377,6 +377,9 @@ class AppWindow(Gtk.ApplicationWindow):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+        #deprecation warning
+        self.set_wmclass ("Theme Switcher", "Theme Switcher")
+
         self._main_box.set_border_width(10)
 
         #init header_bar
@@ -451,6 +454,7 @@ class Application(Gtk.Application):
         super().__init__(*args, application_id="com.github.Latesil.theme-switcher",
                         flags=Gio.ApplicationFlags.FLAGS_NONE, **kwargs)
 
+        GLib.set_application_name(_('Theme Switcher'))
         self.window = None
 
     def do_startup(self):
@@ -458,9 +462,16 @@ class Application(Gtk.Application):
 
     def do_activate(self):
         if not self.window:
-            self.window = AppWindow(application=self, title="Theme Switcher")
+            self.window = AppWindow(application=self, title=_("Theme Switcher"))
 
         self.window.present()
+
+    def on_about(self, action, param):
+        popover = Popover()
+        popover.on__about_button_clicked(None)
+
+    def on_quit(self, action, param):
+        self.quit()
 
 
 if __name__ == "__main__":
