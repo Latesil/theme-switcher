@@ -5,6 +5,7 @@ import datetime
 import locale
 import os
 import itertools
+import sys
 from locale import gettext as _
 
 import gi
@@ -367,14 +368,14 @@ class BottomBox(Gtk.Box):
 
 
 @Gtk.Template(resource_path = UI_PATH + 'main_window.ui')
-class Window(Gtk.Window):
+class AppWindow(Gtk.ApplicationWindow):
 
-    __gtype_name__ = "Window"
+    __gtype_name__ = "AppWindow"
 
     _main_box = Gtk.Template.Child()
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
         self._main_box.set_border_width(10)
 
@@ -444,14 +445,24 @@ class HeaderBar(Gtk.HeaderBar):
         subprocess.call(['systemctl','--user','enable', '--now','theme-switcher-auto.timer'])
 
 
-#init main window
-win = Window()
+class Application(Gtk.Application):
 
-#connect quit event
-win.connect("delete_event", Gtk.main_quit)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, application_id="com.github.Latesil.theme-switcher",
+                        flags=Gio.ApplicationFlags.FLAGS_NONE, **kwargs)
 
-#show all inside window
-win.show_all()
+        self.window = None
 
-#main loop
-Gtk.main()
+    def do_startup(self):
+        Gtk.Application.do_startup(self)
+
+    def do_activate(self):
+        if not self.window:
+            self.window = AppWindow(application=self, title="Theme Switcher")
+
+        self.window.present()
+
+
+if __name__ == "__main__":
+    app = Application()
+    app.run(sys.argv)
