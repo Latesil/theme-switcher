@@ -7,6 +7,5 @@
     <file>ui/main_window.ui</file>
     <file>ui/popover.ui</file>
     <file>ui/upper_grid.ui</file>
-    <file>ui/app_menu.ui</file>
   </gresource>
 </gresources>
