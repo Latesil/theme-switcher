@@ -1,5 +1,18 @@
 #!/usr/bin/python3
 
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 import subprocess
 import datetime
 import locale
@@ -15,15 +28,19 @@ from gi.repository import Gtk, Gio, GLib, GdkPixbuf
 #locales
 locale.textdomain('com.github.Latesil.theme-switcher')
 
+APP_ID = "com.github.Latesil.theme-switcher"
 BASE_KEY = "com.github.Latesil.theme-switcher"
 WALLPAPER_KEY = "org.gnome.desktop.background"
 THEME_KEY = "org.gnome.desktop.interface"
 UI_PATH = '/com/github/Latesil/theme-switcher/ui/'
 
-resource = Gio.Resource.load("/usr/share/theme-switcher/theme-switcher.gresource")
+resource = Gio.Resource.load("theme-switcher.gresource")
 resource._register()
 
 #helper functions
+#taken from GNOME Tweaks
+#by John Stowers.
+
 def get_resource_dirs(resource):
     dirs = [os.path.join(dir, resource)
             for dir in itertools.chain(GLib.get_system_data_dirs())]
@@ -375,10 +392,10 @@ class AppWindow(Gtk.ApplicationWindow):
     _main_box = Gtk.Template.Child()
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+        super().__init__(*args, title=_("Theme Switcher"), application=app)
 
         #deprecation warning
-        self.set_wmclass ("Theme Switcher", "Theme Switcher")
+        # self.set_wmclass ("Theme Switcher", "Theme Switcher")
 
         self._main_box.set_border_width(10)
 
@@ -454,8 +471,10 @@ class Application(Gtk.Application):
         super().__init__(*args, application_id="com.github.Latesil.theme-switcher",
                         flags=Gio.ApplicationFlags.FLAGS_NONE, **kwargs)
 
-        GLib.set_application_name(_('Theme Switcher'))
         self.window = None
+
+        GLib.set_application_name(_('Theme Switcher'))
+        GLib.set_prgname(APP_ID)
 
     def do_startup(self):
         Gtk.Application.do_startup(self)
