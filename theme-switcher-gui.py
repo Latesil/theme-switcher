@@ -395,7 +395,7 @@ class AppWindow(Gtk.ApplicationWindow):
         super().__init__(*args, title=_("Theme Switcher"), application=app)
 
         #deprecation warning
-        # self.set_wmclass ("Theme Switcher", "Theme Switcher")
+        self.set_wmclass ("Theme Switcher", "Theme Switcher")
 
         self._main_box.set_border_width(10)
 
@@ -457,12 +457,14 @@ class HeaderBar(Gtk.HeaderBar):
     #if switch state is off
     def state_off(self):
         self.settings.set_boolean("auto-switch", self._left_switch.get_active())
-        subprocess.call(['systemctl','--user','disable', '--now','theme-switcher-auto.timer'])
+        subprocess.call(['systemctl','--user','stop','theme-switcher-auto.timer'])
+        subprocess.call(['systemctl','--user','disable', 'theme-switcher-auto.timer'])
 
     #if switch state is on
     def state_on(self):
         self.settings.set_boolean("auto-switch", self._left_switch.get_active())
-        subprocess.call(['systemctl','--user','enable', '--now','theme-switcher-auto.timer'])
+        subprocess.call(['systemctl','--user','start','theme-switcher-auto.timer'])
+        subprocess.call(['systemctl','--user','enable','theme-switcher-auto.timer'])
 
 
 class Application(Gtk.Application):

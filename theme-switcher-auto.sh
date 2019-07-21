@@ -13,7 +13,7 @@ day_wallpapers=$(gsettings get com.github.Latesil.theme-switcher path-to-day-wal
 light_theme=$(gsettings get com.github.Latesil.theme-switcher light-theme)
 dark_theme=$(gsettings get com.github.Latesil.theme-switcher dark-theme)
 
-if (( $time >= $night )) || (( $time <= $daytime )); then
+if [[ ${time#0} -ge ${night#0} ]] || [[ ${time#0} -le ${daytime#0} ]]; then
     gsettings set org.gnome.desktop.interface gtk-theme "$dark_theme"
     if [ "$night_wallpapers" != "''" ]; then
         gsettings set org.gnome.desktop.background picture-uri "$night_wallpapers"
