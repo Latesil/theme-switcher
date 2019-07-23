@@ -34,7 +34,7 @@ WALLPAPER_KEY = "org.gnome.desktop.background"
 THEME_KEY = "org.gnome.desktop.interface"
 UI_PATH = '/com/github/Latesil/theme-switcher/ui/'
 
-resource = Gio.Resource.load("/usr/share/theme-switcher/theme-switcher.gresource")
+resource = Gio.Resource.load("theme-switcher.gresource")
 resource._register()
 
 #helper functions
