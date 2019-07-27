@@ -126,7 +126,7 @@ class Popover(Gtk.PopoverMenu):
 
     @Gtk.Template.Callback()
     def on__about_button_clicked(self, button):
-        image = GdkPixbuf.Pixbuf.new_from_file("/usr/share/icons/hicolor/128x128/theme-switcher-128.png")
+        image = GdkPixbuf.Pixbuf.new_from_file("/usr/share/icons/hicolor/128x128/apps/theme-switcher.png")
 
         about = Gtk.AboutDialog()
         about.set_program_name(_("Theme Switcher"))
