@@ -136,7 +136,7 @@ class Popover(Gtk.PopoverMenu):
         about.set_copyright("(c) Copylefted")
         about.set_comments(_("A global automated switcher for dark/light GTK theme during day/night and more."))
         about.set_website("https://github.com/Latesil/theme-switcher")
-        about.set_website_label(_("Report bugs or ideas"))
+        about.set_website_label(_("Website"))
         about.set_wrap_license(True)
         about.set_license_type(Gtk.License.GPL_3_0)
         about.run()
