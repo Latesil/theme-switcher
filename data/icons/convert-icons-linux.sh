@@ -10,4 +10,3 @@ convert "$base" -resize '96x96'     -unsharp 1x4 "$endname-96.png"
 convert "$base" -resize '128x128'   -unsharp 1x4 "$endname-128.png"
 convert "$base" -resize '192x192'   -unsharp 1x4 "$endname-192.png"
 convert "$base" -resize '256x256'   -unsharp 1x4 "$endname-256.png"
-
