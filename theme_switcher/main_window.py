@@ -23,7 +23,7 @@ class AppWindow(Gtk.ApplicationWindow):
         super().__init__(*args, title=_("Theme Switcher"), application=app)
 
         self._main_box.set_border_width(10)
-        self.set_default_geometry(1000, 240)
+        self.set_default_geometry(1000, 200)
 
         self.settings = Gio.Settings.new(constants["BASE_KEY"])
 

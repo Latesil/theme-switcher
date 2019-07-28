@@ -4,6 +4,7 @@ from gi.repository import Gtk, Gio
 from .theme_switcher_constants import theme_switcher_constants as constants
 import os
 import datetime
+from .helper_functions import set_theme
 
 resource = Gio.Resource.load("/home/lateseal/Documents/prog/python/pygtk/theme-switcher/data/theme-switcher.gresource")
 resource._register()
@@ -68,20 +69,18 @@ class BottomBox(Gtk.Box):
     @Gtk.Template.Callback()
     def on__day_adjustment_value_changed(self, scale):
         self.settings.set_int("daytime", scale.get_value())
-        current_time = datetime.datetime.now()
-        if (current_time.hour <= self.settings.get_int("daytime") and current_time.hour >= self.settings.get_int("nighttime")):
-            self.set_theme(self.current_light_theme)
-        else:
-            self.set_theme(self.current_dark_theme)
+        self.on_combo_box_changed()
 
     @Gtk.Template.Callback()
     def on__night_adjustment_value_changed(self, scale):
         self.settings.set_int("nighttime", scale.get_value())
-        current_time = datetime.datetime.now()
-        if (current_time.hour <= self.settings.get_int("nighttime") and current_time.hour >= self.settings.get_int("daytime")):
-            self.set_theme(self.current_dark_theme)
-        else:
-            self.set_theme(self.current_light_theme)
+        self.on_combo_box_changed()
 
-    def set_theme(self, theme):
-            self.theme_settings.set_string("gtk-theme", theme)
+    def on_combo_box_changed(self):
+        current_time = datetime.datetime.now()
+        time_for_day = self.settings.get_int("daytime")
+        time_for_night = self.settings.get_int("nighttime")
+        if ((current_time.hour <= time_for_day or current_time.hour >= time_for_night)):
+            set_theme(self.theme_settings, self.current_dark_theme)
+        else:
+            set_theme(self.theme_settings, self.current_light_theme)

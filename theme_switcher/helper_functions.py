@@ -38,3 +38,6 @@ def walk_directories(dirs, filter_func):
         pass
 
     return valid
+
+def set_theme(settings, theme):
+    settings.set_string("gtk-theme", theme)

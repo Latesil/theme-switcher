@@ -4,7 +4,7 @@ import subprocess
 import datetime
 import os
 from locale import gettext as _
-from .helper_functions import _get_valid_themes
+from .helper_functions import _get_valid_themes, set_theme
 
 import gi
 gi.require_version('Gtk', '3.0')
@@ -105,13 +105,13 @@ class MiddleGrid(Gtk.Grid):
                 self.main_settings.set_string('light-theme', theme)
                 current_time = datetime.datetime.now()
                 if (current_time.hour <= self.main_settings.get_int("daytime")):
-                    self.set_theme(theme)
+                    set_theme(self.theme_settings, theme)
 
             if name == 'dark_box':
                 self.main_settings.set_string('dark-theme', theme)
                 current_time = datetime.datetime.now()
                 if (current_time.hour >= self.main_settings.get_int("nighttime")):
-                    self.set_theme(theme)
+                    set_theme(self.theme_settings, theme)
 
     def set_theme(self, theme):
         self.theme_settings.set_string("gtk-theme", theme)
