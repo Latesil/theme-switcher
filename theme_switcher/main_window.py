@@ -9,7 +9,7 @@ from .upper_grid import UpperGrid
 from .middle_box import MiddleGrid
 from .bottom_box import BottomBox
 
-resource = Gio.Resource.load("/home/lateseal/Documents/prog/python/pygtk/theme-switcher/data/theme-switcher.gresource")
+resource = Gio.Resource.load("/usr/share/theme-switcher/theme-switcher.gresource")
 resource._register()
 
 @Gtk.Template(resource_path = constants["UI_PATH"] + 'ui/main_window.ui')

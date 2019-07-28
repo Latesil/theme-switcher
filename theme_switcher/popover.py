@@ -8,7 +8,7 @@ import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gio, GdkPixbuf
 
-resource = Gio.Resource.load("/home/lateseal/Documents/prog/python/pygtk/theme-switcher/data/theme-switcher.gresource")
+resource = Gio.Resource.load("/usr/share/theme-switcher/theme-switcher.gresource")
 resource._register()
 
 @Gtk.Template(resource_path = constants["UI_PATH"] + 'ui/popover.ui')
