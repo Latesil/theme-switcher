@@ -17,14 +17,14 @@ import locale
 import sys
 import os
 from locale import gettext as _
-from src.theme_switcher_constants import theme_switcher_constants as constants
+from theme_switcher.theme_switcher_constants import theme_switcher_constants as constants
 
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gio, GLib, GdkPixbuf
 
-from src.popover import Popover
-from src.main_window import AppWindow
+from theme_switcher.popover import Popover
+from theme_switcher.main_window import AppWindow
 
 #locales
 locale.textdomain('com.github.Latesil.theme-switcher')
@@ -38,7 +38,7 @@ class Application(Gtk.Application):
         self.window = None
 
         GLib.set_application_name(_('Theme Switcher'))
-        GLib.set_prgname(constants["APP_ID"])
+        GLib.set_prgname(constants["APP_NAME"])
 
     def do_startup(self):
         Gtk.Application.do_startup(self)

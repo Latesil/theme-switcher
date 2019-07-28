@@ -22,10 +22,9 @@ class AppWindow(Gtk.ApplicationWindow):
     def __init__(self, app, *args, **kwargs):
         super().__init__(*args, title=_("Theme Switcher"), application=app)
 
-        #deprecation warning
-        self.set_wmclass ("Theme Switcher", "Theme Switcher")
-
         self._main_box.set_border_width(10)
+
+        self.settings = Gio.Settings.new(constants["BASE_KEY"])
 
         #init header_bar
         self.header_bar = HeaderBar()

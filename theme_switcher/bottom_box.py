@@ -28,12 +28,23 @@ class BottomBox(Gtk.Box):
         #monitor changes in gsettings
         self.settings.connect("changed::daytime", self.on__day_scale_change, self._day_scale)
         self.settings.connect("changed::nighttime", self.on__night_scale_change, self._night_scale)
+        self.settings.connect("changed::time-visible", self.on_time_visible_change, None)
 
         #get values from gsettings after start programm
         self.get_scales_values()
 
         self._bottom_day_label.set_halign(Gtk.Align.START)
         self._bottom_night_label.set_halign(Gtk.Align.START)
+
+
+    #set active state for scales
+    def on_time_visible_change(self, settings, key, button):
+        if self.settings.get_boolean("time-visible"):
+            self._night_scale.set_state(Gtk.StateType.ACTIVE)
+            self._day_scale.set_state(Gtk.StateType.ACTIVE)
+        else:
+            self._night_scale.set_state(Gtk.StateType.INSENSITIVE)
+            self._day_scale.set_state(Gtk.StateType.INSENSITIVE)
 
     def on__day_scale_change(self, settings, key, button):
         self._day_scale.set_value(self.settings.get_int("daytime"))

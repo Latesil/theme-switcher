@@ -2,8 +2,9 @@ import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gio
 
-from src.theme_switcher_constants import theme_switcher_constants as constants
+from .theme_switcher_constants import theme_switcher_constants as constants
 from .popover import Popover
+from .bottom_box import BottomBox
 import subprocess
 import os
 
@@ -49,14 +50,22 @@ class HeaderBar(Gtk.HeaderBar):
     def on__left_switch_change(self, settings, key, button):
         self._left_switch.set_active(settings.get_boolean("auto-switch"))
 
+    def on_time_visible_change(self, settings, key, button):
+        if self.settings.get_boolean("time-visible"):
+            print("True")
+        else:
+            print("Not true")
+
     #if switch state is off
     def state_off(self):
         self.settings.set_boolean("auto-switch", self._left_switch.get_active())
+        self.settings.set_boolean("time-visible", False)
         subprocess.call(['systemctl','--user','stop','theme-switcher-auto.timer'])
         subprocess.call(['systemctl','--user','disable', 'theme-switcher-auto.timer'])
 
     #if switch state is on
     def state_on(self):
         self.settings.set_boolean("auto-switch", self._left_switch.get_active())
+        self.settings.set_boolean("time-visible", True)
         subprocess.call(['systemctl','--user','start','theme-switcher-auto.timer'])
         subprocess.call(['systemctl','--user','enable','theme-switcher-auto.timer'])
