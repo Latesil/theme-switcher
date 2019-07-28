@@ -46,8 +46,8 @@ class Popover(Gtk.PopoverMenu):
 
     @Gtk.Template.Callback()
     def on__reset_themes_clicked(self, button):
-        self.settings.set_string("light-theme", "Adwaita")
-        self.settings.set_string("dark-theme", "Adwaita-dark")
+        self.settings.set_string("light-theme", constants["default_light_theme"])
+        self.settings.set_string("dark-theme", constants["default_dark_theme"])
 
     @Gtk.Template.Callback()
     def on__reset_wallpapers_clicked(self, button):
@@ -63,12 +63,13 @@ class Popover(Gtk.PopoverMenu):
 
     @Gtk.Template.Callback()
     def on__about_button_clicked(self, button):
-        image = GdkPixbuf.Pixbuf.new_from_resource(constants["UI_PATH"] + "icons/light-dark-icon-128.png")
+        image = GdkPixbuf.Pixbuf.new_from_resource(constants["UI_PATH"] + "icons/theme-switcher-128.png")
 
         about = Gtk.AboutDialog()
         about.set_program_name(_("Theme Switcher"))
         about.set_version("0.9")
-        about.set_authors(["Letalis", 'Artem Polishchuk'])
+        about.set_authors(["Letalis", "Artem Polishchuk","@DarthL1ne (Telegram)"])
+        about.set_artists(["Raxi Petrov"])
         about.set_logo(image)
         about.set_copyright("(c) Copylefted")
         about.set_comments(_("A global automated switcher for dark/light GTK theme during day/night and more."))

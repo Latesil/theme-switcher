@@ -112,6 +112,6 @@ class MiddleGrid(Gtk.Grid):
                 current_time = datetime.datetime.now()
                 if (current_time.hour >= self.main_settings.get_int("nighttime")):
                     self.set_theme(theme)
-        
+
     def set_theme(self, theme):
         self.theme_settings.set_string("gtk-theme", theme)

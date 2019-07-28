@@ -4,7 +4,6 @@ from gi.repository import Gtk, Gio
 
 from .theme_switcher_constants import theme_switcher_constants as constants
 from .popover import Popover
-from .bottom_box import BottomBox
 import subprocess
 import os
 
@@ -51,10 +50,7 @@ class HeaderBar(Gtk.HeaderBar):
         self._left_switch.set_active(settings.get_boolean("auto-switch"))
 
     def on_time_visible_change(self, settings, key, button):
-        if self.settings.get_boolean("time-visible"):
-            print("True")
-        else:
-            print("Not true")
+        pass
 
     #if switch state is off
     def state_off(self):

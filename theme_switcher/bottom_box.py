@@ -3,6 +3,7 @@ gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gio
 from .theme_switcher_constants import theme_switcher_constants as constants
 import os
+import datetime
 
 resource = Gio.Resource.load("/home/lateseal/Documents/prog/python/pygtk/theme-switcher/data/theme-switcher.gresource")
 resource._register()
@@ -23,7 +24,14 @@ class BottomBox(Gtk.Box):
 
         #init settings
         self.settings = Gio.Settings.new(constants["BASE_KEY"])
+        self.theme_settings = Gio.Settings.new(constants["THEME_KEY"])
         self.set_margin_top(20)
+
+        self.current_light_theme = self.settings.get_string('light-theme')
+        self.current_dark_theme = self.settings.get_string('dark-theme')
+
+        self._day_scale.set_name("day scale")
+        self._night_scale.set_name("day scale")
 
         #monitor changes in gsettings
         self.settings.connect("changed::daytime", self.on__day_scale_change, self._day_scale)
@@ -60,7 +68,20 @@ class BottomBox(Gtk.Box):
     @Gtk.Template.Callback()
     def on__day_adjustment_value_changed(self, scale):
         self.settings.set_int("daytime", scale.get_value())
+        current_time = datetime.datetime.now()
+        if (current_time.hour <= self.settings.get_int("daytime") and current_time.hour >= self.settings.get_int("nighttime")):
+            self.set_theme(self.current_light_theme)
+        else:
+            self.set_theme(self.current_dark_theme)
 
     @Gtk.Template.Callback()
     def on__night_adjustment_value_changed(self, scale):
         self.settings.set_int("nighttime", scale.get_value())
+        current_time = datetime.datetime.now()
+        if (current_time.hour <= self.settings.get_int("nighttime") and current_time.hour >= self.settings.get_int("daytime")):
+            self.set_theme(self.current_dark_theme)
+        else:
+            self.set_theme(self.current_light_theme)
+
+    def set_theme(self, theme):
+            self.theme_settings.set_string("gtk-theme", theme)
