@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+  <id>com.github.Latesil.theme-switcher</id>
+  <!-- Copyright 2019 Artem Polishchuk <ego.cordatus@gmail.com> -->
+  <metadata_license>CC0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <name>Theme Switcher</name>
+  <summary>Switch dark/light GTK theme automatically during day/night</summary>
+  <description>
+    <p>A global automated switcher for dark/light GTK theme during day/night and more.
+
+       Theme-switcher automatically can switch your:
+
+      • GTK theme
+      • GNOME Terminal profiles
+      • Wallpapers
+      • More will come...</p>
+  </description>
+  <provides>
+    <binary>theme-switcher-gui.py</binary>
+  </provides>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://github.com/Latesil/theme-switcher/theme-switcher-screenshot-1.png</image>
+    </screenshot>
+  </screenshots>
+  <developer_name>Letalis and contrubutors of GNOME Ru Telegram chat</developer_name>
+  <url type="homepage">https://github.com/Latesil/theme-switcher</url>
+  <url type="bugtracker">https://github.com/Latesil/theme-switcher/issues</url>
+  <url type="translate">https://github.com/Latesil/theme-switcher/tree/dev/po</url>
+  <url type="help">https://github.com/Latesil/theme-switcher/blob/master/README.md</url>
+</component>
