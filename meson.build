@@ -17,13 +17,23 @@ if not py_installation.found()
     error('No valid python3 binary found')
 endif
 
-dependency('gobject-introspection-1.0', version: '>= 1.35.0')
+APPLICATION_ID = 'com.github.Latesil.theme-switcher'
+PYTHON_DIR = py_installation.get_path('purelib')
+PKGDATA_DIR = join_paths(get_option('prefix'), get_option('datadir'), APPLICATION_ID)
+PKGLIB_DIR = join_paths(get_option('prefix'), get_option('libdir'), APPLICATION_ID)
+
+# Install the executable file
+bin_config = configuration_data()
+bin_config.set('application_id', APPLICATION_ID)
+bin_config.set('pkgdatadir', PKGDATA_DIR)
+bin_config.set('localedir', join_paths(get_option('prefix'), get_option('datadir'), 'locale'))
+bin_config.set('pythondir', PYTHON_DIR)
+bin_config.set('pyexecdir', py_installation.get_path('stdlib'))
+bin_config.set('schemasdir', '')
+
 dependency('gtk+-3.0', version: '>= 3.24.7')
-dependency('pygobject-3.0', version: '>= 3.29.1')
 
 subdir('data')
-subdir('rpm')
-subdir('theme_switcher')
 subdir('po')
 
 install_subdir(
