@@ -31,8 +31,9 @@ class BottomBox(Gtk.Box):
         self.current_light_theme = self.settings.get_string('light-theme')
         self.current_dark_theme = self.settings.get_string('dark-theme')
 
-        self._day_scale.set_name("day scale")
-        self._night_scale.set_name("day scale")
+        #unused yet, but who knows
+        # self._day_scale.set_name("day scale")
+        # self._night_scale.set_name("night scale")
 
         #monitor changes in gsettings
         self.settings.connect("changed::daytime", self.on__day_scale_change, self._day_scale)
@@ -41,6 +42,7 @@ class BottomBox(Gtk.Box):
 
         #get values from gsettings after start programm
         self.get_scales_values()
+        self.on_combo_box_changed()
 
         self._bottom_day_label.set_halign(Gtk.Align.START)
         self._bottom_night_label.set_halign(Gtk.Align.START)
