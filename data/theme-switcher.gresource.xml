@@ -7,14 +7,5 @@
     <file>data/ui/main_window.ui</file>
     <file>data/ui/popover.ui</file>
     <file>data/ui/upper_grid.ui</file>
-    <file>data/icons/theme-switcher-128.png</file>
-    <file>data/icons/theme-switcher-24.png</file>
-    <file>data/icons/theme-switcher-32.png</file>
-    <file>data/icons/theme-switcher-48.png</file>
-    <file>data/icons/theme-switcher-64.png</file>
-    <file>data/icons/theme-switcher-96.png</file>
-    <file>data/icons/theme-switcher-192.png</file>
-    <file>data/icons/theme-switcher-256.png</file>
-    <file>data/icons/theme-switcher-512.png</file>
   </gresource>
 </gresources>
