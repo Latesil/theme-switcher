@@ -8,9 +8,6 @@ import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gio, GdkPixbuf
 
-resource = Gio.Resource.load("/usr/share/theme-switcher/theme-switcher.gresource")
-resource._register()
-
 @Gtk.Template(resource_path = constants["UI_PATH"] + 'ui/popover.ui')
 class Popover(Gtk.PopoverMenu):
 
@@ -63,7 +60,7 @@ class Popover(Gtk.PopoverMenu):
 
     @Gtk.Template.Callback()
     def on__about_button_clicked(self, button):
-        image = GdkPixbuf.Pixbuf.new_from_resource(constants["UI_PATH"] + "icons/theme-switcher-128.png")
+        image = GdkPixbuf.Pixbuf.new_from_file("usr/share/icons/hicolor/128x128/apps/theme-switcher-128.png")
 
         about = Gtk.AboutDialog()
         about.set_program_name(_("Theme Switcher"))

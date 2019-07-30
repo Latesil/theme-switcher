@@ -8,9 +8,6 @@ import datetime
 from locale import gettext as _
 import locale
 
-resource = Gio.Resource.load("/usr/share/theme-switcher/theme-switcher.gresource")
-resource._register()
-
 @Gtk.Template(resource_path = constants["UI_PATH"] + 'ui/upper_grid.ui')
 class UpperGrid(Gtk.Grid):
 

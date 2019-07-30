@@ -1,0 +1,61 @@
+Build started at 2019-07-30T16:13:22.706421
+Main binary: /usr/bin/python3
+Python system: Linux
+The Meson build system
+Version: 0.51.1
+Source dir: /home/lateseal/Documents/prog/python/pygtk/theme-switcher
+Build dir: /home/lateseal/Documents/prog/python/pygtk/theme-switcher/configure
+Build type: native build
+Project name: theme-switcher
+Project version: 0.9.1
+Build machine cpu family: x86_64
+Build machine cpu: x86_64
+Program python3 found: YES (/usr/bin/python3)
+Pkg-config binary for MachineChoice.HOST is not cached.
+Pkg-config binary missing from cross or native file, or env var undefined.
+Trying a default pkg-config fallback at pkg-config
+Trying pkg-config binary pkg-config for machine MachineChoice.HOST at ['/usr/bin/pkg-config']
+Found pkg-config: /usr/bin/pkg-config (1.6.1)
+Determining dependency 'gtk+-3.0' with pkg-config executable '/usr/bin/pkg-config'
+PKG_CONFIG_PATH: 
+Called `/usr/bin/pkg-config --modversion gtk+-3.0` -> 0
+3.24.10
+PKG_CONFIG_PATH: 
+Called `/usr/bin/pkg-config --cflags gtk+-3.0` -> 0
+-I/usr/include/gtk-3.0 -I/usr/include/pango-1.0 -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -I/usr/include/fribidi -I/usr/include/harfbuzz -I/usr/include/freetype2 -I/usr/include/libpng16 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/uuid -I/usr/include/gio-unix-2.0 -I/usr/include/libdrm -I/usr/include/atk-1.0 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/at-spi-2.0 -I/usr/include/dbus-1.0 -I/usr/lib64/dbus-1.0/include -pthread
+PKG_CONFIG_PATH: 
+Called `/usr/bin/pkg-config gtk+-3.0 --libs` -> 0
+-L/usr/lib64 -lgtk-3 -lgdk-3 -lpangocairo-1.0 -lpango-1.0 -latk-1.0 -lcairo-gobject -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lgobject-2.0 -lglib-2.0
+PKG_CONFIG_PATH: 
+Called `/usr/bin/pkg-config gtk+-3.0 --libs` -> 0
+-lgtk-3 -lgdk-3 -lpangocairo-1.0 -lpango-1.0 -latk-1.0 -lcairo-gobject -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lgobject-2.0 -lglib-2.0
+Run-time dependency gtk+-3.0 found: YES 3.24.10
+Program desktop-file-validate found: YES (/usr/bin/desktop-file-validate)
+Adding test "Validate desktop file"
+Program appstream-util found: YES (/usr/bin/appstream-util)
+Adding test "Validate appstream file"
+Program glib-compile-schemas found: YES (/usr/bin/glib-compile-schemas)
+Adding test "Validate schema file"
+Message: Making a list of icons
+Pkg-config binary for MachineChoice.BUILD is not cached.
+Pkg-config binary missing from cross or native file, or env var undefined.
+Trying a default pkg-config fallback at pkg-config
+Trying pkg-config binary pkg-config for machine MachineChoice.BUILD at ['/usr/bin/pkg-config']
+Found pkg-config: /usr/bin/pkg-config (1.6.1)
+Determining dependency 'glib-2.0' with pkg-config executable '/usr/bin/pkg-config'
+PKG_CONFIG_PATH: 
+Called `/usr/bin/pkg-config --modversion glib-2.0` -> 0
+2.60.5
+PKG_CONFIG_PATH: 
+Called `/usr/bin/pkg-config --cflags glib-2.0` -> 0
+-I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include
+PKG_CONFIG_PATH: 
+Called `/usr/bin/pkg-config glib-2.0 --libs` -> 0
+-L/usr/lib64 -lglib-2.0
+PKG_CONFIG_PATH: 
+Called `/usr/bin/pkg-config glib-2.0 --libs` -> 0
+-lglib-2.0
+Configuring theme-switcher-gui using configuration
+Program build-aux/meson/postinstall.py found: YES (/usr/bin/python3 /home/lateseal/Documents/prog/python/pygtk/theme-switcher/build-aux/meson/postinstall.py)
+Build targets in project: 7
+Found ninja-1.9.0 at /usr/bin/ninja

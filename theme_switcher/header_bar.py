@@ -7,9 +7,6 @@ from .popover import Popover
 import subprocess
 import os
 
-resource = Gio.Resource.load("/usr/share/theme-switcher/theme-switcher.gresource")
-resource._register()
-
 @Gtk.Template(resource_path = constants["UI_PATH"] + 'ui/header_bar.ui')
 class HeaderBar(Gtk.HeaderBar):
 

@@ -6,9 +6,6 @@ import os
 import datetime
 from .helper_functions import set_theme
 
-resource = Gio.Resource.load("/usr/share/theme-switcher/theme-switcher.gresource")
-resource._register()
-
 @Gtk.Template(resource_path = constants["UI_PATH"] + 'ui/bottom_box.ui')
 class BottomBox(Gtk.Box):
 
