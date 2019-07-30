@@ -1,5 +1,5 @@
 pkgdatadir = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
-moduledir = join_paths(pkgdatadir, meson.project_name())
+moduledir = join_paths(pkgdatadir, 'themeswitcher')
 gnome = import('gnome')
 
 gnome.compile_resources(meson.project_name(),

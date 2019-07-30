@@ -1,5 +1,5 @@
 project(
-	'theme_switcher',
+	'theme-switcher',
 	version: '0.9.1',
 	meson_version: '>= 0.50.0',
 )
@@ -8,7 +8,7 @@ i18n  = import('i18n')
 
 subdir('data')
 subdir('po')
-subdir('theme_switcher')
+subdir('themeswitcher')
 
 install_data(
   'theme-switcher-auto.service',

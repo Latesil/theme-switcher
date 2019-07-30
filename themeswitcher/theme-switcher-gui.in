@@ -36,8 +36,8 @@ if __name__ == '__main__':
     import gi
 
     from gi.repository import Gio
-    resource = Gio.Resource.load(os.path.join(pkgdatadir, 'theme_switcher.gresource'))
+    resource = Gio.Resource.load(os.path.join(pkgdatadir, 'theme-switcher.gresource'))
     resource._register()
 
-    from theme_switcher import main
+    from themeswitcher import main
     sys.exit(main.main())

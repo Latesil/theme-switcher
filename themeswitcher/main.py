@@ -60,10 +60,3 @@ class Application(Gtk.Application):
     def on_quit(self, action, param):
         self.quit()
 
-"""if __name__ == "__main__":
-
-    resource = Gio.Resource.load("/usr/share/theme-switcher/theme-switcher.gresource")
-    resource._register()
-
-    app = Application()
-    app.run(sys.argv)"""

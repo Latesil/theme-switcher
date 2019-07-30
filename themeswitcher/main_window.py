@@ -24,6 +24,8 @@ class AppWindow(Gtk.ApplicationWindow):
 
         self.settings = Gio.Settings.new(constants["BASE_KEY"])
 
+        self.set_wmclass("Theme Switcher", _("Theme Switcher"))
+
         #init header_bar
         self.header_bar = HeaderBar()
         self.set_titlebar(self.header_bar)
