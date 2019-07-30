@@ -34,14 +34,6 @@ install_data('theme-switcher-512.png',
   install_dir: join_paths(get_option('datadir'), 'icons/hicolor/512x512/apps')
 )
 
-install_data('theme-switcher-symbolic-16.svg',
-  install_dir: join_paths(get_option('datadir'), '/icons/hicolor/symbolic/apps/')
-)
-
-install_data('theme-switcher-symbolic-128.svg',
-  install_dir: join_paths(get_option('datadir'), '/icons/hicolor/symbolic/apps/')
-)
-
-install_data('theme-switcher-symbolic-512.svg',
+install_data('theme-switcher-symbolic.svg',
   install_dir: join_paths(get_option('datadir'), '/icons/hicolor/symbolic/apps/')
 )
