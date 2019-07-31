@@ -6,7 +6,8 @@ from locale import gettext as _
 
 import gi
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, Gio, GdkPixbuf
+from gi.repository import Gtk, Gio
+
 
 @Gtk.Template(resource_path = constants["UI_PATH"] + 'ui/popover.ui')
 class Popover(Gtk.PopoverMenu):
@@ -60,14 +61,12 @@ class Popover(Gtk.PopoverMenu):
 
     @Gtk.Template.Callback()
     def on__about_button_clicked(self, button):
-        image = GdkPixbuf.Pixbuf.new_from_file("usr/share/icons/hicolor/128x128/apps/theme-switcher-128.png")
-
         about = Gtk.AboutDialog()
         about.set_program_name(_("Theme Switcher"))
         about.set_version("0.9.1")
         about.set_authors(["Letalis", "Artem Polishchuk", "@DarthL1ne (Telegram)"])
         about.set_artists(["Raxi Petrov"])
-        about.set_logo(image)
+        about.set_logo_icon_name(constants["APP_ID"])
         about.set_copyright("🄯 Copylefted")
         about.set_comments(_("A global automated switcher for dark/light GTK theme during day/night and more."))
         about.set_website("https://github.com/Latesil/theme-switcher")

@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Theme Switcher GUI
 Comment=GUI for Switch dark/light GTK theme automatically during day/night
-Exec=/usr/bin/theme-switcher-gui.py
+Exec=/usr/bin/theme-switcher-gui
 Icon=theme-switcher
 Terminal=false
 Type=Application
