@@ -34,6 +34,10 @@ install_data('theme-switcher-512.png',
   install_dir: join_paths(get_option('datadir'), 'icons/hicolor/512x512/apps')
 )
 
+install_data('com.github.Latesil.theme-switcher.png',
+  install_dir: join_paths(get_option('datadir'), 'icons/hicolor/scalable/apps')
+)
+
 install_data('theme-switcher-symbolic.svg',
   install_dir: join_paths(get_option('datadir'), 'icons/hicolor/symbolic/apps')
 )
