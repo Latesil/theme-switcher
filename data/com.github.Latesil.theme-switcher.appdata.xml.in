@@ -17,7 +17,7 @@
       • More will come...</p>
   </description>
   <provides>
-    <binary>theme-switcher-gui.py</binary>
+    <binary>theme-switcher-gui</binary>
   </provides>
   <screenshots>
     <screenshot type="default">
