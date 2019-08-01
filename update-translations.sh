@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Generating .pot file..."
-xgettext --from-code=UTF-8 --files-from=po/POTFILES --output=po/com.github.Latesil.theme-switcher.pot
+xgettext --from-code=UTF-8 --files-from=po/POTFILES.in --output=po/com.github.Latesil.theme-switcher.pot
 
 if [ $# = 0 ]; then
 	echo "No parameter, exiting now."
