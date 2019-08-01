@@ -4,6 +4,8 @@ project(
 	meson_version: '>= 0.50.0',
 )
 
+appname = 'com.github.Latesil.theme-switcher'
+
 i18n  = import('i18n')
 
 subdir('data')

@@ -2,7 +2,7 @@
 Name=Theme Switcher GUI
 Comment=GUI for Switch dark/light GTK theme automatically during day/night
 Exec=/usr/bin/theme-switcher-gui
-Icon=theme-switcher
+Icon=com.github.Latesil.theme-switcher
 Terminal=false
 Type=Application
 Categories=Utility

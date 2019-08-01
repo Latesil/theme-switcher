@@ -1,7 +1,7 @@
 #!/bin/sh
 
-base=theme-switcher-512.png
-endname=theme-switcher
+base=com.github.Latesil.theme-switcher-512.png
+endname=com.github.Latesil.theme-switcher
 convert "$base" -resize '24x24'     -unsharp 1x4 "$endname-24.png"
 convert "$base" -resize '32x32'     -unsharp 1x4 "$endname-32.png"
 convert "$base" -resize '48x48'     -unsharp 1x4 "$endname-48.png"
