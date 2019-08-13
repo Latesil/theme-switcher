@@ -47,7 +47,7 @@ class BottomBox(Gtk.Box):
 
     #set active state for scales
     def on_time_visible_change(self, settings, key, button):
-        if self.settings.get_boolean("time-visible"):
+        if settings.get_boolean("time-visible"):
             self._night_scale.set_state(Gtk.StateType.ACTIVE)
             self._day_scale.set_state(Gtk.StateType.ACTIVE)
         else:
@@ -63,6 +63,7 @@ class BottomBox(Gtk.Box):
     def get_scales_values(self):
         self.on__day_scale_change(self.settings, "daytime", self._day_scale)
         self.on__night_scale_change(self.settings, "nighttime", self._night_scale)
+        self.on_time_visible_change(self.settings, None, None)
 
     #set two callbacks for scale
     @Gtk.Template.Callback()
