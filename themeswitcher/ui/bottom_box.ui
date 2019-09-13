@@ -23,7 +23,7 @@
       <object class="GtkLabel" id="_bottom_label">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="label" translatable="yes">Time Manage:</property>
+        <property name="label" translatable="yes">Time Manage</property>
       </object>
       <packing>
         <property name="expand">False</property>
@@ -41,7 +41,7 @@
           <object class="GtkLabel" id="_bottom_day_label">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Day:</property>
+            <property name="label" translatable="yes">Day</property>
           </object>
           <packing>
             <property name="left_attach">0</property>
@@ -52,7 +52,7 @@
           <object class="GtkLabel" id="_bottom_night_label">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Night:</property>
+            <property name="label" translatable="yes">Night</property>
           </object>
           <packing>
             <property name="left_attach">0</property>

@@ -11,7 +11,7 @@
       <object class="GtkLabel" id="_day_label">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="label" translatable="yes">File for day: </property>
+        <property name="label" translatable="yes">File for day</property>
       </object>
       <packing>
         <property name="left_attach">0</property>
@@ -22,7 +22,7 @@
       <object class="GtkLabel" id="_night_label">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="label" translatable="yes">File for night:</property>
+        <property name="label" translatable="yes">File for night</property>
       </object>
       <packing>
         <property name="left_attach">1</property>
@@ -43,7 +43,7 @@
     </child>
     <child>
       <object class="GtkButton" id="_night_button">
-        <property name="label" translatable="yes">Choose NIght Wallpapers</property>
+        <property name="label" translatable="yes">Choose Night Wallpapers</property>
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="receives_default">True</property>

@@ -1,176 +1,162 @@
-# Russian translations for Theme Switcher.
-# Copyleft (C) 2019 LETALIS\TIM77
-# This file is distributed under the same license as the Theme Switcher package.
-# LETALIS <skipastas@gmail.com>, 2019.
-# Artem Polishchuk <ego.cordatus@gmail.com, 2019
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the theme-switcher package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.10\n"
+"Project-Id-Version: theme-switcher\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-11 17:44+0200\n"
-"PO-Revision-Date: 2019-09-11 16:58+0200\n"
-"Last-Translator: Artem Polishchuk <ego.cordatus@gmail.com>\n"
-"Language-Team: \n"
-"Language: ru\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.3\n"
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:6
 msgid "Daytime for theme switch"
-msgstr "Дневное время для переключения тем"
+msgstr ""
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:7
 msgid "When theme should be switched."
-msgstr "Когда нужно переключить тему."
+msgstr ""
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:11
 msgid "Enabling auto-switch"
-msgstr "Включение автоматического переключения тем"
+msgstr ""
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:12
 msgid "Determine whether it will be auto switch theme or not"
-msgstr "Определить включено ли автопереключение тем"
+msgstr ""
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:16
 msgid "Path to day wallpaper"
-msgstr "Путь к дневным обоям"
+msgstr ""
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:17
 msgid "Path to the wallpapers that should be in a daytime."
-msgstr "Путь к обоям которые должны быть днём."
+msgstr ""
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:21
 msgid "Path to night wallpaper"
-msgstr "Путь к ночным обоям"
+msgstr ""
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:22
 msgid "Path to the wallpapers that should be in a nighttime."
-msgstr "Путь к обоям которые должны быть ночью."
+msgstr ""
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:26
 msgid "Nighttime for theme switch"
-msgstr "Ночное время для переключения тем"
+msgstr ""
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:27
 msgid "When theme should be switched on night."
-msgstr "Когда нужно переключить на ночную тему."
+msgstr ""
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:31
 msgid "Light theme"
-msgstr "Светлая тема"
+msgstr ""
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:32
 msgid "Current light theme."
-msgstr "Текущая светлая тема."
+msgstr ""
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:36
 msgid "Dark theme"
-msgstr "Тёмная тема"
+msgstr ""
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:37
 msgid "Current dark theme."
-msgstr "Тёкущая темная тема."
+msgstr ""
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:41
 msgid "Time manage"
-msgstr "Управление временем"
+msgstr ""
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:42
 msgid "Shows Time manage section."
 msgstr ""
 
 #: themeswitcher/ui/bottom_box.ui:26
-#, fuzzy
 msgid "Time Manage"
-msgstr "Управление временем:"
+msgstr ""
 
 #: themeswitcher/ui/bottom_box.ui:44
-#, fuzzy
 msgid "Day"
-msgstr "День:"
+msgstr ""
 
 #: themeswitcher/ui/bottom_box.ui:55
-#, fuzzy
 msgid "Night"
-msgstr "Ночь:"
+msgstr ""
 
 #: themeswitcher/ui/header_bar.ui:8
-#, fuzzy
 msgid "Theme Switcher"
-msgstr "Переключатель тем"
+msgstr ""
 
 #: themeswitcher/ui/header_bar.ui:19
-#, fuzzy
 msgid "Auto"
-msgstr "Автопереключение"
+msgstr ""
 
 #: themeswitcher/ui/popover.ui:23
 msgid "Change Theme"
-msgstr "Переключить тему"
+msgstr ""
 
 #: themeswitcher/ui/popover.ui:48
 msgid "Reset All"
-msgstr "Сбросить всё"
+msgstr ""
 
 #: themeswitcher/ui/popover.ui:62
 msgid "Reset Time"
-msgstr "Сбросить время"
+msgstr ""
 
 #: themeswitcher/ui/popover.ui:76
 msgid "Reset Themes"
-msgstr "Сбросить темы"
+msgstr ""
 
 #: themeswitcher/ui/popover.ui:90
 msgid "Reset Wallpapers"
-msgstr "Сбросить обои"
+msgstr ""
 
 #: themeswitcher/ui/popover.ui:115
 msgid "About"
-msgstr "О приложении, епт"
+msgstr ""
 
 #: themeswitcher/ui/middle_box.ui:26
-#, fuzzy
 msgid "Light Theme"
-msgstr "Светлая тема:"
+msgstr ""
 
 #: themeswitcher/ui/middle_box.ui:37
-#, fuzzy
 msgid "Dark Theme"
-msgstr "Тёмная тема:"
+msgstr ""
 
 #: themeswitcher/ui/upper_grid.ui:14
-#, fuzzy
 msgid "File for day"
-msgstr "Дневные обои: "
+msgstr ""
 
 #: themeswitcher/ui/upper_grid.ui:25
-#, fuzzy
 msgid "File for night"
-msgstr "Ночные обои:"
+msgstr ""
 
 #: themeswitcher/ui/upper_grid.ui:34
 msgid "Choose Day Wallpapers"
-msgstr "Выберите дневные обои"
+msgstr ""
 
 #: themeswitcher/ui/upper_grid.ui:46
-#, fuzzy
 msgid "Choose Night Wallpapers"
-msgstr "Выберите ночные обои"
+msgstr ""
 
 #: themeswitcher/upper_grid.py:53
-#, fuzzy
 msgid "Choose Day Wallpaper"
-msgstr "Выберите дневные обои"
+msgstr ""
 
 #: themeswitcher/upper_grid.py:60
-#, fuzzy
 msgid "Choose Night Wallpaper"
-msgstr "Выберите ночные обои"
+msgstr ""
 
 #: themeswitcher/upper_grid.py:66
-#, fuzzy
 msgid "Choose a file"
-msgstr "Выберите дневные обои"
+msgstr ""
