@@ -56,7 +56,7 @@ class Popover(Gtk.PopoverMenu):
     def on__reset_all_button_clicked(self, button):
         self.on__reset_time_button_clicked(button)
         self.on__reset_wallpapers_clicked(button)
-        self.on__reset_themes_button_clicked(button)
+        self.on__reset_themes_clicked(button)
         self.settings.set_boolean("auto-switch", True)
 
     @Gtk.Template.Callback()
