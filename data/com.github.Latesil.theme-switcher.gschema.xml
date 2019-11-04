@@ -39,7 +39,7 @@
     <key type="b" name="time-visible">
       <default>false</default>
       <summary>Time manage</summary>
-      <description>Shows Time manage section.</description>
+      <description>Shows «Time manage» section.</description>
     </key>
   </schema>
 </schemalist>
