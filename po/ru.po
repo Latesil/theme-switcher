@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: 0.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-11 17:44+0200\n"
-"PO-Revision-Date: 2019-09-11 16:58+0200\n"
+"PO-Revision-Date: 2019-11-03 10:09+0600\n"
 "Last-Translator: Artem Polishchuk <ego.cordatus@gmail.com>\n"
 "Language-Team: \n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.3\n"
+"X-Generator: Poedit 2.2.4\n"
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:6
 msgid "Daytime for theme switch"
@@ -80,30 +80,25 @@ msgstr "Управление временем"
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:42
 msgid "Shows Time manage section."
-msgstr "Показывает секцию управления временем."
+msgstr "Показать раздел Управление временем."
 
 #: themeswitcher/ui/bottom_box.ui:26
-#, fuzzy
 msgid "Time Manage"
 msgstr "Управление временем"
 
 #: themeswitcher/ui/bottom_box.ui:44
-#, fuzzy
 msgid "Day"
 msgstr "День"
 
 #: themeswitcher/ui/bottom_box.ui:55
-#, fuzzy
 msgid "Night"
 msgstr "Ночь"
 
 #: themeswitcher/ui/header_bar.ui:8
-#, fuzzy
 msgid "Theme Switcher"
 msgstr "Переключатель тем"
 
 #: themeswitcher/ui/header_bar.ui:19
-#, fuzzy
 msgid "Auto"
 msgstr "Автопереключение"
 
@@ -132,22 +127,18 @@ msgid "About"
 msgstr "О приложении"
 
 #: themeswitcher/ui/middle_box.ui:26
-#, fuzzy
 msgid "Light Theme"
 msgstr "Светлая тема"
 
 #: themeswitcher/ui/middle_box.ui:37
-#, fuzzy
 msgid "Dark Theme"
 msgstr "Тёмная тема"
 
 #: themeswitcher/ui/upper_grid.ui:14
-#, fuzzy
 msgid "File for day"
 msgstr "Дневные обои"
 
 #: themeswitcher/ui/upper_grid.ui:25
-#, fuzzy
 msgid "File for night"
 msgstr "Ночные обои"
 
@@ -156,21 +147,17 @@ msgid "Choose Day Wallpapers"
 msgstr "Выберите дневные обои"
 
 #: themeswitcher/ui/upper_grid.ui:46
-#, fuzzy
 msgid "Choose Night Wallpapers"
 msgstr "Выберите ночные обои"
 
 #: themeswitcher/upper_grid.py:53
-#, fuzzy
 msgid "Choose Day Wallpaper"
 msgstr "Выберите дневные обои"
 
 #: themeswitcher/upper_grid.py:60
-#, fuzzy
 msgid "Choose Night Wallpaper"
 msgstr "Выберите ночные обои"
 
 #: themeswitcher/upper_grid.py:66
-#, fuzzy
 msgid "Choose a file"
 msgstr "Выберите дневные обои"
