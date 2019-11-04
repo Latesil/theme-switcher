@@ -129,7 +129,7 @@ msgstr "Сбросить обои"
 
 #: themeswitcher/ui/popover.ui:115
 msgid "About"
-msgstr "О приложении, епт"
+msgstr "О приложении"
 
 #: themeswitcher/ui/middle_box.ui:26
 #, fuzzy
