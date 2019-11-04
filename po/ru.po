@@ -80,22 +80,22 @@ msgstr "Управление временем"
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:42
 msgid "Shows Time manage section."
-msgstr ""
+msgstr "Показывает секцию управления временем."
 
 #: themeswitcher/ui/bottom_box.ui:26
 #, fuzzy
 msgid "Time Manage"
-msgstr "Управление временем:"
+msgstr "Управление временем"
 
 #: themeswitcher/ui/bottom_box.ui:44
 #, fuzzy
 msgid "Day"
-msgstr "День:"
+msgstr "День"
 
 #: themeswitcher/ui/bottom_box.ui:55
 #, fuzzy
 msgid "Night"
-msgstr "Ночь:"
+msgstr "Ночь"
 
 #: themeswitcher/ui/header_bar.ui:8
 #, fuzzy
@@ -134,22 +134,22 @@ msgstr "О приложении, епт"
 #: themeswitcher/ui/middle_box.ui:26
 #, fuzzy
 msgid "Light Theme"
-msgstr "Светлая тема:"
+msgstr "Светлая тема"
 
 #: themeswitcher/ui/middle_box.ui:37
 #, fuzzy
 msgid "Dark Theme"
-msgstr "Тёмная тема:"
+msgstr "Тёмная тема"
 
 #: themeswitcher/ui/upper_grid.ui:14
 #, fuzzy
 msgid "File for day"
-msgstr "Дневные обои: "
+msgstr "Дневные обои"
 
 #: themeswitcher/ui/upper_grid.ui:25
 #, fuzzy
 msgid "File for night"
-msgstr "Ночные обои:"
+msgstr "Ночные обои"
 
 #: themeswitcher/ui/upper_grid.ui:34
 msgid "Choose Day Wallpapers"
