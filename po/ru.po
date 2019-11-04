@@ -80,7 +80,7 @@ msgstr "Управление временем"
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:42
 msgid "Shows Time manage section."
-msgstr "Показать раздел Управление временем."
+msgstr "Показывает раздел «Управление временем»."
 
 #: themeswitcher/ui/bottom_box.ui:26
 msgid "Time Manage"
