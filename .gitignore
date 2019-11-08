@@ -4,3 +4,4 @@ build/
 configure/
 *~
 *.mo
+*gschemas.compiled
