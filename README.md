@@ -9,6 +9,8 @@ Theme-switcher automatically can switch your:
 - Wallpapers
 - More will come...
 
+<div style="text-align: center;"><IMG SRC="theme-switcher-screenshot-1.png" ALT="image"></div>
+
 ### Prerequisites for building from source
 
 ```sh
