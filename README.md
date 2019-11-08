@@ -21,7 +21,11 @@ sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 
 Fedora [COPR](https://copr.fedorainfracloud.org/coprs/atim/theme-switcher/): `sudo dnf copr enable atim/theme-switcher -y && sudo dnf install theme-switcher -y`
 
-### Run GUI version: `theme-switcher-gui.py`
+### Run GUI version:
+
+```sh
+theme-switcher-gui.py
+```
 
 ### Run CLI version
 
@@ -31,7 +35,11 @@ Fedora [COPR](https://copr.fedorainfracloud.org/coprs/atim/theme-switcher/): `su
 
 - Disable: `systemctl --user disable --now theme-switcher-auto.timer`
 
-#### Manually: `theme-switcher-manual.sh`
+#### Manually:
+
+```sh
+theme-switcher-manual.sh
+```
 
 ### Configure
 
