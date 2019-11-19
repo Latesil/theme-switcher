@@ -53,6 +53,7 @@ class Application(Gtk.Application):
 
         self.window.present()
 
+    #test new branch
     def on_about(self, action, param):
         popover = Popover()
         popover.on__about_button_clicked(None)
