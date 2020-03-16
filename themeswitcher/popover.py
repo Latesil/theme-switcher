@@ -31,7 +31,7 @@ class Popover(Gtk.PopoverMenu):
     @Gtk.Template.Callback()
     def on__change_theme_button_clicked(self, button):
         try:
-            subprocess.call(['theme-switcher-manual.sh'])
+            subprocess.call(['theme-switcher-manual.py'])
         except:
             pass
 
