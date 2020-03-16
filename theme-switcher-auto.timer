@@ -4,7 +4,7 @@ After=suspend.target
 
 [Timer]
 OnBootSec=3 min
-OnCalendar=hourly
+OnCalendar=*:0/10
 Persistent=true
 
 [Install]

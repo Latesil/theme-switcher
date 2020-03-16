@@ -41,3 +41,7 @@ def walk_directories(dirs, filter_func):
 
 def set_theme(settings, theme):
     settings.set_string("gtk-theme", theme)
+    
+def convert_to_values(i, j):
+    first_value = i * 60
+    return first_value + j
