@@ -99,10 +99,10 @@ class MiddleGrid(Gtk.Grid):
                 desktop.set_value('light-theme', theme)
                 current_time = datetime.datetime.now()
                 if (current_time.hour <= desktop.get_value("daytime")):
-                    desktop.set_current_theme(self.theme_settings, theme)
+                    desktop.set_current_theme(theme)
 
             if name == 'dark_box':
                 desktop.set_value('dark-theme', theme)
                 current_time = datetime.datetime.now()
                 if (current_time.hour >= desktop.get_value("nighttime")):
-                    desktop.set_current_theme(self.theme_settings, theme)
+                    desktop.set_current_theme(theme)

@@ -8,16 +8,29 @@ class Gnome(Desktop):
         
     def init_settings(self):
         self.settings = Gio.Settings.new(constants["BASE_KEY"])
+        for k in self.settings.list_keys():
+            print(k, '=', self.settings.get_value(k), 'type', self.settings.get_value(k).get_type_string())
         #self.theme_settings = Gio.Settings.new(constants["THEME_KEY"])
         
     def get_init_settings(self):
         print('get_init settings')
         
     def get_value(self, key):
+        print(key, '=', self.settings.get_value(key), 'type', self.settings.get_value(key).get_type_string())
         return self.settings.get_value(key).unpack()
         
     def set_value(self, key, value):
-        return self.settings.set_value(key, GLib.Variant.new_variant(value))
+        if isinstance(value, float):
+            self.settings.set_int(key, value)
+            
+        if isinstance(value, bool):
+            self.settings.set_boolean(key, value)
+            
+        if isinstance(value, int):
+            self.settings.set_int(key, value)
+            
+        if isinstance(value, str):
+            self.settings.set_string(key, value)
         
     def connect_wallpapers(self):
         print('connect wallpapers')
@@ -34,7 +47,7 @@ class Gnome(Desktop):
     def connect_autoswitch(self):
         print('connect_autoswitch')
         
-    def set_wallpapers(self, wallpapers):
+    def set_wallpapers(self, wallpaper):
         wallpaper_settings = Gio.Settings.new(constants["WALLPAPER_KEY"])
         wallpaper_settings.set_string("picture-uri", wallpaper)
         

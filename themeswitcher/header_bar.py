@@ -51,14 +51,14 @@ class HeaderBar(Gtk.HeaderBar):
 
     #if switch state is off
     def state_off(self):
-        desktop.set_value("auto-switch", False)
-        desktop.set_value("time-visible", False)
+        desktop.set_value("auto-switch", self._left_switch.get_active())
+        desktop.set_value("time-visible", self._left_switch.get_active())
         subprocess.call(['systemctl','--user','stop','theme-switcher-auto.timer'])
         subprocess.call(['systemctl','--user','disable', 'theme-switcher-auto.timer'])
 
     #if switch state is on
     def state_on(self):
-        desktop.set_value("auto-switch", True)
-        desktop.set_value("time-visible", True)
+        desktop.set_value("auto-switch", self._left_switch.get_active())
+        desktop.set_value("time-visible", self._left_switch.get_active())
         subprocess.call(['systemctl','--user','start','theme-switcher-auto.timer'])
         subprocess.call(['systemctl','--user','enable','theme-switcher-auto.timer'])

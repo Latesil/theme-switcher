@@ -4,7 +4,7 @@ from gi.repository import Gtk, Gio
 from .theme_switcher_constants import theme_switcher_constants as constants
 import os
 import datetime
-from .helper_functions import set_theme, convert_to_values
+from .helper_functions import convert_to_values
 from .gnome import Gnome
 
 desktop = Gnome()
@@ -38,11 +38,12 @@ class BottomBox(Gtk.Box):
 
         #monitor changes in gsettings
         if isinstance(desktop, Gnome):
-            desktop.start_monitor_settings()
+            print('gnome')
+            #desktop.start_monitor_settings()
 
         #get values from gsettings after start programm
-        desktop.get_scales_values()
-        get_values()
+        #desktop.get_scales_values()
+        #get_values()
         self.on_combo_box_changed()
 
         self._bottom_box_day_label.set_halign(Gtk.Align.START)
@@ -64,10 +65,10 @@ class BottomBox(Gtk.Box):
         self.on_time_visible_change(self.settings, None, None)"""
         
     def get_values(self):
-        day_hour_values = self.settings.get_int("daytime-hour")
-        day_minutes_values = self.settings.get_int("daytime-minutes")
-        night_hour_values = self.settings.get_int("nighttime-hour")
-        night_minutes_values = self.settings.get_int("nighttime-minutes")
+        day_hour_values = desktop.get_value("daytime-hour")
+        day_minutes_values = desktop.get_value("daytime-minutes")
+        night_hour_values = desktop.get_value("nighttime-hour")
+        night_minutes_values = desktop.get_value("nighttime-minutes")
         return day_hour_values, day_minutes_values, night_hour_values, night_minutes_values
 
     def on_combo_box_changed(self):
@@ -81,9 +82,9 @@ class BottomBox(Gtk.Box):
         night_values = convert_to_values(values[2], values[3])
         
         if ((current_values <= day_values or current_values >= night_values)):
-            set_theme(self.theme_settings, self.cur_dark_theme)
+            desktop.set_current_theme(self.cur_dark_theme)
         else:
-            set_theme(self.theme_settings, self.cur_light_theme)
+            desktop.set_current_theme(self.cur_light_theme)
             
     #____functions for local changes from dconf____#
     
@@ -103,21 +104,21 @@ class BottomBox(Gtk.Box):
         
     @Gtk.Template.Callback()
     def on__day_hour_adjustment_value_changed(self, scale):
-        self.settings.set_int("daytime-hour", scale.get_value())
+        desktop.set_value("daytime-hour", scale.get_value())
         self.on_combo_box_changed()
         
     @Gtk.Template.Callback()
     def on__day_minutes_adjustment_value_changed(self, scale):
-        self.settings.set_int("daytime-minutes", scale.get_value())
+        desktop.set_value("daytime-minutes", scale.get_value())
         self.on_combo_box_changed()
         
     @Gtk.Template.Callback()
     def on__night_minutes_adjustment_value_changed(self, scale):
-        self.settings.set_int("nighttime-minutes", scale.get_value())
+        desktop.set_value("nighttime-minutes", scale.get_value())
         self.on_combo_box_changed()
     
     @Gtk.Template.Callback()
     def on__night_hour_adjustment_value_changed(self, scale):
-        self.settings.set_int("nighttime-hour", scale.get_value())
+        desktop.set_value("nighttime-hour", scale.get_value())
         self.on_combo_box_changed()
         

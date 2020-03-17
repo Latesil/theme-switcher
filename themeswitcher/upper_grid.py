@@ -79,13 +79,13 @@ class UpperGrid(Gtk.Grid):
                 self._night_button.set_label(wallpaper.split("/")[-1])
                 current_time = datetime.datetime.now()
                 if (current_time.hour >= desktop.get_value("nighttime")):
-                    desktop.set_wallpaper(wallpaper)
+                    desktop.set_wallpapers(wallpaper)
             elif name == "day_button":
                 desktop.set_value("path-to-day-wallpaper", wallpaper)
                 self._day_button.set_label(wallpaper.split("/")[-1])
                 current_time = datetime.datetime.now()
                 if (current_time.hour <= desktop.get_value("daytime")):
-                    desktop.set_wallpaper(wallpaper)
+                    desktop.set_wallpapers(wallpaper)
         dialog.destroy()
 
     #helper function for filter choosing file dialog
