@@ -29,6 +29,7 @@ class AppWindow(Gtk.ApplicationWindow):
 
         #init header_bar
         self.header_bar = HeaderBar()
+        left_switch = self.header_bar.get_children()[0].get_children()[1]
         self.set_titlebar(self.header_bar)
         self.header_bar.show()
 
@@ -36,6 +37,7 @@ class AppWindow(Gtk.ApplicationWindow):
         self.upper_grid = UpperGrid()
         self.middle_box = MiddleGrid()
         self.bottom_box = BottomBox()
+        self.bottom_box._main_bottom_grid.set_visible(left_switch.get_active())
 
         #add our containers to the main one
         self._main_box.add(self.upper_grid)

@@ -28,13 +28,16 @@ class HeaderBar(Gtk.HeaderBar):
 
         #get state of switch from gsettings
         self._left_switch.set_active(desktop.get_value("auto-switch"))
-
         #add popover menu to main_button
         self._main_button.set_popover(Popover())
 
     #send information about state of switch
     @Gtk.Template.Callback()
     def on__left_switch_active_notify(self, settings, key):
+        desktop.set_value("auto-switch", self._left_switch.get_active())
+        
+        bottom_box = self.get_parent().get_children()[0].get_children()[2]
+        bottom_box._main_bottom_grid.set_visible(self._left_switch.get_active())
         if self._left_switch.get_active():
             #state = "on"
             self.state_on()
@@ -46,19 +49,12 @@ class HeaderBar(Gtk.HeaderBar):
     def on__left_switch_change(self, settings, key, button):
         button.set_active(desktop.get_value("auto-switch")) ######
 
-    def on_time_visible_change(self, settings, key, button):
-        pass
-
     #if switch state is off
     def state_off(self):
-        desktop.set_value("auto-switch", self._left_switch.get_active())
-        desktop.set_value("time-visible", self._left_switch.get_active())
         subprocess.call(['systemctl','--user','stop','theme-switcher-auto.timer'])
         subprocess.call(['systemctl','--user','disable', 'theme-switcher-auto.timer'])
 
     #if switch state is on
     def state_on(self):
-        desktop.set_value("auto-switch", self._left_switch.get_active())
-        desktop.set_value("time-visible", self._left_switch.get_active())
         subprocess.call(['systemctl','--user','start','theme-switcher-auto.timer'])
         subprocess.call(['systemctl','--user','enable','theme-switcher-auto.timer'])

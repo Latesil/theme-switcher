@@ -8,15 +8,14 @@ class Gnome(Desktop):
         
     def init_settings(self):
         self.settings = Gio.Settings.new(constants["BASE_KEY"])
-        for k in self.settings.list_keys():
-            print(k, '=', self.settings.get_value(k), 'type', self.settings.get_value(k).get_type_string())
+        #for k in self.settings.list_keys():
+        #    print(k, '=', self.settings.get_value(k), 'type', self.settings.get_value(k).get_type_string())
         #self.theme_settings = Gio.Settings.new(constants["THEME_KEY"])
         
     def get_init_settings(self):
         print('get_init settings')
         
     def get_value(self, key):
-        print(key, '=', self.settings.get_value(key), 'type', self.settings.get_value(key).get_type_string())
         return self.settings.get_value(key).unpack()
         
     def set_value(self, key, value):
