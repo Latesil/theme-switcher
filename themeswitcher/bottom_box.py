@@ -4,10 +4,9 @@ from gi.repository import Gtk, Gio
 from .theme_switcher_constants import theme_switcher_constants as constants
 import os
 import datetime
-from .helper_functions import convert_to_values
-from .gnome import Gnome
+from .helper_functions import convert_to_values, init_de
 
-desktop = Gnome()
+desktop = init_de()
 
 @Gtk.Template(resource_path = constants["UI_PATH"] + 'ui/bottom_box.ui')
 class BottomBox(Gtk.Box):
@@ -29,6 +28,7 @@ class BottomBox(Gtk.Box):
         #init settings
         desktop.init_settings()
         desktop.get_current_themes()
+        
         self.set_margin_top(20)
         self.cur_light_theme, self.cur_dark_theme = desktop.get_current_themes()
 
@@ -37,13 +37,9 @@ class BottomBox(Gtk.Box):
         # self._night_scale.set_name("night scale")
 
         #monitor changes in gsettings
-        if isinstance(desktop, Gnome):
-            print('gnome')
-            #desktop.start_monitor_settings()
 
         #get values from gsettings after start programm
-        #desktop.get_scales_values()
-        #get_values()
+        self.set_values_from_settings()
         self.on_combo_box_changed()
 
         self._bottom_box_day_label.set_halign(Gtk.Align.START)
@@ -70,6 +66,12 @@ class BottomBox(Gtk.Box):
         night_hour_values = desktop.get_value("nighttime-hour")
         night_minutes_values = desktop.get_value("nighttime-minutes")
         return day_hour_values, day_minutes_values, night_hour_values, night_minutes_values
+        
+    def set_values_from_settings(self):
+        self._day_minutes_spin_button.set_value(desktop.get_value("daytime-minutes"))
+        self._night_hour_spin_button.set_value(desktop.get_value("nighttime-hour"))
+        self._night_minutes_spin_button.set_value(desktop.get_value("nighttime-minutes"))
+        self._day_hour_spin_button.set_value(desktop.get_value("daytime-hour"))
 
     def on_combo_box_changed(self):
         current_time = datetime.datetime.now()

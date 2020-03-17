@@ -70,12 +70,11 @@ class Gnome(Desktop):
         current_theme = theme_settings.get_string("gtk-theme")
         return current_theme
         
-    def get_scales_values(self):
-        self.on__day_hour_spin_button_value_changed(self.settings, "daytime-hour", self._day_hour_spin_button)
-        self.on__day_minutes_spin_button_value_changed(self.settings, "daytime-minutes", self._day_minutes_spin_button)
-        self.on__night_hour_spin_button_value_changed(self.settings, "nighttime-hour", self._night_hour_spin_button)
-        self.on__night_minutes_spin_button_value_changed(self.settings, "nighttime-minutes", self._night_minutes_spin_button)
-        self.on_time_visible_change(self.settings, None, None)
+    def get_all_values(self):
+        values = {}
+        for k in self.settings.list_keys():
+            values[k] = self.settings.get_value(k).unpack()
+        return values
         
     def start_monitor_settings(self):
         self.settings.connect("changed::daytime-hour", self.on__spin_button_value_changed, self._day_hour_spin_button)
