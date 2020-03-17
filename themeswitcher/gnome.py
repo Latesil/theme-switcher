@@ -45,11 +45,18 @@ class Gnome(Desktop):
         print('stop_systemd_timers')
         
     def get_current_themes(self):
-        self.current_light_theme = self.settings.get_string('light-theme')
-        self.current_dark_theme = self.settings.get_string('dark-theme')
+        current_light_theme = self.settings.get_string('light-theme')
+        current_dark_theme = self.settings.get_string('dark-theme')
+        return current_light_theme, current_dark_theme
         
-    def set_current_theme(self):
-        print('set current theme')
+    def set_current_theme(self, theme):
+        theme_settings = Gio.Settings.new(constants["THEME_KEY"])
+        theme_settings.set_string("gtk-theme", theme)
+        
+    def get_current_theme(self):
+        theme_settings = Gio.Settings.new(constants["THEME_KEY"])
+        current_theme = theme_settings.get_string("gtk-theme")
+        return current_theme
         
     def get_scales_values(self):
         self.on__day_hour_spin_button_value_changed(self.settings, "daytime-hour", self._day_hour_spin_button)

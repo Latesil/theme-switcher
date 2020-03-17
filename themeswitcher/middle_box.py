@@ -4,12 +4,13 @@ import subprocess
 import datetime
 import os
 from locale import gettext as _
-from .helper_functions import _get_valid_themes, set_theme
+from .helper_functions import _get_valid_themes, init_de
 
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gio
 
+desktop = init_de()
 themes = sorted(_get_valid_themes())
 
 @Gtk.Template(resource_path = constants["UI_PATH"] + 'ui/middle_box.ui')
@@ -29,16 +30,12 @@ class MiddleGrid(Gtk.Grid):
 
         self.set_margin_top(10)
 
-        self.theme_settings = Gio.Settings.new(constants["THEME_KEY"])
-        self.current_theme = self.theme_settings.get_string("gtk-theme")
+        self.current_theme = desktop.get_current_theme()
 
-        self.main_settings = Gio.Settings.new(constants["BASE_KEY"])
+        self.cur_light_theme, self.cur_dark_theme = desktop.get_current_themes()
 
-        self.current_light_theme = self.main_settings.get_string("light-theme")
-        self.current_dark_theme = self.main_settings.get_string("dark-theme")
-
-        self.main_settings.connect("changed::light-theme", self.on_light_theme_change, self._light_combo_box)
-        self.main_settings.connect("changed::dark-theme", self.on_dark_theme_change, self._dark_combo_box)
+        #self.main_settings.connect("changed::light-theme", self.on_light_theme_change, self._light_combo_box)
+        #self.main_settings.connect("changed::dark-theme", self.on_dark_theme_change, self._dark_combo_box)
 
         self._light_theme_label.set_halign(Gtk.Align.START)
         self._dark_theme_label.set_halign(Gtk.Align.START)
@@ -70,23 +67,23 @@ class MiddleGrid(Gtk.Grid):
         self._dark_combo_box.add_attribute(renderer_text, "text", 0)
 
     def on_light_theme_change(self, settings, key, box):
-        self.current_light_theme = self.main_settings.get_string("light-theme")
+        self.cur_light_theme = desktop.get_current_themes()[0]
         self.retrieve_light_theme(box)
 
     def on_dark_theme_change(self, settings, key, box):
-        self.current_dark_theme = self.main_settings.get_string("dark-theme")
+        self.cur_dark_theme = desktop.get_current_themes()[1]
         self.retrieve_dark_theme(box)
 
     def retrieve_light_theme(self, box):
         self._light_model = box.get_model()
         for row in self._light_model:
-            if row[0] == self.current_light_theme:
+            if row[0] == self.cur_light_theme:
                 box.set_active_iter(row.iter)
 
     def retrieve_dark_theme(self, box):
         self._dark_model = box.get_model()
         for row in self._dark_model:
-            if row[0] == self.current_dark_theme:
+            if row[0] == self.cur_dark_theme:
                 box.set_active_iter(row.iter)
 
 
@@ -99,16 +96,13 @@ class MiddleGrid(Gtk.Grid):
             theme = model[tree_iter][0]
 
             if name == 'light_box':
-                self.main_settings.set_string('light-theme', theme)
+                desktop.set_value('light-theme', theme)
                 current_time = datetime.datetime.now()
-                if (current_time.hour <= self.main_settings.get_int("daytime")):
-                    set_theme(self.theme_settings, theme)
+                if (current_time.hour <= desktop.get_value("daytime")):
+                    desktop.set_current_theme(self.theme_settings, theme)
 
             if name == 'dark_box':
-                self.main_settings.set_string('dark-theme', theme)
+                desktop.set_value('dark-theme', theme)
                 current_time = datetime.datetime.now()
-                if (current_time.hour >= self.main_settings.get_int("nighttime")):
-                    set_theme(self.theme_settings, theme)
-
-    def set_theme(self, theme):
-        self.theme_settings.set_string("gtk-theme", theme)
+                if (current_time.hour >= desktop.get_value("nighttime")):
+                    desktop.set_current_theme(self.theme_settings, theme)

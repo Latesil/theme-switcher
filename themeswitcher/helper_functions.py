@@ -46,9 +46,6 @@ def init_de():
     desktop.init_settings()
     
     return desktop
-
-def set_theme(settings, theme):
-    settings.set_string("gtk-theme", theme)
     
 def convert_to_values(i, j):
     first_value = i * 60

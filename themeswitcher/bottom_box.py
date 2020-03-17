@@ -30,8 +30,7 @@ class BottomBox(Gtk.Box):
         desktop.init_settings()
         desktop.get_current_themes()
         self.set_margin_top(20)
-        self.cur_light_theme = desktop.current_light_theme
-        self.cur_dark_theme = desktop.current_dark_theme
+        self.cur_light_theme, self.cur_dark_theme = desktop.get_current_themes()
 
         #unused yet, but who knows
         # self._day_scale.set_name("day scale")
