@@ -38,6 +38,14 @@ def walk_directories(dirs, filter_func):
         pass
 
     return valid
+    
+def init_de():
+    from .gnome import Gnome
+
+    desktop = Gnome()
+    desktop.init_settings()
+    
+    return desktop
 
 def set_theme(settings, theme):
     settings.set_string("gtk-theme", theme)

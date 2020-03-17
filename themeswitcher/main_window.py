@@ -2,12 +2,15 @@ import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gio
 from .theme_switcher_constants import theme_switcher_constants as constants
+from .helper_functions import init_de
 from locale import gettext as _
 
 from .header_bar import HeaderBar
 from .upper_grid import UpperGrid
 from .middle_box import MiddleGrid
 from .bottom_box import BottomBox
+
+desktop = init_de()
 
 @Gtk.Template(resource_path = constants["UI_PATH"] + 'ui/main_window.ui')
 class AppWindow(Gtk.ApplicationWindow):
@@ -21,8 +24,6 @@ class AppWindow(Gtk.ApplicationWindow):
 
         self._main_box.set_border_width(10)
         self.set_default_geometry(600, 200)
-
-        self.settings = Gio.Settings.new(constants["BASE_KEY"])
 
         self.set_wmclass("Theme Switcher", _("Theme Switcher"))
 

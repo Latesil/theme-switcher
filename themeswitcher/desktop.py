@@ -1,9 +1,6 @@
 from abc import ABC, abstractmethod
 
 class Desktop(ABC):
-    
-    def __init__(self):
-        print('init')
         
     @abstractmethod
     def init_settings(self):
@@ -46,7 +43,7 @@ class Desktop(ABC):
         print('stop_systemd_timers')
         
     @abstractmethod
-    def get_current_theme(self):
+    def get_current_themes(self):
         print('get current theme')
         
     @abstractmethod

@@ -36,6 +36,8 @@ theme_switcher_sources = [
     'theme_switcher_constants.py',
     'upper_grid.py',
 	'main.py',
+	'desktop.py',
+	'gnome.py',
 ]
 
 install_data(theme_switcher_sources, install_dir: moduledir)

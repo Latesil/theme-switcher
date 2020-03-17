@@ -5,6 +5,9 @@ from .theme_switcher_constants import theme_switcher_constants as constants
 import os
 import datetime
 from .helper_functions import set_theme, convert_to_values
+from .gnome import Gnome
+
+desktop = Gnome()
 
 @Gtk.Template(resource_path = constants["UI_PATH"] + 'ui/bottom_box.ui')
 class BottomBox(Gtk.Box):
@@ -24,27 +27,23 @@ class BottomBox(Gtk.Box):
         super().__init__()
 
         #init settings
-        self.settings = Gio.Settings.new(constants["BASE_KEY"])
-        self.theme_settings = Gio.Settings.new(constants["THEME_KEY"])
+        desktop.init_settings()
+        desktop.get_current_themes()
         self.set_margin_top(20)
-
-        self.current_light_theme = self.settings.get_string('light-theme')
-        self.current_dark_theme = self.settings.get_string('dark-theme')
+        self.cur_light_theme = desktop.current_light_theme
+        self.cur_dark_theme = desktop.current_dark_theme
 
         #unused yet, but who knows
         # self._day_scale.set_name("day scale")
         # self._night_scale.set_name("night scale")
 
         #monitor changes in gsettings
-        self.settings.connect("changed::daytime-hour", self.on__day_hour_spin_button_value_changed, self._day_hour_spin_button)
-        self.settings.connect("changed::daytime-minutes", self.on__day_minutes_spin_button_value_changed, self._day_minutes_spin_button)
-        self.settings.connect("changed::nighttime-hour", self.on__night_hour_spin_button_value_changed, self._night_hour_spin_button)
-        self.settings.connect("changed::nighttime-minutes", self.on__night_minutes_spin_button_value_changed, self._night_hour_spin_button)
-        self.settings.connect("changed::time-visible", self.on_time_visible_change, None)
+        if isinstance(desktop, Gnome):
+            desktop.start_monitor_settings()
 
         #get values from gsettings after start programm
-        self.get_scales_values()
-        self.get_values()
+        desktop.get_scales_values()
+        get_values()
         self.on_combo_box_changed()
 
         self._bottom_box_day_label.set_halign(Gtk.Align.START)
@@ -52,18 +51,18 @@ class BottomBox(Gtk.Box):
 
 
     #set active state for scales
-    def on_time_visible_change(self, settings, key, button):
+    """def on_time_visible_change(self, settings, key, button):
         if settings.get_boolean("time-visible"):
             self._main_bottom_grid.set_visible(True)
         else:
-            self._main_bottom_grid.set_visible(False)
+            self._main_bottom_grid.set_visible(False)"""
 
-    def get_scales_values(self):
+    """def get_scales_values(self):
         self.on__day_hour_spin_button_value_changed(self.settings, "daytime-hour", self._day_hour_spin_button)
         self.on__day_minutes_spin_button_value_changed(self.settings, "daytime-minutes", self._day_minutes_spin_button)
         self.on__night_hour_spin_button_value_changed(self.settings, "nighttime-hour", self._night_hour_spin_button)
         self.on__night_minutes_spin_button_value_changed(self.settings, "nighttime-minutes", self._night_minutes_spin_button)
-        self.on_time_visible_change(self.settings, None, None)
+        self.on_time_visible_change(self.settings, None, None)"""
         
     def get_values(self):
         day_hour_values = self.settings.get_int("daytime-hour")
@@ -83,23 +82,23 @@ class BottomBox(Gtk.Box):
         night_values = convert_to_values(values[2], values[3])
         
         if ((current_values <= day_values or current_values >= night_values)):
-            set_theme(self.theme_settings, self.current_dark_theme)
+            set_theme(self.theme_settings, self.cur_dark_theme)
         else:
-            set_theme(self.theme_settings, self.current_light_theme)
+            set_theme(self.theme_settings, self.cur_light_theme)
             
     #____functions for local changes from dconf____#
     
-    def on__day_hour_spin_button_value_changed(self, settings, key, button):
-        self._day_hour_spin_button.set_value(self.settings.get_int("daytime-hour"))
+    """def on__spin_button_value_changed(self, settings, key, button):
+        button.set_value(settings.get_int(key))"""
     
-    def on__day_minutes_spin_button_value_changed(self, settings, key, button):
+    """def on__day_minutes_spin_button_value_changed(self, settings, key, button):
         self._day_minutes_spin_button.set_value(self.settings.get_int("daytime-minutes"))
     
     def on__night_minutes_spin_button_value_changed(self, settings, key, button):
         self._night_minutes_spin_button.set_value(self.settings.get_int("nighttime-minutes"))
     
     def on__night_hour_spin_button_value_changed(self, settings, key, button):
-        self._night_hour_spin_button.set_value(self.settings.get_int("nighttime-hour"))
+        self._night_hour_spin_button.set_value(self.settings.get_int("nighttime-hour"))"""
         
     #___adjustment callbacks____#
         
