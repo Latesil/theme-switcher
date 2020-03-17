@@ -34,8 +34,9 @@ class Gnome(Desktop):
     def connect_autoswitch(self):
         print('connect_autoswitch')
         
-    def set_wallpapers(self):
-        print('set wallpapers')
+    def set_wallpapers(self, wallpapers):
+        wallpaper_settings = Gio.Settings.new(constants["WALLPAPER_KEY"])
+        wallpaper_settings.set_string("picture-uri", wallpaper)
         
     def start_systemd_timers(self):
         print('start_systemd_timers')
