@@ -35,10 +35,7 @@ class BottomBox(Gtk.Box):
         #unused yet, but who knows
         # self._day_scale.set_name("day scale")
         # self._night_scale.set_name("night scale")
-
-        #monitor changes in gsettings
-
-        #get values from gsettings after start programm
+        
         self.set_values_from_settings()
         self.on_combo_box_changed()
 

@@ -11,7 +11,6 @@
       <object class="GtkBox" id="_left_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="homogeneous">False</property>
         <child>
           <object class="GtkLabel" id="_left_label">
             <property name="visible">True</property>
@@ -29,7 +28,7 @@
           <object class="GtkSwitch" id="_left_switch">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <signal name="notify::active" handler="on__left_switch_active_notify" swapped="no"/>
+            <signal name="state-set" handler="on__left_switch_state_set" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>
