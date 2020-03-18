@@ -43,6 +43,3 @@ class AppWindow(Gtk.ApplicationWindow):
         self._main_box.add(self.upper_grid)
         self._main_box.add(self.middle_box)
         self._main_box.add(self.bottom_box)
-        
-        values = desktop.get_all_values()
-        print(values)

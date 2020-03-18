@@ -4,48 +4,44 @@ class Desktop(ABC):
         
     @abstractmethod
     def init_settings(self):
-        print('init settings')
+        pass
         
     @abstractmethod
-    def get_init_settings(self):
-        print('get_init settings')
+    def get_value(self, key):
+        pass
         
     @abstractmethod
-    def connect_wallpapers(self):
-        print('connect wallpapers')
+    def set_value(self, key, value):
+        pass
         
     @abstractmethod
-    def connect_daytime(self):
-        print('connect_daytime')
+    def reset_value(self, key):
+        pass
         
     @abstractmethod
-    def connect_nighttime(self):
-        print('connect_nighttime')
-        
-    @abstractmethod
-    def connect_time_visible(self):
-        print('connect_time_visible')
-        
-    @abstractmethod
-    def connect_autoswitch(self):
-        print('connect_autoswitch')
-        
-    @abstractmethod
-    def set_wallpapers(self):
-        print('set wallpapers')
+    def set_wallpapers(self, wallpaper):
+        pass
         
     @abstractmethod
     def start_systemd_timers(self):
-        print('start_systemd_timers')
+        pass
         
     @abstractmethod
     def stop_systemd_timers(self):
-        print('stop_systemd_timers')
+        pass
         
     @abstractmethod
     def get_current_themes(self):
-        print('get current theme')
+        pass
         
     @abstractmethod
-    def set_current_theme(self):
-        print('set current theme')
+    def get_current_theme(self):
+        pass
+        
+    @abstractmethod
+    def set_current_theme(self, theme):
+        pass
+        
+    @abstractmethod
+    def get_all_values(self):
+        pass

@@ -38,25 +38,25 @@ class Popover(Gtk.PopoverMenu):
 
     @Gtk.Template.Callback()
     def on__reset_time_button_clicked(self, button):
-        desktop.set_value("nighttime", 20)
-        desktop.set_value("daytime", 6)
+        desktop.reset_value("nighttime")
+        desktop.reset_value("daytime")
 
     @Gtk.Template.Callback()
     def on__reset_themes_clicked(self, button):
-        desktop.set_value("light-theme", constants["default_light_theme"])
-        desktop.set_value("dark-theme", constants["default_dark_theme"])
+        desktop.reset_value("light-theme")
+        desktop.reset_value("dark-theme")
 
     @Gtk.Template.Callback()
     def on__reset_wallpapers_clicked(self, button):
-        desktop.set_value("path-to-night-wallpaper", "")
-        desktop.set_value("path-to-day-wallpaper", "")
+        desktop.reset_value("path-to-night-wallpaper")
+        desktop.reset_value("path-to-day-wallpaper")
 
     @Gtk.Template.Callback()
     def on__reset_all_button_clicked(self, button):
         self.on__reset_time_button_clicked(button)
         self.on__reset_wallpapers_clicked(button)
         self.on__reset_themes_clicked(button)
-        desktop.set_value("auto-switch", True)
+        desktop.reset_value("auto-switch")
 
     @Gtk.Template.Callback()
     def on__about_button_clicked(self, button):
