@@ -5,7 +5,6 @@ from gi.repository import Gtk
 from .theme_switcher_constants import theme_switcher_constants as constants
 from .helper_functions import init_de
 from .popover import Popover
-from .bottom_box import BottomBox
 
 desktop = init_de()
 
@@ -27,9 +26,6 @@ class HeaderBar(Gtk.HeaderBar):
     @Gtk.Template.Callback()
     def on__left_switch_state_set(self, widget, state):
         desktop.set_value("auto-switch", state)
-        
-        bottom_box = self.get_parent().get_children()[0].get_children()[2]
-        bottom_box._main_bottom_grid.set_visible(state)
         
         if state:
             desktop.start_systemd_timers()
