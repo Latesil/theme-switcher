@@ -2,6 +2,121 @@
 <!-- Generated with glade 3.22.1 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
+  <object class="GtkPopoverMenu" id="Popover">
+    <property name="can_focus">False</property>
+    <child>
+      <object class="GtkBox" id="_popover_box">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="margin_top">5</property>
+        <property name="margin_bottom">5</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkModelButton" id="_change_theme_button">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="text" translatable="yes">Change Theme</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSeparator" id="_first_separator">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkModelButton" id="_reset_all_button">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="text" translatable="yes">Reset All</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkModelButton" id="_reset_time_button">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="text" translatable="yes">Reset Time</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">3</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkModelButton" id="_reset_themes">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="text" translatable="yes">Reset Themes</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">4</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkModelButton" id="_reset_wallpapers">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="text" translatable="yes">Reset Wallpapers</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">5</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSeparator" id="_second_separator">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">6</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkModelButton" id="_about_button">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="text" translatable="yes">About</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">7</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+        <property name="submenu">main</property>
+      </packing>
+    </child>
+  </object>
   <object class="GtkAdjustment" id="day_hour_adjustment">
     <property name="upper">23</property>
     <property name="step_increment">1</property>
@@ -64,10 +179,32 @@
             <property name="can_focus">False</property>
             <property name="layout_style">end</property>
             <child>
-              <placeholder/>
+              <object class="GtkButton" id="ok_button">
+                <property name="label">gtk-ok</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
             </child>
             <child>
-              <placeholder/>
+              <object class="GtkButton" id="cancel_button">
+                <property name="label">gtk-cancel</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
             </child>
           </object>
           <packing>
@@ -86,11 +223,6 @@
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="stock">gtk-missing-image</property>
-  </object>
-  <object class="GtkImage" id="main_menu_image">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="icon_name">open-menu-symbolic</property>
   </object>
   <object class="GtkAdjustment" id="night_hour_adjustment">
     <property name="upper">23</property>
@@ -152,11 +284,18 @@
           </object>
         </child>
         <child>
-          <object class="GtkButton" id="main_button">
+          <object class="GtkMenuButton">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="image">main_menu_image</property>
+            <property name="popover">Popover</property>
+            <child>
+              <object class="GtkImage" id="main_button_image">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">open-menu-symbolic</property>
+              </object>
+            </child>
           </object>
           <packing>
             <property name="pack_type">end</property>
@@ -291,10 +430,6 @@
                   <object class="GtkLabel" id="day_theme_frame">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="margin_left">5</property>
-                    <property name="margin_right">5</property>
-                    <property name="margin_top">5</property>
-                    <property name="margin_bottom">5</property>
                     <property name="label" translatable="yes">Day theme</property>
                   </object>
                 </child>
@@ -433,50 +568,43 @@
                 <property name="label_xalign">0</property>
                 <property name="shadow_type">in</property>
                 <child>
-                  <object class="GtkAlignment">
+                  <object class="GtkBox" id="night_wallpaper_box">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="left_padding">12</property>
+                    <property name="margin_left">5</property>
+                    <property name="margin_right">5</property>
+                    <property name="margin_top">5</property>
+                    <property name="margin_bottom">5</property>
+                    <property name="spacing">2</property>
+                    <property name="homogeneous">True</property>
                     <child>
-                      <object class="GtkBox" id="night_wallpaper_box">
+                      <object class="GtkBox" id="night_wallpaper_image_box">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="margin_left">5</property>
-                        <property name="margin_right">5</property>
-                        <property name="margin_top">5</property>
-                        <property name="margin_bottom">5</property>
-                        <property name="spacing">2</property>
-                        <property name="homogeneous">True</property>
                         <child>
-                          <object class="GtkBox" id="night_wallpaper_image_box">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <child>
-                              <placeholder/>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkFileChooserButton" id="night_wallpaper_button">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="filter">day_wallpaper_filter</property>
-                            <property name="preview_widget">night_wallpaper_image</property>
-                            <property name="dialog">night_wallpaper_dialog</property>
-                            <property name="title" translatable="yes"/>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">1</property>
-                          </packing>
+                          <placeholder/>
                         </child>
                       </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkFileChooserButton" id="night_wallpaper_button">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="filter">day_wallpaper_filter</property>
+                        <property name="preview_widget">night_wallpaper_image</property>
+                        <property name="dialog">night_wallpaper_dialog</property>
+                        <property name="title" translatable="yes"/>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
                     </child>
                   </object>
                 </child>
@@ -505,44 +633,37 @@
                 <property name="label_xalign">0</property>
                 <property name="shadow_type">in</property>
                 <child>
-                  <object class="GtkAlignment">
+                  <object class="GtkBox" id="night_middle_box">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="left_padding">12</property>
+                    <property name="margin_left">5</property>
+                    <property name="margin_right">5</property>
+                    <property name="margin_top">5</property>
+                    <property name="margin_bottom">5</property>
+                    <property name="spacing">2</property>
+                    <property name="homogeneous">True</property>
                     <child>
-                      <object class="GtkBox" id="night_middle_box">
+                      <object class="GtkLabel" id="night_theme_box">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="margin_left">5</property>
-                        <property name="margin_right">5</property>
-                        <property name="margin_top">5</property>
-                        <property name="margin_bottom">5</property>
-                        <property name="spacing">2</property>
-                        <property name="homogeneous">True</property>
-                        <child>
-                          <object class="GtkLabel" id="night_theme_box">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Night theme</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkComboBoxText" id="night_theme_combobox">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">1</property>
-                          </packing>
-                        </child>
+                        <property name="label" translatable="yes">Night theme</property>
                       </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkComboBoxText" id="night_theme_combobox">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
                     </child>
                   </object>
                 </child>
@@ -571,25 +692,41 @@
                 <property name="label_xalign">0</property>
                 <property name="shadow_type">in</property>
                 <child>
-                  <object class="GtkAlignment">
+                  <object class="GtkBox" id="night_time_box">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="left_padding">12</property>
+                    <property name="margin_left">5</property>
+                    <property name="margin_right">5</property>
+                    <property name="margin_top">5</property>
+                    <property name="margin_bottom">5</property>
+                    <property name="spacing">5</property>
+                    <property name="homogeneous">True</property>
                     <child>
-                      <object class="GtkBox" id="night_time_bo">
+                      <object class="GtkLabel" id="night_time_label">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="margin_left">5</property>
-                        <property name="margin_right">5</property>
-                        <property name="margin_top">5</property>
-                        <property name="margin_bottom">5</property>
-                        <property name="spacing">2</property>
-                        <property name="homogeneous">True</property>
+                        <property name="label" translatable="yes">NIght time</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkBox">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
                         <child>
-                          <object class="GtkLabel" id="night_time_label">
+                          <object class="GtkSpinButton" id="_night_hour_spin_button">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">NIght time</property>
+                            <property name="can_focus">True</property>
+                            <property name="text" translatable="yes">0</property>
+                            <property name="input_purpose">digits</property>
+                            <property name="orientation">vertical</property>
+                            <property name="adjustment">night_hour_adjustment</property>
+                            <property name="snap_to_ticks">True</property>
+                            <property name="numeric">True</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -598,68 +735,45 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkBox">
+                          <object class="GtkLabel">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <child>
-                              <object class="GtkSpinButton" id="_night_hour_spin_button">
-                                <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="text" translatable="yes">0</property>
-                                <property name="input_purpose">digits</property>
-                                <property name="orientation">vertical</property>
-                                <property name="adjustment">night_hour_adjustment</property>
-                                <property name="snap_to_ticks">True</property>
-                                <property name="numeric">True</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="label" translatable="yes">:</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkSpinButton" id="_night_minutes_spin_button">
-                                <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="text" translatable="yes">0</property>
-                                <property name="input_purpose">digits</property>
-                                <property name="orientation">vertical</property>
-                                <property name="adjustment">night_minutes_adjustment</property>
-                                <property name="snap_to_ticks">True</property>
-                                <property name="numeric">True</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">2</property>
-                              </packing>
-                            </child>
+                            <property name="label" translatable="yes">:</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
-                            <property name="fill">False</property>
+                            <property name="fill">True</property>
                             <property name="position">1</property>
                           </packing>
                         </child>
+                        <child>
+                          <object class="GtkSpinButton" id="_night_minutes_spin_button">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="text" translatable="yes">0</property>
+                            <property name="input_purpose">digits</property>
+                            <property name="orientation">vertical</property>
+                            <property name="adjustment">night_minutes_adjustment</property>
+                            <property name="snap_to_ticks">True</property>
+                            <property name="numeric">True</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">2</property>
+                          </packing>
+                        </child>
                       </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">1</property>
+                      </packing>
                     </child>
                   </object>
                 </child>
                 <child type="label">
-                  <object class="GtkLabel" id="night_time_box">
+                  <object class="GtkLabel" id="night_time_labe">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Night time</property>
