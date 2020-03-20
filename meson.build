@@ -23,12 +23,12 @@ install_data(
 )
 
 install_data(
-  'theme-switcher-manual.sh',
+  'theme-switcher-manual.py',
   install_dir: get_option('bindir')
 )
 
 install_data(
-  'theme-switcher-auto.sh',
+  'theme-switcher-auto.py',
   install_dir: get_option('bindir')
 )
 

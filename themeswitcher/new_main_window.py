@@ -202,14 +202,30 @@ class AppWindow(Gtk.ApplicationWindow):
         response = dialog.run()
         if response == Gtk.ResponseType.OK:
             wallpaper = dialog.get_filename()
+            image = Gtk.Image()
+            try:
+                pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(wallpaper, 114, 64, True)
+                image.set_from_pixbuf(pixbuf)
+            except Exception:
+                print('Error occured')
+                image.set_from_icon_name('dialog-error-symbolic', Gtk.IconSize.DIALOG)
+            image.show()
             name = button.get_name()
             if name == "night_button":
                 desktop.set_value("path-to-night-wallpaper", wallpaper)
+                #add thumbnail
+                
+                self.night_wallpaper_image_box.pack_start(image, True, True, 2)
+                
                 current_time = datetime.datetime.now()
                 if (current_time.hour >= desktop.get_value("nighttime")):
                     desktop.set_wallpapers(wallpaper)
             elif name == "day_button":
                 desktop.set_value("path-to-day-wallpaper", wallpaper)
+                #add thumbnail
+                
+                self.day_wallpaper_image_box.pack_start(image, True, True, 2)
+                
                 current_time = datetime.datetime.now()
                 if (current_time.hour <= desktop.get_value("daytime")):
                     desktop.set_wallpapers(wallpaper)
@@ -249,5 +265,4 @@ class AppWindow(Gtk.ApplicationWindow):
         night_hour_values = desktop.get_value("nighttime-hour")
         night_minutes_values = desktop.get_value("nighttime-minutes")
         return day_hour_values, day_minutes_values, night_hour_values, night_minutes_values
-        
-    
+
