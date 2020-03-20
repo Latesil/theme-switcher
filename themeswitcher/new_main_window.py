@@ -30,8 +30,8 @@ class AppWindow(Gtk.ApplicationWindow):
     _reset_themes = Gtk.Template.Child()
     _reset_wallpapers = Gtk.Template.Child()
     _about_button = Gtk.Template.Child()
-    day_time_main_frame = Gtk.Template.Child()
-    night_time_main_frame = Gtk.Template.Child()
+    day_time_main_frame = Gtk.Template.Child() #
+    night_time_main_frame = Gtk.Template.Child() #
     night_wallpaper_image_box = Gtk.Template.Child()
     day_wallpaper_image_box = Gtk.Template.Child()
     _light_tree_model = Gtk.Template.Child()
