@@ -114,6 +114,7 @@
       </object>
       <packing>
         <property name="submenu">main</property>
+        <property name="position">1</property>
       </packing>
     </child>
   </object>
@@ -264,7 +265,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkSwitch" id="auto_switch">
+              <object class="GtkSwitch" id="_left_switch">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
               </object>
@@ -284,13 +285,13 @@
           </object>
         </child>
         <child>
-          <object class="GtkMenuButton">
+          <object class="GtkMenuButton" id="_main_button">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="popover">Popover</property>
             <child>
-              <object class="GtkImage" id="main_button_image">
+              <object class="GtkImage" id="_main_button_image">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="icon_name">open-menu-symbolic</property>
@@ -352,7 +353,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkFileChooserButton" id="day_wallpaper_button">
+                      <object class="GtkFileChooserButton" id="_day_button">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="filter">day_wallpaper_filter</property>
@@ -414,7 +415,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkComboBoxText" id="day_theme_combobox">
+                      <object class="GtkComboBoxText" id="_light_combo_box">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                       </object>
@@ -655,7 +656,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkComboBoxText" id="night_theme_combobox">
+                      <object class="GtkComboBoxText" id="_dark_combo_box">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                       </object>
