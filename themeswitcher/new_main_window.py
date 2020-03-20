@@ -55,6 +55,23 @@ class AppWindow(Gtk.ApplicationWindow):
         self.night_time_main_frame.set_visible(desktop.get_value("auto-switch"))
         self.day_time_main_frame.set_visible(desktop.get_value("auto-switch"))
         
+        self.current_day_wallpaper = desktop.get_value("path-to-day-wallpaper")
+        self.current_night_wallpaper = desktop.get_value("path-to-night-wallpaper")
+        
+        if self.current_day_wallpaper != "":
+            image = Gtk.Image()
+            pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(self.current_day_wallpaper, 114, 64, True)
+            image.set_from_pixbuf(pixbuf)
+            self.day_wallpaper_image_box.pack_start(image, True, True, 2)
+            image.show()
+            
+        if self.current_night_wallpaper != "":
+            image = Gtk.Image()
+            pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(self.current_night_wallpaper, 114, 64, True)
+            image.set_from_pixbuf(pixbuf)
+            self.night_wallpaper_image_box.pack_start(image, True, True, 2)
+            image.show()
+        
         #populate theme list
         for i in themes:
             self._light_tree_model.append([i])
