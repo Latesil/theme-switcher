@@ -23,8 +23,7 @@ import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gio, GLib, GdkPixbuf
 
-from .popover import Popover
-from .main_window import AppWindow
+from .new_main_window import AppWindow
 
 #locales
 locale.textdomain('com.github.Latesil.theme-switcher')
@@ -52,11 +51,6 @@ class Application(Gtk.Application):
             self.window = AppWindow(self)
 
         self.window.present()
-
-    #test new branch
-    def on_about(self, action, param):
-        popover = Popover()
-        popover.on__about_button_clicked(None)
 
     def on_quit(self, action, param):
         self.quit()

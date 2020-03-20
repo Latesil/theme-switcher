@@ -82,82 +82,87 @@ msgstr "Управление временем"
 msgid "Shows Time manage section."
 msgstr "Показывает раздел «Управление временем»."
 
-#: themeswitcher/ui/bottom_box.ui:26
-msgid "Time Manage"
-msgstr "Управление временем"
-
-#: themeswitcher/ui/bottom_box.ui:44
-msgid "Day"
-msgstr "День"
-
-#: themeswitcher/ui/bottom_box.ui:55
-msgid "Night"
-msgstr "Ночь"
-
-#: themeswitcher/ui/header_bar.ui:8
-msgid "Theme Switcher"
-msgstr "Переключатель тем"
-
-#: themeswitcher/ui/header_bar.ui:19
-msgid "Auto"
-msgstr "Автопереключение"
-
-#: themeswitcher/ui/popover.ui:23
+#: themeswitcher/ui/new_window.ui:19
 msgid "Change Theme"
-msgstr "Переключить тему"
+msgstr "Сменить тему"
 
-#: themeswitcher/ui/popover.ui:48
+#: themeswitcher/ui/new_window.ui:44
 msgid "Reset All"
 msgstr "Сбросить всё"
 
-#: themeswitcher/ui/popover.ui:62
+#: themeswitcher/ui/new_window.ui:58
 msgid "Reset Time"
 msgstr "Сбросить время"
 
-#: themeswitcher/ui/popover.ui:76
+#: themeswitcher/ui/new_window.ui:72
 msgid "Reset Themes"
 msgstr "Сбросить темы"
 
-#: themeswitcher/ui/popover.ui:90
+#: themeswitcher/ui/new_window.ui:86
 msgid "Reset Wallpapers"
 msgstr "Сбросить обои"
 
-#: themeswitcher/ui/popover.ui:115
+#: themeswitcher/ui/new_window.ui:111
 msgid "About"
 msgstr "О приложении"
 
-#: themeswitcher/ui/middle_box.ui:26
-msgid "Light Theme"
-msgstr "Светлая тема"
+#: themeswitcher/ui/new_window.ui:181
+msgid "Auto"
+msgstr "Автопереключение"
 
-#: themeswitcher/ui/middle_box.ui:37
-msgid "Dark Theme"
-msgstr "Тёмная тема"
+#: themeswitcher/ui/new_window.ui:280
+msgid "Set day wallpapers"
+msgstr "Установить дневные обои"
 
-#: themeswitcher/ui/upper_grid.ui:14
-msgid "File for day"
-msgstr "Дневные обои"
+#: themeswitcher/ui/new_window.ui:297
+msgid "Wallpapers"
+msgstr "Обои"
 
-#: themeswitcher/ui/upper_grid.ui:25
-msgid "File for night"
-msgstr "Ночные обои"
+#: themeswitcher/ui/new_window.ui:331
+msgid "Day theme"
+msgstr "Дневная тема"
 
-#: themeswitcher/ui/upper_grid.ui:34
-msgid "Choose Day Wallpapers"
-msgstr "Выберите дневные обои"
+#: themeswitcher/ui/new_window.ui:357
+msgid "Theme"
+msgstr "Тема"
 
-#: themeswitcher/ui/upper_grid.ui:46
-msgid "Choose Night Wallpapers"
-msgstr "Выберите ночные обои"
+#: themeswitcher/ui/new_window.ui:391
+msgid "Daytime"
+msgstr "Дневное время"
 
-#: themeswitcher/upper_grid.py:53
-msgid "Choose Day Wallpaper"
-msgstr "Выберите дневные обои"
+#: themeswitcher/ui/new_window.ui:462
+msgid "Time"
+msgstr "Время"
 
-#: themeswitcher/upper_grid.py:60
-msgid "Choose Night Wallpaper"
-msgstr "Выберите ночные обои"
+#: themeswitcher/ui/new_window.ui:475
+msgid "Day"
+msgstr "День"
 
-#: themeswitcher/upper_grid.py:66
-msgid "Choose a file"
-msgstr "Выберите дневные обои"
+#: themeswitcher/ui/new_window.ui:520
+msgid "Set night wallpapers"
+msgstr "Установить ночные обои"
+
+#: themeswitcher/ui/new_window.ui:571
+msgid "Night theme"
+msgstr "Ночная тема"
+
+#: themeswitcher/ui/new_window.ui:631
+msgid "Night time"
+msgstr "Ночное время"
+
+#: themeswitcher/ui/new_window.ui:715
+msgid "Night"
+msgstr "Ночь"
+
+#: themeswitcher/new_main_window.py:39
+msgid "Theme Switcher"
+msgstr "Переключатель тем"
+
+#: themeswitcher/new_main_window.py:147
+msgid "A global automated switcher for dark/light GTK theme during day/night and more."
+msgstr "Автоматический переключатель тем GTK в течении дня и ночи."
+
+#: themeswitcher/new_main_window.py:149
+msgid "Website"
+msgstr "Сайт"
+

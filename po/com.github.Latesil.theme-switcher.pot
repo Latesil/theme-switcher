@@ -81,82 +81,87 @@ msgstr ""
 msgid "Shows Time manage section."
 msgstr ""
 
-#: themeswitcher/ui/bottom_box.ui:26
-msgid "Time Manage"
-msgstr ""
-
-#: themeswitcher/ui/bottom_box.ui:44
-msgid "Day"
-msgstr ""
-
-#: themeswitcher/ui/bottom_box.ui:55
-msgid "Night"
-msgstr ""
-
-#: themeswitcher/ui/header_bar.ui:8
-msgid "Theme Switcher"
-msgstr ""
-
-#: themeswitcher/ui/header_bar.ui:19
-msgid "Auto"
-msgstr ""
-
-#: themeswitcher/ui/popover.ui:23
+#: themeswitcher/ui/new_window.ui:19
 msgid "Change Theme"
 msgstr ""
 
-#: themeswitcher/ui/popover.ui:48
+#: themeswitcher/ui/new_window.ui:44
 msgid "Reset All"
 msgstr ""
 
-#: themeswitcher/ui/popover.ui:62
+#: themeswitcher/ui/new_window.ui:58
 msgid "Reset Time"
 msgstr ""
 
-#: themeswitcher/ui/popover.ui:76
+#: themeswitcher/ui/new_window.ui:72
 msgid "Reset Themes"
 msgstr ""
 
-#: themeswitcher/ui/popover.ui:90
+#: themeswitcher/ui/new_window.ui:86
 msgid "Reset Wallpapers"
 msgstr ""
 
-#: themeswitcher/ui/popover.ui:115
+#: themeswitcher/ui/new_window.ui:111
 msgid "About"
 msgstr ""
 
-#: themeswitcher/ui/middle_box.ui:26
-msgid "Light Theme"
+#: themeswitcher/ui/new_window.ui:181
+msgid "Auto"
 msgstr ""
 
-#: themeswitcher/ui/middle_box.ui:37
-msgid "Dark Theme"
+#: themeswitcher/ui/new_window.ui:280
+msgid "Set day wallpapers"
 msgstr ""
 
-#: themeswitcher/ui/upper_grid.ui:14
-msgid "File for day"
+#: themeswitcher/ui/new_window.ui:297
+msgid "Wallpapers"
 msgstr ""
 
-#: themeswitcher/ui/upper_grid.ui:25
-msgid "File for night"
+#: themeswitcher/ui/new_window.ui:331
+msgid "Day theme"
 msgstr ""
 
-#: themeswitcher/ui/upper_grid.ui:34
-msgid "Choose Day Wallpapers"
+#: themeswitcher/ui/new_window.ui:357
+msgid "Theme"
 msgstr ""
 
-#: themeswitcher/ui/upper_grid.ui:46
-msgid "Choose Night Wallpapers"
+#: themeswitcher/ui/new_window.ui:391
+msgid "Daytime"
 msgstr ""
 
-#: themeswitcher/upper_grid.py:53
-msgid "Choose Day Wallpaper"
+#: themeswitcher/ui/new_window.ui:462
+msgid "Time"
 msgstr ""
 
-#: themeswitcher/upper_grid.py:60
-msgid "Choose Night Wallpaper"
+#: themeswitcher/ui/new_window.ui:475
+msgid "Day"
 msgstr ""
 
-#: themeswitcher/upper_grid.py:66
-msgid "Choose a file"
+#: themeswitcher/ui/new_window.ui:520
+msgid "Set night wallpapers"
 msgstr ""
+
+#: themeswitcher/ui/new_window.ui:571
+msgid "Night theme"
+msgstr ""
+
+#: themeswitcher/ui/new_window.ui:631
+msgid "Night time"
+msgstr ""
+
+#: themeswitcher/ui/new_window.ui:715
+msgid "Night"
+msgstr ""
+
+#: themeswitcher/new_main_window.py:39
+msgid "Theme Switcher"
+msgstr ""
+
+#: themeswitcher/new_main_window.py:147
+msgid "A global automated switcher for dark/light GTK theme during day/night and more."
+msgstr ""
+
+#: themeswitcher/new_main_window.py:149
+msgid "Website"
+msgstr ""
+

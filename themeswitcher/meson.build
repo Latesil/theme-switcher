@@ -27,14 +27,9 @@ configure_file(
 
 theme_switcher_sources = [
 	'__init__.py',
-	'bottom_box.py',
-	'main_window.py',
-	'header_bar.py',
+	'new_main_window.py',
     'helper_functions.py',
-    'middle_box.py',
-    'popover.py',
     'theme_switcher_constants.py',
-    'upper_grid.py',
 	'main.py',
 	'desktop.py',
 	'gnome.py',

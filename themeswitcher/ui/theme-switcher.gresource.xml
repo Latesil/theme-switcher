@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
   <gresource prefix="/com/github/Latesil/theme-switcher">
-    <file>ui/bottom_box.ui</file>
-    <file>ui/middle_box.ui</file>
-    <file>ui/header_bar.ui</file>
-    <file>ui/main_window.ui</file>
-    <file>ui/popover.ui</file>
-    <file>ui/upper_grid.ui</file>
+    <file>ui/new_window.ui</file>
   </gresource>
 </gresources>
