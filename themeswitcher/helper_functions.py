@@ -51,3 +51,4 @@ def convert_to_values(i, j):
     first_value = i * 60
     return first_value + j
     
+    

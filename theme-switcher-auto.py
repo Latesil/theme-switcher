@@ -17,41 +17,39 @@ import datetime
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gio
+from themeswitcher.helper_functions import init_de, convert_to_values
 
-#find better solution
-def convert_to_values(i, j):
-    first_value = i * 60
-    return first_value + j
+desktop = init_de()
     
-settings = Gio.Settings.new("com.github.Latesil.theme-switcher")
-desktop_settings = Gio.Settings.new("org.gnome.desktop.interface")
-background_settings = Gio.Settings.new("org.gnome.desktop.background")
-terminal_settings = Gio.Settings.new("org.gnome.Terminal.ProfilesList")
+def get_values():
+    day_hour_values = desktop.get_value("daytime-hour")
+    day_minutes_values = desktop.get_value("daytime-minutes")
+    night_hour_values = desktop.get_value("nighttime-hour")
+    night_minutes_values = desktop.get_value("nighttime-minutes")
+    return day_hour_values, day_minutes_values, night_hour_values, night_minutes_values
+    
+desktop = init_de()
+theme = desktop.get_current_theme()
+light_theme, dark_theme = desktop.get_current_themes()
 
 current_time = datetime.datetime.now()
+
+values = get_values()
 
 #find better solution
 current_values = convert_to_values(current_time.hour, int(str(current_time.minute)[:-1]+'0'))
 
-terminal_dark = '88173e30-df6e-4442-b012-4e1119c7385f'
-terminal_light = 'b4bd0ffd-117e-4778-82ef-da4ccdf4cb2c'
+day_values = convert_to_values(values[0], values[1])
+night_values = convert_to_values(values[2], values[3])
 
-night_values = settings.get_int("nighttime-values")
-day_values = settings.get_int("daytime-values")
-
-night_wallpapers = settings.get_string("path-to-night-wallpaper")
-day_wallpapers = settings.get_string("path-to-day-wallpaper")
-
-light_theme = settings.get_string("light-theme")
-dark_theme = settings.get_string("dark-theme")
+night_wallpapers = desktop.get_value("path-to-night-wallpaper")
+day_wallpapers = desktop.get_value("path-to-day-wallpaper")
 
 if ((current_values <= day_values or current_values >= night_values)):
-    desktop_settings.set_string("gtk-theme", dark_theme)
+    desktop.set_current_theme(dark_theme)
     if night_wallpapers is not None:
-        background_settings.set_string("picture-uri", night_wallpapers)
-    terminal_settings.set_string("default", terminal_dark)
+        desktop.set_wallpapers(night_wallpapers)
 else:
-    desktop_settings.set_string("gtk-theme", light_theme)
+    desktop.set_current_theme(light_theme)
     if day_wallpapers is not None:
-        background_settings.set_string("picture-uri", day_wallpapers)
-    terminal_settings.set_string("default", terminal_light)
+        desktop.set_wallpapers(day_wallpapers)

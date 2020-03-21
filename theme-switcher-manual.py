@@ -17,21 +17,13 @@ import datetime
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gio
+from themeswitcher.helper_functions import init_de
 
-settings = Gio.Settings.new("com.github.Latesil.theme-switcher")
-terminal_settings = Gio.Settings.new("org.gnome.Terminal.ProfilesList")
-desktop_settings = Gio.Settings.new("org.gnome.desktop.interface")
-theme = desktop_settings.get_string("gtk-theme")
-
-terminal_dark = '88173e30-df6e-4442-b012-4e1119c7385f'
-terminal_light = 'b4bd0ffd-117e-4778-82ef-da4ccdf4cb2c'
-
-light_theme = settings.get_string("light-theme")
-dark_theme = settings.get_string("dark-theme")
+desktop = init_de()
+theme = desktop.get_current_theme()
+light_theme, dark_theme = desktop.get_current_themes()
 
 if theme == light_theme:
-    desktop_settings.set_string("gtk-theme", dark_theme)
-    terminal_settings.set_string("default", terminal_dark)
+    desktop.set_current_theme(dark_theme)
 else:
-    desktop_settings.set_string("gtk-theme", light_theme)
-    terminal_settings.set_string("default", terminal_light)
+    desktop.set_current_theme(light_theme)

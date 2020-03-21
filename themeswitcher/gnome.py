@@ -3,9 +3,11 @@ from gi.repository import Gio, GLib
 
 from .theme_switcher_constants import theme_switcher_constants as constants
 from .desktop import Desktop
-import subprocess
 
 class Gnome(Desktop):
+
+    def __init__(self):
+        self.init_settings()
         
     def init_settings(self):
         self.settings = Gio.Settings.new(constants["BASE_KEY"])
