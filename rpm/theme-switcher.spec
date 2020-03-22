@@ -19,6 +19,7 @@ BuildRequires:  libappstream-glib
 %endif
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(python3)
+BuildRequires:  pkgconfig(systemd)
 
 Requires:       gtk3
 Requires:       hicolor-icon-theme
@@ -66,6 +67,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_bindir}/%{name}-auto.py
 %{_bindir}/%{name}-manual.py
 %{_bindir}/%{name}-gui
+%{python3_sitelib}/Themeswitcher/
 %{_datadir}/applications/*.desktop
 %{_datadir}/glib-2.0/schemas/*.gschema.xml
 %{_datadir}/icons/hicolor/*/*/*.png
