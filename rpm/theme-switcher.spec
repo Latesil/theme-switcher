@@ -6,7 +6,7 @@
 
 Name:           theme-switcher
 Version:        1.9.0
-Release:        1.%{?dist}
+Release:        1%{?dist}
 Summary:        Switch dark/light GTK theme automatically during day/night
 
 License:        GPLv3+
