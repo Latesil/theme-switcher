@@ -1,9 +1,10 @@
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gio, GdkPixbuf
-from .theme_switcher_constants import theme_switcher_constants as constants
-from .helper_functions import init_de, convert_to_values 
+from Themeswitcher.helper_functions import init_de, convert_to_values
+from Themeswitcher.theme_switcher_constants import theme_switcher_constants as constants
 from locale import gettext as _
+import os
 import datetime
 import subprocess
 

@@ -17,11 +17,10 @@ import locale
 import sys
 import os
 from locale import gettext as _
-from .theme_switcher_constants import theme_switcher_constants as constants
 
 import gi
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, Gio, GLib, GdkPixbuf
+from gi.repository import Gtk, Gio, GLib
 
 from .new_main_window import AppWindow
 
@@ -41,7 +40,7 @@ class Application(Gtk.Application):
         self.window = None
 
         GLib.set_application_name(_('Theme Switcher'))
-        GLib.set_prgname(constants["APP_NAME"])
+        GLib.set_prgname('Theme Switcher')
 
     def do_startup(self):
         Gtk.Application.do_startup(self)
