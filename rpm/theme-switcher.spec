@@ -6,12 +6,12 @@
 
 Name:           theme-switcher
 Version:        1.9.0
-Release:        1.%{date}git%{shortcommit}%{?dist}
+Release:        1.%{?dist}
 Summary:        Switch dark/light GTK theme automatically during day/night
 
 License:        GPLv3+
 URL:            https://github.com/Latesil/theme-switcher
-Source0:        %{url}/archive/%{commit}/%{name}-%{version}.%{date}git%{shortcommit}.tar.gz
+Source0:        %{url}/archive/%{version}/%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  desktop-file-utils
