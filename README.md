@@ -40,13 +40,5 @@ theme-switcher-gui.py
 #### Manually:
 
 ```sh
-theme-switcher-manual.sh
-```
-
-### Configure
-
-You need to setup your light/dark profiles in gnome-terminal in order to switch terminal themes automatically. Configure them by edit:
-
-```sh
-sudoedit /usr/bin/theme-switcher-auto.sh
+theme-switcher-manual.py
 ```
