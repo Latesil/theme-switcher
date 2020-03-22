@@ -25,6 +25,16 @@ configure_file(
   install_dir: get_option('bindir')
 )
 
+install_data(
+  'theme-switcher-manual.py',
+  install_dir: get_option('bindir')
+)
+
+install_data(
+  'theme-switcher-auto.py',
+  install_dir: get_option('bindir')
+)
+
 theme_switcher_sources = [
 	'__init__.py',
 	'new_main_window.py',

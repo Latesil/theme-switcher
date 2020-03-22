@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Change Theme
 Comment=Switch dark/light GTK theme automatically during day/night
-Exec=/usr/bin/theme-switcher-manual.sh
+Exec=/usr/bin/theme-switcher-manual.py
 Icon=com.github.Latesil.theme-switcher
 Terminal=false
 Type=Application

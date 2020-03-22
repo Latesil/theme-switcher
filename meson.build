@@ -22,14 +22,4 @@ install_data(
   install_dir: join_paths(get_option('prefix'), 'lib/systemd/user')
 )
 
-install_data(
-  'theme-switcher-manual.py',
-  install_dir: get_option('bindir')
-)
-
-install_data(
-  'theme-switcher-auto.py',
-  install_dir: get_option('bindir')
-)
-
 meson.add_install_script('build-aux/meson/postinstall.py')
