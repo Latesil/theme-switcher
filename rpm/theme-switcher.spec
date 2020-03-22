@@ -1,8 +1,4 @@
-%global commit      f45bd1a68029bc36c93ab8ec3fbfaf1185b2429f
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global date        20191109
-
-%global uuid        com.github.Latesil.%{name}
+%global uuid    com.github.Latesil.%{name}
 
 Name:           theme-switcher
 Version:        1.9.0
@@ -11,19 +7,19 @@ Summary:        Switch dark/light GTK theme automatically during day/night
 
 License:        GPLv3+
 URL:            https://github.com/Latesil/theme-switcher
-Source0:        %{url}/archive/%{version}/%{version}.tar.gz
+Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
 BuildArch:      noarch
 
+BuildRequires:  meson
 BuildRequires:  desktop-file-utils
 BuildRequires:  intltool
+
 %if 0%{?fedora}
 BuildRequires:  libappstream-glib
 %endif
-BuildRequires:  meson
-BuildRequires:  glib2-devel
-BuildRequires:  python3-devel
-BuildRequires:  systemd
 BuildRequires:  pkgconfig(glib-2.0)
+BuildRequires:  pkgconfig(python3)
+
 Requires:       gtk3
 Requires:       hicolor-icon-theme
 Requires:       python3-gobject
@@ -44,7 +40,7 @@ To read docs run:
 
 
 %prep
-%autosetup -n %{name}-%{commit}
+%autosetup
 
 
 %build
