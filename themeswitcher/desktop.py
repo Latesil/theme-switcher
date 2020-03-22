@@ -45,3 +45,7 @@ class Desktop(ABC):
     @abstractmethod
     def get_all_values(self):
         pass
+        
+    @abstractmethod
+    def _get_valid_themes(self):
+        pass

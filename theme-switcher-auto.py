@@ -53,3 +53,4 @@ else:
     desktop.set_current_theme(light_theme)
     if day_wallpapers is not None:
         desktop.set_wallpapers(day_wallpapers)
+    

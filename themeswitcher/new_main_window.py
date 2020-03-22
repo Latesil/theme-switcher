@@ -2,13 +2,13 @@ import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gio, GdkPixbuf
 from .theme_switcher_constants import theme_switcher_constants as constants
-from .helper_functions import init_de, _get_valid_themes, convert_to_values
+from .helper_functions import init_de, convert_to_values 
 from locale import gettext as _
 import datetime
 import subprocess
 
 desktop = init_de()
-themes = sorted(_get_valid_themes())
+themes = sorted(desktop._get_valid_themes())
 
 @Gtk.Template(resource_path = constants["UI_PATH"] + 'ui/new_window.ui')
 class AppWindow(Gtk.ApplicationWindow):
