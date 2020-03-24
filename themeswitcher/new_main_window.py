@@ -8,8 +8,8 @@ import os
 import datetime
 import subprocess
 
-desktop = init_de()
-themes = sorted(desktop._get_valid_themes())
+current_desktop = init_de()
+themes = sorted(current_desktop._get_valid_themes())
 
 @Gtk.Template(resource_path = constants["UI_PATH"] + 'ui/new_window.ui')
 class AppWindow(Gtk.ApplicationWindow):
@@ -43,8 +43,8 @@ class AppWindow(Gtk.ApplicationWindow):
 
         self.set_wmclass("Theme Switcher", _("Theme Switcher"))
         
-        self.current_theme = desktop.get_current_theme()
-        self.cur_light_theme, self.cur_dark_theme = desktop.get_current_themes()
+        self.current_theme = current_desktop.get_current_theme()
+        self.cur_light_theme, self.cur_dark_theme = current_desktop.get_current_themes()
         self._light_combo_box.set_name("light_box")
         self._dark_combo_box.set_name("dark_box")
         
@@ -53,11 +53,11 @@ class AppWindow(Gtk.ApplicationWindow):
         self._day_button.connect("clicked", self.wallpaper_button_clicked)
         self._night_button.connect("clicked", self.wallpaper_button_clicked)
         
-        self.night_time_main_frame.set_visible(desktop.get_value("auto-switch"))
-        self.day_time_main_frame.set_visible(desktop.get_value("auto-switch"))
+        self.night_time_main_frame.set_visible(current_desktop.get_value("auto-switch"))
+        self.day_time_main_frame.set_visible(current_desktop.get_value("auto-switch"))
         
-        self.current_day_wallpaper = desktop.get_value("path-to-day-wallpaper")
-        self.current_night_wallpaper = desktop.get_value("path-to-night-wallpaper")
+        self.current_day_wallpaper = current_desktop.get_value("path-to-day-wallpaper")
+        self.current_night_wallpaper = current_desktop.get_value("path-to-night-wallpaper")
         
         if self.current_day_wallpaper != "":
             image = Gtk.Image()
@@ -99,35 +99,35 @@ class AppWindow(Gtk.ApplicationWindow):
 
     @Gtk.Template.Callback()
     def on__left_switch_state_set(self, widget, state):
-        desktop.set_value("auto-switch", state)
+        current_desktop.set_value("auto-switch", state)
         
         if state:
             self.night_time_main_frame.set_visible(True)
             self.day_time_main_frame.set_visible(True)
-            desktop.start_systemd_timers()
+            current_desktop.start_systemd_timers()
         else:
             self.night_time_main_frame.set_visible(False)
             self.day_time_main_frame.set_visible(False)
-            desktop.stop_systemd_timers()
+            current_desktop.stop_systemd_timers()
         
     @Gtk.Template.Callback()
     def on__day_hour_adjustment_value_changed(self, scale):
-        desktop.set_value("daytime-hour", scale.get_value())
+        current_desktop.set_value("daytime-hour", scale.get_value())
         self.on_combo_box_changed()
         
     @Gtk.Template.Callback()
     def on__day_minutes_adjustment_value_changed(self, scale):
-        desktop.set_value("daytime-minutes", scale.get_value())
+        current_desktop.set_value("daytime-minutes", scale.get_value())
         self.on_combo_box_changed()
         
     @Gtk.Template.Callback()
     def on__night_minutes_adjustment_value_changed(self, scale):
-        desktop.set_value("nighttime-minutes", scale.get_value())
+        current_desktop.set_value("nighttime-minutes", scale.get_value())
         self.on_combo_box_changed()
     
     @Gtk.Template.Callback()
     def on__night_hour_adjustment_value_changed(self, scale):
-        desktop.set_value("nighttime-hour", scale.get_value())
+        current_desktop.set_value("nighttime-hour", scale.get_value())
         self.on_combo_box_changed()
         
     #callback for change theme now
@@ -142,25 +142,25 @@ class AppWindow(Gtk.ApplicationWindow):
 
     @Gtk.Template.Callback()
     def on__reset_time_button_clicked(self, button):
-        desktop.reset_value("nighttime")
-        desktop.reset_value("daytime")
+        current_desktop.reset_value("nighttime")
+        current_desktop.reset_value("daytime")
 
     @Gtk.Template.Callback()
     def on__reset_themes_clicked(self, button):
-        desktop.reset_value("light-theme")
-        desktop.reset_value("dark-theme")
+        current_desktop.reset_value("light-theme")
+        current_desktop.reset_value("dark-theme")
 
     @Gtk.Template.Callback()
     def on__reset_wallpapers_clicked(self, button):
-        desktop.reset_value("path-to-night-wallpaper")
-        desktop.reset_value("path-to-day-wallpaper")
+        current_desktop.reset_value("path-to-night-wallpaper")
+        current_desktop.reset_value("path-to-day-wallpaper")
 
     @Gtk.Template.Callback()
     def on__reset_all_button_clicked(self, button):
         self.on__reset_time_button_clicked(button)
         self.on__reset_wallpapers_clicked(button)
         self.on__reset_themes_clicked(button)
-        desktop.reset_value("auto-switch")
+        current_desktop.reset_value("auto-switch")
 
     @Gtk.Template.Callback()
     def on__about_button_clicked(self, button):
@@ -200,16 +200,16 @@ class AppWindow(Gtk.ApplicationWindow):
             theme = model[tree_iter][0]
 
             if name == 'light_box':
-                desktop.set_value('light-theme', theme)
+                current_desktop.set_value('light-theme', theme)
                 current_time = datetime.datetime.now()
-                if (current_time.hour <= desktop.get_value("daytime")):
-                    desktop.set_current_theme(theme)
+                if (current_time.hour <= current_desktop.get_value("daytime")):
+                    current_desktop.set_current_theme(theme)
 
             if name == 'dark_box':
-                desktop.set_value('dark-theme', theme)
+                current_desktop.set_value('dark-theme', theme)
                 current_time = datetime.datetime.now()
-                if (current_time.hour >= desktop.get_value("nighttime")):
-                    desktop.set_current_theme(theme)
+                if (current_time.hour >= current_desktop.get_value("nighttime")):
+                    current_desktop.set_current_theme(theme)
     
     def wallpaper_button_clicked(self, button):
         dialog = Gtk.FileChooserDialog(_("Choose a file"), None, Gtk.FileChooserAction.OPEN, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
@@ -230,23 +230,23 @@ class AppWindow(Gtk.ApplicationWindow):
             image.show()
             name = button.get_name()
             if name == "night_button":
-                desktop.set_value("path-to-night-wallpaper", wallpaper)
+                current_desktop.set_value("path-to-night-wallpaper", wallpaper)
                 #add thumbnail
                 
                 self.night_wallpaper_image_box.pack_start(image, True, True, 2)
                 
                 current_time = datetime.datetime.now()
-                if (current_time.hour >= desktop.get_value("nighttime")):
-                    desktop.set_wallpapers(wallpaper)
+                if (current_time.hour >= current_desktop.get_value("nighttime")):
+                    current_desktop.set_wallpapers(wallpaper)
             elif name == "day_button":
-                desktop.set_value("path-to-day-wallpaper", wallpaper)
+                current_desktop.set_value("path-to-day-wallpaper", wallpaper)
                 #add thumbnail
                 
                 self.day_wallpaper_image_box.pack_start(image, True, True, 2)
                 
                 current_time = datetime.datetime.now()
-                if (current_time.hour <= desktop.get_value("daytime")):
-                    desktop.set_wallpapers(wallpaper)
+                if (current_time.hour <= current_desktop.get_value("daytime")):
+                    current_desktop.set_wallpapers(wallpaper)
         dialog.destroy()
         
     def add_filters(self, dialog):
@@ -257,10 +257,10 @@ class AppWindow(Gtk.ApplicationWindow):
         dialog.add_filter(filter_text)
         
     def set_values_from_settings(self):
-        self._day_minutes_spin_button.set_value(desktop.get_value("daytime-minutes"))
-        self._night_hour_spin_button.set_value(desktop.get_value("nighttime-hour"))
-        self._night_minutes_spin_button.set_value(desktop.get_value("nighttime-minutes"))
-        self._day_hour_spin_button.set_value(desktop.get_value("daytime-hour"))
+        self._day_minutes_spin_button.set_value(current_desktop.get_value("daytime-minutes"))
+        self._night_hour_spin_button.set_value(current_desktop.get_value("nighttime-hour"))
+        self._night_minutes_spin_button.set_value(current_desktop.get_value("nighttime-minutes"))
+        self._day_hour_spin_button.set_value(current_desktop.get_value("daytime-hour"))
         
     def on_combo_box_changed(self):
         current_time = datetime.datetime.now()
@@ -273,14 +273,14 @@ class AppWindow(Gtk.ApplicationWindow):
         night_values = convert_to_values(values[2], values[3])
         
         if ((current_values <= day_values or current_values >= night_values)):
-            desktop.set_current_theme(self.cur_dark_theme)
+            current_desktop.set_current_theme(self.cur_dark_theme)
         else:
-            desktop.set_current_theme(self.cur_light_theme)
+            current_desktop.set_current_theme(self.cur_light_theme)
     
     def get_values(self):
-        day_hour_values = desktop.get_value("daytime-hour")
-        day_minutes_values = desktop.get_value("daytime-minutes")
-        night_hour_values = desktop.get_value("nighttime-hour")
-        night_minutes_values = desktop.get_value("nighttime-minutes")
+        day_hour_values = current_desktop.get_value("daytime-hour")
+        day_minutes_values = current_desktop.get_value("daytime-minutes")
+        night_hour_values = current_desktop.get_value("nighttime-hour")
+        night_minutes_values = current_desktop.get_value("nighttime-minutes")
         return day_hour_values, day_minutes_values, night_hour_values, night_minutes_values
 

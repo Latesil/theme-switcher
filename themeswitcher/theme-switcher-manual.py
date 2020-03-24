@@ -17,9 +17,9 @@ import datetime
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gio
-from themeswitcher.helper_functions import init_de
+from Themeswitcher.helper_functions import init_de
 
-desktop = helper_functions.init_de()
+desktop = init_de()
 theme = desktop.get_current_theme()
 light_theme, dark_theme = desktop.get_current_themes()
 
