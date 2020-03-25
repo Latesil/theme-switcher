@@ -19,11 +19,11 @@ gi.require_version('Gtk', '3.0')
 from gi.repository import Gio
 from Themeswitcher.helper_functions import init_de
 
-desktop = init_de()
-theme = desktop.get_current_theme()
-light_theme, dark_theme = desktop.get_current_themes()
+current_desktop = init_de()
+theme = current_desktop.get_current_theme()
+light_theme, dark_theme = current_desktop.get_current_themes()
 
 if theme == light_theme:
-    desktop.set_current_theme(dark_theme)
+    current_desktop.set_current_theme(dark_theme)
 else:
-    desktop.set_current_theme(light_theme)
+    current_desktop.set_current_theme(light_theme)
