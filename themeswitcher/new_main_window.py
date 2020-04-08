@@ -182,7 +182,7 @@ class AppWindow(Gtk.ApplicationWindow):
     def on__about_button_clicked(self, button):
         about = Gtk.AboutDialog()
         about.set_program_name(_("Theme Switcher"))
-        about.set_version("1.9.0")
+        about.set_version("1.9.1")
         about.set_authors(["Letalis", "Artem Polishchuk", "@DarthL1ne (Telegram)", "@dead_mozay"])
         about.set_artists(["Raxi Petrov"])
         about.set_logo_icon_name(constants["APP_ID"])
