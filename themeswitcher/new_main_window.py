@@ -289,6 +289,7 @@ class AppWindow(Gtk.ApplicationWindow):
         self._night_hour_spin_button.set_value(current_desktop.get_value("nighttime-hour"))
         self._night_minutes_spin_button.set_value(current_desktop.get_value("nighttime-minutes"))
         self._day_hour_spin_button.set_value(current_desktop.get_value("daytime-hour"))
+        self._left_switch.set_state(current_desktop.get_value("auto-switch"))
         
     def set_value_from_settings(self, widget, key):
         widget.set_value(current_desktop.get_value(key))
