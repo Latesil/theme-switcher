@@ -28,9 +28,9 @@ day_wallpapers = current_desktop.get_value("path-to-day-wallpaper")
 
 if theme == light_theme:
     current_desktop.set_current_theme(dark_theme)
-	if night_wallpapers is not None:
+    if night_wallpapers is not None:
 		current_desktop.set_wallpapers(night_wallpapers)
 else:
     current_desktop.set_current_theme(light_theme)
-	if day_wallpapers is not None:
+    if day_wallpapers is not None:
 	    current_desktop.set_wallpapers(day_wallpapers)
