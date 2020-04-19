@@ -70,8 +70,7 @@ class Gnome(Desktop):
         return terminal_settings.get_value('list').unpack()
         
     def set_terminal_profile(self, profile):
-        terminal_settings = Gio.Settings.new('org.gnome.Terminal.ProfilesList')
-        terminal_settings.set_string("default", profile)
+        GLib.spawn_async(['/usr/bin/gsettings','set','org.gnome.Terminal.ProfilesList','default', profile])
         
     #taken from GNOME Tweaks
     #by John Stowers.

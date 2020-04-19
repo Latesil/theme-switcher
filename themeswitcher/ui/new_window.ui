@@ -106,6 +106,7 @@
         <child>
           <object class="GtkCheckButton" id="terminal_checkbox">
             <property name="label" translatable="yes">Terminal Profiles</property>
+            <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">False</property>
             <property name="draw_indicator">True</property>

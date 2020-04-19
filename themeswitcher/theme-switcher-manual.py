@@ -42,3 +42,4 @@ else:
         current_desktop.set_wallpapers(day_wallpapers)
     if is_terminal is not None:
         current_desktop.set_terminal_profile(day_terminal_profile)
+        
