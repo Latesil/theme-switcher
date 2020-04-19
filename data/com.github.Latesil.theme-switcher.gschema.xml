@@ -26,6 +26,11 @@
       <summary>Enabling terminal profiles switch</summary>
       <description>Determine whether terminal profiles will be auto switch or not</description>
     </key>
+    <key type="s" name="active-profile-terminal">
+      <default>""</default>
+      <summary>Active terminal profile</summary>
+      <description>Active terminal profile</description>
+    </key>
     <key type="s" name="path-to-day-wallpaper">
       <default>""</default>
       <summary>Path to day wallpaper</summary>

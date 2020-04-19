@@ -64,7 +64,6 @@ class AppWindow(Gtk.ApplicationWindow):
         self.current_day_wallpaper = current_desktop.get_value("path-to-day-wallpaper")
         self.current_night_wallpaper = current_desktop.get_value("path-to-night-wallpaper")
         
-        self.terminal_profiles = current_desktop.get_terminal_profiles()
         
         if self.current_day_wallpaper != "":
             image = Gtk.Image()
@@ -116,15 +115,20 @@ class AppWindow(Gtk.ApplicationWindow):
             self.night_time_main_frame.set_visible(False)
             self.day_time_main_frame.set_visible(False)
             current_desktop.stop_systemd_timers()
+            self.resize_window()
             
     @Gtk.Template.Callback()
     def on_terminal_checkbox_toggled(self, checkbox):
         if checkbox.get_active():
             self.day_terminal_main_frame.set_visible(True)
             self.night_terminal_main_frame.set_visible(True)
+            current_desktop.set_value("terminal", True)
+            self.populate_terminal_profiles()
         else:
             self.day_terminal_main_frame.set_visible(False)
             self.night_terminal_main_frame.set_visible(False)
+            current_desktop.set_value("terminal", False)
+            self.resize_window()
         
     @Gtk.Template.Callback()
     def on__day_hour_adjustment_value_changed(self, scale):
@@ -193,6 +197,9 @@ class AppWindow(Gtk.ApplicationWindow):
         self.on__reset_wallpapers_clicked(button)
         self.on__reset_themes_clicked(button)
         current_desktop.reset_value("auto-switch")
+        self.day_terminal_combo.set_active_id(None)
+        current_desktop.reset_value("terminal")
+        self.terminal_checkbox.set_active(False)
 
     @Gtk.Template.Callback()
     def on__about_button_clicked(self, button):
@@ -333,4 +340,17 @@ class AppWindow(Gtk.ApplicationWindow):
         night_hour_values = current_desktop.get_value("nighttime-hour")
         night_minutes_values = current_desktop.get_value("nighttime-minutes")
         return day_hour_values, day_minutes_values, night_hour_values, night_minutes_values
+        
+    def resize_window(self):
+        self.resize(600, 100)
+        
+    def populate_terminal_profiles(self):
+        terminal_profiles = current_desktop.get_terminal_profiles()
+        profile_id = 0
+        for profile in terminal_profiles:
+            self.day_terminal_combo.append(str(profile_id), profile)
+            self.night_terminal_combo.append(str(profile_id), profile)
+            profile_id += 1
+            
+
 

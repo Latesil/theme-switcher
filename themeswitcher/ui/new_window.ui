@@ -525,6 +525,8 @@
                           <object class="GtkComboBoxText" id="day_terminal_combo">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
+                            <property name="active">0</property>
+                            <property name="active_id">0</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -834,6 +836,8 @@
                           <object class="GtkComboBoxText" id="night_terminal_combo">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
+                            <property name="active">0</property>
+                            <property name="active_id">0</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
