@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the theme-switcher package.
+# This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: theme-switcher\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-11 17:44+0200\n"
+"POT-Creation-Date: 2020-04-19 14:15+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,63 +22,83 @@ msgid "Daytime for theme switch"
 msgstr ""
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:7
+#: data/com.github.Latesil.theme-switcher.gschema.xml:12
+#: data/com.github.Latesil.theme-switcher.gschema.xml:17
 msgid "When theme should be switched."
 msgstr ""
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:11
-msgid "Enabling auto-switch"
-msgstr ""
-
-#: data/com.github.Latesil.theme-switcher.gschema.xml:12
-msgid "Determine whether it will be auto switch theme or not"
+msgid "Daytime minutes for theme switch"
 msgstr ""
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:16
-msgid "Path to day wallpaper"
-msgstr ""
-
-#: data/com.github.Latesil.theme-switcher.gschema.xml:17
-msgid "Path to the wallpapers that should be in a daytime."
+msgid "Daytime hours for theme switch"
 msgstr ""
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:21
-msgid "Path to night wallpaper"
+msgid "Enabling auto-switch"
 msgstr ""
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:22
-msgid "Path to the wallpapers that should be in a nighttime."
+msgid "Determine whether it will be auto switch theme or not"
 msgstr ""
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:26
-msgid "Nighttime for theme switch"
+msgid "Enabling terminal profiles switch"
 msgstr ""
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:27
-msgid "When theme should be switched on night."
+msgid "Determine whether terminal profiles will be auto switch or not"
 msgstr ""
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:31
-msgid "Light theme"
+msgid "Path to day wallpaper"
 msgstr ""
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:32
-msgid "Current light theme."
+msgid "Path to the wallpapers that should be in a daytime."
 msgstr ""
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:36
-msgid "Dark theme"
+msgid "Path to night wallpaper"
 msgstr ""
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:37
-msgid "Current dark theme."
+msgid "Path to the wallpapers that should be in a nighttime."
 msgstr ""
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:41
-msgid "Time manage"
+msgid "Nighttime for theme switch"
 msgstr ""
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:42
-msgid "Shows Time manage section."
+#: data/com.github.Latesil.theme-switcher.gschema.xml:47
+#: data/com.github.Latesil.theme-switcher.gschema.xml:52
+msgid "When theme should be switched on night."
+msgstr ""
+
+#: data/com.github.Latesil.theme-switcher.gschema.xml:46
+msgid "Nighttime hours for theme switch"
+msgstr ""
+
+#: data/com.github.Latesil.theme-switcher.gschema.xml:51
+msgid "Nighttime minutes for theme switch"
+msgstr ""
+
+#: data/com.github.Latesil.theme-switcher.gschema.xml:56
+msgid "Light theme"
+msgstr ""
+
+#: data/com.github.Latesil.theme-switcher.gschema.xml:57
+msgid "Current light theme."
+msgstr ""
+
+#: data/com.github.Latesil.theme-switcher.gschema.xml:61
+msgid "Dark theme"
+msgstr ""
+
+#: data/com.github.Latesil.theme-switcher.gschema.xml:62
+msgid "Current dark theme."
 msgstr ""
 
 #: themeswitcher/ui/new_window.ui:19
@@ -101,67 +121,94 @@ msgstr ""
 msgid "Reset Wallpapers"
 msgstr ""
 
-#: themeswitcher/ui/new_window.ui:111
+#: themeswitcher/ui/new_window.ui:108
+msgid "Terminal Profiles"
+msgstr ""
+
+#: themeswitcher/ui/new_window.ui:126
 msgid "About"
 msgstr ""
 
-#: themeswitcher/ui/new_window.ui:181
+#: themeswitcher/ui/new_window.ui:196
 msgid "Auto"
 msgstr ""
 
-#: themeswitcher/ui/new_window.ui:280
+#: themeswitcher/ui/new_window.ui:295
 msgid "Set day wallpapers"
 msgstr ""
 
-#: themeswitcher/ui/new_window.ui:297
+#: themeswitcher/ui/new_window.ui:313 themeswitcher/ui/new_window.ui:624
 msgid "Wallpapers"
 msgstr ""
 
-#: themeswitcher/ui/new_window.ui:331
+#: themeswitcher/ui/new_window.ui:347
 msgid "Day theme"
 msgstr ""
 
-#: themeswitcher/ui/new_window.ui:357
+#: themeswitcher/ui/new_window.ui:374 themeswitcher/ui/new_window.ui:685
 msgid "Theme"
 msgstr ""
 
-#: themeswitcher/ui/new_window.ui:391
+#: themeswitcher/ui/new_window.ui:408
 msgid "Daytime"
 msgstr ""
 
-#: themeswitcher/ui/new_window.ui:462
+#: themeswitcher/ui/new_window.ui:424 themeswitcher/ui/new_window.ui:453
+#: themeswitcher/ui/new_window.ui:735 themeswitcher/ui/new_window.ui:764
+msgid "0"
+msgstr ""
+
+#: themeswitcher/ui/new_window.ui:479 themeswitcher/ui/new_window.ui:790
 msgid "Time"
 msgstr ""
 
-#: themeswitcher/ui/new_window.ui:475
+#: themeswitcher/ui/new_window.ui:512
+msgid "Day profile"
+msgstr ""
+
+#: themeswitcher/ui/new_window.ui:548 themeswitcher/ui/new_window.ui:857
+msgid "Terminal Profile"
+msgstr ""
+
+#: themeswitcher/ui/new_window.ui:561
 msgid "Day"
 msgstr ""
 
-#: themeswitcher/ui/new_window.ui:520
+#: themeswitcher/ui/new_window.ui:606
 msgid "Set night wallpapers"
 msgstr ""
 
-#: themeswitcher/ui/new_window.ui:571
+#: themeswitcher/ui/new_window.ui:658
 msgid "Night theme"
 msgstr ""
 
-#: themeswitcher/ui/new_window.ui:631
+#: themeswitcher/ui/new_window.ui:719
 msgid "Night time"
 msgstr ""
 
-#: themeswitcher/ui/new_window.ui:715
+#: themeswitcher/ui/new_window.ui:821
+msgid "Night profile"
+msgstr ""
+
+#: themeswitcher/ui/new_window.ui:870
 msgid "Night"
 msgstr ""
 
-#: themeswitcher/new_main_window.py:39
+#: themeswitcher/new_main_window.py:47
+#: themeswitcher/new_main_window.py:49
+#: themeswitcher/new_main_window.py:200
 msgid "Theme Switcher"
 msgstr ""
 
-#: themeswitcher/new_main_window.py:147
-msgid "A global automated switcher for dark/light GTK theme during day/night and more."
+#: themeswitcher/new_main_window.py:206
+msgid ""
+"A global automated switcher for dark/light GTK theme during day/night and more."
 msgstr ""
 
-#: themeswitcher/new_main_window.py:149
+#: themeswitcher/new_main_window.py:208
 msgid "Website"
 msgstr ""
 
+#: themeswitcher/new_main_window.py:259
+msgid "Choose a file"
+msgstr ""

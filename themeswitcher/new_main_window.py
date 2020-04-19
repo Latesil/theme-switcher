@@ -40,6 +40,8 @@ class AppWindow(Gtk.ApplicationWindow):
     day_terminal_combo = Gtk.Template.Child()
     night_terminal_combo = Gtk.Template.Child()
     terminal_checkbox = Gtk.Template.Child()
+    day_terminal_main_frame = Gtk.Template.Child()
+    night_terminal_main_frame = Gtk.Template.Child()
     
     def __init__(self, app, *args, **kwargs):
         super().__init__(*args, title=_("Theme Switcher"), application=app)
@@ -62,9 +64,7 @@ class AppWindow(Gtk.ApplicationWindow):
         self.current_day_wallpaper = current_desktop.get_value("path-to-day-wallpaper")
         self.current_night_wallpaper = current_desktop.get_value("path-to-night-wallpaper")
         
-        self.terminal_profiles = get_terminal_profiles()
-        
-        print(self.terminal_profiles)
+        self.terminal_profiles = current_desktop.get_terminal_profiles()
         
         if self.current_day_wallpaper != "":
             image = Gtk.Image()
@@ -119,7 +119,12 @@ class AppWindow(Gtk.ApplicationWindow):
             
     @Gtk.Template.Callback()
     def on_terminal_checkbox_toggled(self, checkbox):
-        print('on_terminal_checkbox_toggled')
+        if checkbox.get_active():
+            self.day_terminal_main_frame.set_visible(True)
+            self.night_terminal_main_frame.set_visible(True)
+        else:
+            self.day_terminal_main_frame.set_visible(False)
+            self.night_terminal_main_frame.set_visible(False)
         
     @Gtk.Template.Callback()
     def on__day_hour_adjustment_value_changed(self, scale):
