@@ -277,10 +277,10 @@
                     <property name="spacing">2</property>
                     <property name="homogeneous">True</property>
                     <child>
-                      <object class="GtkBox" id="day_wallpaper_image_box">
+                      <object class="GtkEventBox" id="day_wallpaper_event_box">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="orientation">vertical</property>
+                        <signal name="button-press-event" handler="on_day_image_clicked" swapped="no"/>
                         <child>
                           <placeholder/>
                         </child>
@@ -294,6 +294,7 @@
                     <child>
                       <object class="GtkButton" id="_day_button">
                         <property name="label" translatable="yes">Set day wallpapers</property>
+                        <property name="name">day_button</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
@@ -355,6 +356,7 @@
                     </child>
                     <child>
                       <object class="GtkComboBox" id="_light_combo_box">
+                        <property name="name">light_box</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">center</property>
@@ -592,9 +594,10 @@
                     <property name="spacing">2</property>
                     <property name="homogeneous">True</property>
                     <child>
-                      <object class="GtkBox" id="night_wallpaper_image_box">
+                      <object class="GtkEventBox" id="night_wallpaper_event_box">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <signal name="button-press-event" handler="on_night_image_clicked" swapped="no"/>
                         <child>
                           <placeholder/>
                         </child>
@@ -608,6 +611,7 @@
                     <child>
                       <object class="GtkButton" id="_night_button">
                         <property name="label" translatable="yes">Set night wallpapers</property>
+                        <property name="name">night_button</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
@@ -669,6 +673,7 @@
                     </child>
                     <child>
                       <object class="GtkComboBox" id="_dark_combo_box">
+                        <property name="name">dark_box</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">center</property>
