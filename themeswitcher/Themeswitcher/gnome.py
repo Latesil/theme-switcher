@@ -65,6 +65,10 @@ class Gnome(Desktop):
             values[k] = self.settings.get_value(k).unpack()
         return values
         
+    def get_terminal_profiles(self):
+        terminal_settings = Gio.Settings.new('org.gnome.Terminal.ProfilesList')
+        return terminal_settings.get_value('list').unpack()
+        
     #taken from GNOME Tweaks
     #by John Stowers.
 
@@ -98,4 +102,5 @@ class Gnome(Desktop):
             pass
 
         return valid
+
         

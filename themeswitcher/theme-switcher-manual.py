@@ -22,15 +22,17 @@ from Themeswitcher.helper_functions import init_de
 current_desktop = init_de()
 theme = current_desktop.get_current_theme()
 light_theme, dark_theme = current_desktop.get_current_themes()
+current_desktop.get_terminal_profiles()
 
 night_wallpapers = current_desktop.get_value("path-to-night-wallpaper")
 day_wallpapers = current_desktop.get_value("path-to-day-wallpaper")
 
 if theme == light_theme:
     current_desktop.set_current_theme(dark_theme)
-	if night_wallpapers is not None:
-		current_desktop.set_wallpapers(night_wallpapers)
+    if night_wallpapers is not None:
+        current_desktop.set_wallpapers(night_wallpapers)
 else:
     current_desktop.set_current_theme(light_theme)
-	if day_wallpapers is not None:
-	    current_desktop.set_wallpapers(day_wallpapers)
+    if day_wallpapers is not None:
+        current_desktop.set_wallpapers(day_wallpapers)
+	    

@@ -49,3 +49,7 @@ class Desktop(ABC):
     @abstractmethod
     def _get_valid_themes(self):
         raise NotImplementedError
+
+    @abstractmethod
+    def get_terminal_profiles(self):
+        raise NotImplementedError
