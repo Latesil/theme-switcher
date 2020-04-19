@@ -18,203 +18,207 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.2.4\n"
 
-#: ../data/com.github.Latesil.theme-switcher.gschema.xml:6
+#: data/com.github.Latesil.theme-switcher.gschema.xml:6
 msgid "Daytime for theme switch"
 msgstr "Дневное время для переключения тем"
 
-#: ../data/com.github.Latesil.theme-switcher.gschema.xml:7
-#: ../data/com.github.Latesil.theme-switcher.gschema.xml:12
-#: ../data/com.github.Latesil.theme-switcher.gschema.xml:17
+#: data/com.github.Latesil.theme-switcher.gschema.xml:7
+#: data/com.github.Latesil.theme-switcher.gschema.xml:12
+#: data/com.github.Latesil.theme-switcher.gschema.xml:17
 msgid "When theme should be switched."
-msgstr "Когда темы должны быть переключены."
+msgstr "Когда тема должна быть переключена."
 
-#: ../data/com.github.Latesil.theme-switcher.gschema.xml:11
+#: data/com.github.Latesil.theme-switcher.gschema.xml:11
 msgid "Daytime minutes for theme switch"
-msgstr "Дневные минуты для смены тем"
+msgstr "Дневные минут для переключения тем"
 
-#: ../data/com.github.Latesil.theme-switcher.gschema.xml:16
+#: data/com.github.Latesil.theme-switcher.gschema.xml:16
 msgid "Daytime hours for theme switch"
-msgstr "Дневные часы для смены тем"
+msgstr "Дневные часы для переключения тем"
 
-#: ../data/com.github.Latesil.theme-switcher.gschema.xml:21
+#: data/com.github.Latesil.theme-switcher.gschema.xml:21
 msgid "Enabling auto-switch"
-msgstr "Автопереключение тем"
+msgstr "Включение автопереключения"
 
-#: ../data/com.github.Latesil.theme-switcher.gschema.xml:22
+#: data/com.github.Latesil.theme-switcher.gschema.xml:22
 msgid "Determine whether it will be auto switch theme or not"
-msgstr "Нужно ли переключать темы"
+msgstr "Нужно ли переключать темы автоматически"
 
-#: ../data/com.github.Latesil.theme-switcher.gschema.xml:26
+#: data/com.github.Latesil.theme-switcher.gschema.xml:26
 msgid "Enabling terminal profiles switch"
-msgstr "Переключение профиля терминала"
+msgstr "Включение переключения профилей терминала"
 
-#: ../data/com.github.Latesil.theme-switcher.gschema.xml:27
+#: data/com.github.Latesil.theme-switcher.gschema.xml:27
 msgid "Determine whether terminal profiles will be auto switch or not"
-msgstr "Нужно ли переключать профили терминала"
+msgstr "Нужно ли переключать темы автоматически"
 
-#: ../data/com.github.Latesil.theme-switcher.gschema.xml:31
-#: ../data/com.github.Latesil.theme-switcher.gschema.xml:32
-msgid "Active terminal profile"
-msgstr "Активный профиль терминала"
+#: data/com.github.Latesil.theme-switcher.gschema.xml:31
+#: data/com.github.Latesil.theme-switcher.gschema.xml:32
+msgid "Active day terminal profile"
+msgstr "Активный дневной профиль терминала"
 
-#: ../data/com.github.Latesil.theme-switcher.gschema.xml:36
+#: data/com.github.Latesil.theme-switcher.gschema.xml:36
+#: data/com.github.Latesil.theme-switcher.gschema.xml:37
+msgid "Active night terminal profile"
+msgstr "Активный ночной профиль терминала"
+
+#: data/com.github.Latesil.theme-switcher.gschema.xml:41
 msgid "Path to day wallpaper"
-msgstr "Путь к дневным обоям"
+msgstr "Путь для дневных обоев"
 
-#: ../data/com.github.Latesil.theme-switcher.gschema.xml:37
+#: data/com.github.Latesil.theme-switcher.gschema.xml:42
 msgid "Path to the wallpapers that should be in a daytime."
-msgstr "Путь к дневным обоям."
+msgstr "Путь для дневных обоев."
 
-#: ../data/com.github.Latesil.theme-switcher.gschema.xml:41
+#: data/com.github.Latesil.theme-switcher.gschema.xml:46
 msgid "Path to night wallpaper"
-msgstr "Путь к ночным обоям"
+msgstr "Пусть для ночных обоев"
 
-#: ../data/com.github.Latesil.theme-switcher.gschema.xml:42
+#: data/com.github.Latesil.theme-switcher.gschema.xml:47
 msgid "Path to the wallpapers that should be in a nighttime."
-msgstr "Путь к ночным обоям."
+msgstr "Путь для ночных обоев."
 
-#: ../data/com.github.Latesil.theme-switcher.gschema.xml:46
+#: data/com.github.Latesil.theme-switcher.gschema.xml:51
 msgid "Nighttime for theme switch"
 msgstr "Ночное время для переключения тем"
 
-#: ../data/com.github.Latesil.theme-switcher.gschema.xml:47
-#: ../data/com.github.Latesil.theme-switcher.gschema.xml:52
-#: ../data/com.github.Latesil.theme-switcher.gschema.xml:57
+#: data/com.github.Latesil.theme-switcher.gschema.xml:52
+#: data/com.github.Latesil.theme-switcher.gschema.xml:57
+#: data/com.github.Latesil.theme-switcher.gschema.xml:62
 msgid "When theme should be switched on night."
-msgstr "Когда надо переключать тему ночью."
+msgstr "Когда нужно переключить темную тему."
 
-#: ../data/com.github.Latesil.theme-switcher.gschema.xml:51
+#: data/com.github.Latesil.theme-switcher.gschema.xml:56
 msgid "Nighttime hours for theme switch"
-msgstr "Ночные часы для смены темы"
+msgstr "Часы для ночного переключения тем"
 
-#: ../data/com.github.Latesil.theme-switcher.gschema.xml:56
+#: data/com.github.Latesil.theme-switcher.gschema.xml:61
 msgid "Nighttime minutes for theme switch"
-msgstr "Ночные минуты для смены темы"
+msgstr "Минуты для ночного переключения тем"
 
-#: ../data/com.github.Latesil.theme-switcher.gschema.xml:61
+#: data/com.github.Latesil.theme-switcher.gschema.xml:66
 msgid "Light theme"
 msgstr "Светлая тема"
 
-#: ../data/com.github.Latesil.theme-switcher.gschema.xml:62
+#: data/com.github.Latesil.theme-switcher.gschema.xml:67
 msgid "Current light theme."
-msgstr "Текущая дневная тема."
+msgstr "Текущая светлая тема"
 
-#: ../data/com.github.Latesil.theme-switcher.gschema.xml:66
+#: data/com.github.Latesil.theme-switcher.gschema.xml:71
 msgid "Dark theme"
-msgstr "Ночная тема"
+msgstr "Темная тема"
 
-#: ../data/com.github.Latesil.theme-switcher.gschema.xml:67
+#: data/com.github.Latesil.theme-switcher.gschema.xml:72
 msgid "Current dark theme."
-msgstr "Текущая ночная тема."
+msgstr "Текущая темная тема."
 
-#: ../themeswitcher/ui/new_window.ui:19
+#: themeswitcher/ui/new_window.ui:19
 msgid "Change Theme"
 msgstr "Сменить тему"
 
-#: ../themeswitcher/ui/new_window.ui:44
+#: themeswitcher/ui/new_window.ui:44
 msgid "Reset All"
 msgstr "Сбросить всё"
 
-#: ../themeswitcher/ui/new_window.ui:58
+#: themeswitcher/ui/new_window.ui:58
 msgid "Reset Time"
 msgstr "Сбросить время"
 
-#: ../themeswitcher/ui/new_window.ui:72
+#: themeswitcher/ui/new_window.ui:72
 msgid "Reset Themes"
 msgstr "Сбросить темы"
 
-#: ../themeswitcher/ui/new_window.ui:86
+#: themeswitcher/ui/new_window.ui:86
 msgid "Reset Wallpapers"
 msgstr "Сбросить обои"
 
-#: ../themeswitcher/ui/new_window.ui:108
+#: themeswitcher/ui/new_window.ui:108
 msgid "Terminal Profiles"
 msgstr "Профили терминала"
 
-#: ../themeswitcher/ui/new_window.ui:126
+#: themeswitcher/ui/new_window.ui:126
 msgid "About"
-msgstr "О приложении"
+msgstr "О программе"
 
-#: ../themeswitcher/ui/new_window.ui:196
+#: themeswitcher/ui/new_window.ui:196
 msgid "Auto"
 msgstr "Автопереключение"
 
-#: ../themeswitcher/ui/new_window.ui:295
+#: themeswitcher/ui/new_window.ui:295
 msgid "Set day wallpapers"
 msgstr "Установить дневные обои"
 
-#: ../themeswitcher/ui/new_window.ui:313 ../themeswitcher/ui/new_window.ui:626
+#: themeswitcher/ui/new_window.ui:313 themeswitcher/ui/new_window.ui:628
 msgid "Wallpapers"
 msgstr "Обои"
 
-#: ../themeswitcher/ui/new_window.ui:347
+#: themeswitcher/ui/new_window.ui:347
 msgid "Day theme"
 msgstr "Дневная тема"
 
-#: ../themeswitcher/ui/new_window.ui:374 ../themeswitcher/ui/new_window.ui:687
+#: themeswitcher/ui/new_window.ui:374 themeswitcher/ui/new_window.ui:689
 msgid "Theme"
 msgstr "Тема"
 
-#: ../themeswitcher/ui/new_window.ui:408
+#: themeswitcher/ui/new_window.ui:408
 msgid "Daytime"
 msgstr "Дневное время"
 
-#: ../themeswitcher/ui/new_window.ui:424 ../themeswitcher/ui/new_window.ui:453
-#: ../themeswitcher/ui/new_window.ui:737 ../themeswitcher/ui/new_window.ui:766
+#: themeswitcher/ui/new_window.ui:424 themeswitcher/ui/new_window.ui:453
+#: themeswitcher/ui/new_window.ui:739 themeswitcher/ui/new_window.ui:768
 msgid "0"
 msgstr "0"
 
-#: ../themeswitcher/ui/new_window.ui:479 ../themeswitcher/ui/new_window.ui:792
+#: themeswitcher/ui/new_window.ui:479 themeswitcher/ui/new_window.ui:794
 msgid "Time"
 msgstr "Время"
 
-#: ../themeswitcher/ui/new_window.ui:512
+#: themeswitcher/ui/new_window.ui:512
 msgid "Day profile"
 msgstr "Дневной профиль"
 
-#: ../themeswitcher/ui/new_window.ui:550 ../themeswitcher/ui/new_window.ui:861
+#: themeswitcher/ui/new_window.ui:552 themeswitcher/ui/new_window.ui:865
 msgid "Terminal Profile"
 msgstr "Профиль терминала"
 
-#: ../themeswitcher/ui/new_window.ui:563
+#: themeswitcher/ui/new_window.ui:565
 msgid "Day"
 msgstr "День"
 
-#: ../themeswitcher/ui/new_window.ui:608
+#: themeswitcher/ui/new_window.ui:610
 msgid "Set night wallpapers"
 msgstr "Установить ночные обои"
 
-#: ../themeswitcher/ui/new_window.ui:660
+#: themeswitcher/ui/new_window.ui:662
 msgid "Night theme"
 msgstr "Ночная тема"
 
-#: ../themeswitcher/ui/new_window.ui:721
+#: themeswitcher/ui/new_window.ui:723
 msgid "Night time"
 msgstr "Ночное время"
 
-#: ../themeswitcher/ui/new_window.ui:823
+#: themeswitcher/ui/new_window.ui:825
 msgid "Night profile"
 msgstr "Ночной профиль"
 
-#: ../themeswitcher/ui/new_window.ui:874
+#: themeswitcher/ui/new_window.ui:878
 msgid "Night"
 msgstr "Ночь"
 
-#: ../themeswitcher/new_main_window.py:47
-#: ../themeswitcher/new_main_window.py:49
-#: ../themeswitcher/new_main_window.py:204
+#: themeswitcher/new_main_window.py:47
+#: themeswitcher/new_main_window.py:49
+#: themeswitcher/new_main_window.py:215
 msgid "Theme Switcher"
 msgstr "Переключатель тем"
 
-#: ../themeswitcher/new_main_window.py:210
-msgid ""
-"A global automated switcher for dark/light GTK theme during day/night and more."
-msgstr "Глобальный переключатель GTK тем, в течении дня и ночи."
+#: themeswitcher/new_main_window.py:221
+msgid "A global automated switcher for dark/light GTK theme during day/night and more."
+msgstr "Глобальный переключатель темных/светлых тем в течении дня и ночи."
 
-#: ../themeswitcher/new_main_window.py:212
+#: themeswitcher/new_main_window.py:223
 msgid "Website"
 msgstr "Сайт"
 
-#: ../themeswitcher/new_main_window.py:263
+#: themeswitcher/new_main_window.py:283
 msgid "Choose a file"
 msgstr "Выберите файл"

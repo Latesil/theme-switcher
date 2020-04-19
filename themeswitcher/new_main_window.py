@@ -10,6 +10,7 @@ import subprocess
 
 current_desktop = init_de()
 themes = sorted(current_desktop._get_valid_themes())
+terminal_profiles = current_desktop.get_terminal_profiles()
 
 @Gtk.Template(resource_path = constants["UI_PATH"] + 'ui/new_window.ui')
 class AppWindow(Gtk.ApplicationWindow):
@@ -64,6 +65,15 @@ class AppWindow(Gtk.ApplicationWindow):
         self.current_day_wallpaper = current_desktop.get_value("path-to-day-wallpaper")
         self.current_night_wallpaper = current_desktop.get_value("path-to-night-wallpaper")
         
+        self.terminal_checkbox.set_active(current_desktop.get_value("terminal"))
+        self.populate_terminal_profiles()
+        
+        self.day_terminal_combo.set_active_id(current_desktop.get_value("active-day-profile-terminal"))
+        self.night_terminal_combo.set_active_id(current_desktop.get_value("active-night-profile-terminal"))
+        
+        #retrieve current light\dark theme and set it as a default option in combo box
+        self.retrieve_day_profile(self.day_terminal_combo)
+        self.retrieve_night_profile(self.night_terminal_combo)
         
         if self.current_day_wallpaper != "":
             image = Gtk.Image()
@@ -123,7 +133,8 @@ class AppWindow(Gtk.ApplicationWindow):
             self.day_terminal_main_frame.set_visible(True)
             self.night_terminal_main_frame.set_visible(True)
             current_desktop.set_value("terminal", True)
-            self.populate_terminal_profiles()
+            self.day_terminal_combo.set_active_id(current_desktop.get_value("active-day-profile-terminal"))
+            self.night_terminal_combo.set_active_id(current_desktop.get_value("active-night-profile-terminal"))
         else:
             self.day_terminal_main_frame.set_visible(False)
             self.night_terminal_main_frame.set_visible(False)
@@ -197,8 +208,11 @@ class AppWindow(Gtk.ApplicationWindow):
         self.on__reset_wallpapers_clicked(button)
         self.on__reset_themes_clicked(button)
         current_desktop.reset_value("auto-switch")
-        self.day_terminal_combo.set_active_id(None)
         current_desktop.reset_value("terminal")
+        current_desktop.reset_value("active-day-profile-terminal")
+        current_desktop.reset_value("active-night-profile-terminal")
+        self.day_terminal_combo.set_active_id(None)
+        self.night_terminal_combo.set_active_id(None)
         self.terminal_checkbox.set_active(False)
 
     @Gtk.Template.Callback()
@@ -217,6 +231,21 @@ class AppWindow(Gtk.ApplicationWindow):
         about.set_license_type(Gtk.License.GPL_3_0)
         about.run()
         about.destroy()
+        
+    @Gtk.Template.Callback()
+    def on_terminal_combo_changed(self, combobox):
+        if combobox.props.name == "night_terminal_combobox":
+            current_desktop.set_value("active-night-profile-terminal", combobox.get_active_text())
+            current_time = datetime.datetime.now()
+            if (current_time.hour >= current_desktop.get_value("nighttime")):
+                current_desktop.set_terminal_profile(current_desktop.get_value("active-night-profile-terminal"))
+        elif combobox.props.name == "day_terminal_combobox":
+            current_desktop.set_value("active-day-profile-terminal", combobox.get_active_text())
+            current_time = datetime.datetime.now()
+            if (current_time.hour <= current_desktop.get_value("daytime")):
+                current_desktop.set_terminal_profile(current_desktop.get_value("active-day-profile-terminal"))
+        
+    ######################################################################
         
     def retrieve_light_theme(self, box):
         self._light_model = box.get_model()
@@ -345,12 +374,20 @@ class AppWindow(Gtk.ApplicationWindow):
         self.resize(600, 100)
         
     def populate_terminal_profiles(self):
-        terminal_profiles = current_desktop.get_terminal_profiles()
-        profile_id = 0
         for profile in terminal_profiles:
-            self.day_terminal_combo.append(str(profile_id), profile)
-            self.night_terminal_combo.append(str(profile_id), profile)
-            profile_id += 1
+            self.day_terminal_combo.append_text(profile)
+            self.night_terminal_combo.append_text(profile)
             
+    def retrieve_day_profile(self, box):
+        self.day_profile = box.get_model()
+        for row in self.day_profile:
+            if row[0] == current_desktop.get_value("active-day-profile-terminal"):
+                box.set_active_iter(row.iter)
+        
+    def retrieve_night_profile(self, box):
+        self.night_profile = box.get_model()
+        for row in self.night_profile:
+            if row[0] == current_desktop.get_value("active-night-profile-terminal"):
+                box.set_active_iter(row.iter)
 
 

@@ -69,6 +69,10 @@ class Gnome(Desktop):
         terminal_settings = Gio.Settings.new('org.gnome.Terminal.ProfilesList')
         return terminal_settings.get_value('list').unpack()
         
+    def set_terminal_profile(self, profile):
+        terminal_settings = Gio.Settings.new('org.gnome.Terminal.ProfilesList')
+        terminal_settings.set_string("default", profile)
+        
     #taken from GNOME Tweaks
     #by John Stowers.
 
