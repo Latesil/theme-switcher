@@ -71,6 +71,9 @@ class Gnome(Desktop):
         
     def set_terminal_profile(self, profile):
         GLib.spawn_async(['/usr/bin/gsettings','set','org.gnome.Terminal.ProfilesList','default', profile])
+    
+    def execute_script(self, script):
+        GLib.spawn_async([script])
         
     #taken from GNOME Tweaks
     #by John Stowers.

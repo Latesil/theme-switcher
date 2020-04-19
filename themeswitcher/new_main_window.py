@@ -68,22 +68,14 @@ class AppWindow(Gtk.ApplicationWindow):
         self.night_terminal_combo.set_active_id(current_desktop.get_value("active-night-profile-terminal"))
         
         #retrieve current light\dark theme and set it as a default option in combo box
-        self.retrieve_day_profile(self.day_terminal_combo)
-        self.retrieve_night_profile(self.night_terminal_combo)
+        self.retrieve_profile(self.day_terminal_combo, "active-day-profile-terminal")
+        self.retrieve_profile(self.night_terminal_combo, "active-night-profile-terminal")
         
         if self.current_day_wallpaper != "":
-            image = Gtk.Image()
-            pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(self.current_day_wallpaper, 114, 64, True)
-            image.set_from_pixbuf(pixbuf)
-            self.day_wallpaper_event_box.add(image)
-            image.show()
+            self.set_wallpaper_to_box(self.day_wallpaper_event_box, self.current_day_wallpaper)
             
         if self.current_night_wallpaper != "":
-            image = Gtk.Image()
-            pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(self.current_night_wallpaper, 114, 64, True)
-            image.set_from_pixbuf(pixbuf)
-            self.night_wallpaper_event_box.add(image)
-            image.show()
+            self.set_wallpaper_to_box(self.night_wallpaper_event_box, self.current_night_wallpaper)
         
         #populate theme list
         for i in themes:
@@ -91,20 +83,14 @@ class AppWindow(Gtk.ApplicationWindow):
             self._dark_tree_model.append([i])
 
         #retrieve current light\dark theme and set it as a default option in combo box
-        self.retrieve_light_theme(self._light_combo_box)
-        self.retrieve_dark_theme(self._dark_combo_box)
+        self.retrieve_theme(self._light_combo_box, self._light_tree_model, self.cur_light_theme)
+        self.retrieve_theme(self._dark_combo_box, self._dark_tree_model, self.cur_dark_theme)
         
         #init light box
-        self._light_combo_box.connect("changed", self.combo_box_changed)
-        renderer_text = Gtk.CellRendererText()
-        self._light_combo_box.pack_start(renderer_text, True)
-        self._light_combo_box.add_attribute(renderer_text, "text", 0)
+        self.init_box(self._light_combo_box)
 
         #init dark box
-        self._dark_combo_box.connect("changed", self.combo_box_changed)
-        renderer_text = Gtk.CellRendererText()
-        self._dark_combo_box.pack_start(renderer_text, True)
-        self._dark_combo_box.add_attribute(renderer_text, "text", 0)
+        self.init_box(self._dark_combo_box)
         
         self.set_values_from_settings()
         self.on_combo_box_changed()
@@ -129,8 +115,6 @@ class AppWindow(Gtk.ApplicationWindow):
             self.day_terminal_main_frame.set_visible(True)
             self.night_terminal_main_frame.set_visible(True)
             current_desktop.set_value("terminal", True)
-            self.day_terminal_combo.set_active_id(current_desktop.get_value("active-day-profile-terminal"))
-            self.night_terminal_combo.set_active_id(current_desktop.get_value("active-night-profile-terminal"))
         else:
             self.day_terminal_main_frame.set_visible(False)
             self.night_terminal_main_frame.set_visible(False)
@@ -161,7 +145,7 @@ class AppWindow(Gtk.ApplicationWindow):
     @Gtk.Template.Callback()
     def on__change_theme_button_clicked(self, button):
         try:
-            subprocess.call(['theme-switcher-manual.py'])
+            current_desktop.execute_script('/usr/bin/theme-switcher-manual.py')
         except:
             pass
 
@@ -182,21 +166,16 @@ class AppWindow(Gtk.ApplicationWindow):
     def on__reset_themes_clicked(self, button):
         current_desktop.reset_value("light-theme")
         current_desktop.reset_value("dark-theme")
-        self.retrieve_light_default_theme(self._light_combo_box)
-        self.retrieve_dark_default_theme(self._dark_combo_box)
+        self.retrieve_theme(self._light_combo_box, self._light_tree_model, self.cur_light_theme, True, "light")
+        self.retrieve_theme(self._dark_combo_box, self._dark_tree_model, self.cur_dark_theme, True, "dark")
 
     @Gtk.Template.Callback()
     def on__reset_wallpapers_clicked(self, button):
         current_desktop.reset_value("path-to-night-wallpaper")
         current_desktop.reset_value("path-to-day-wallpaper")
         
-        if len(self.night_wallpaper_event_box) > 0:
-            element = self.night_wallpaper_event_box.get_children()[0]
-            self.night_wallpaper_event_box.remove(element)
-            
-        if len(self.day_wallpaper_event_box) > 0:
-            element = self.day_wallpaper_event_box.get_children()[0]
-            self.day_wallpaper_event_box.remove(element)
+        self.reset_box(self.night_wallpaper_event_box)
+        self.reset_box(self.day_wallpaper_event_box)
         self.resize_window()
 
     @Gtk.Template.Callback()
@@ -247,30 +226,22 @@ class AppWindow(Gtk.ApplicationWindow):
                     current_desktop.set_terminal_profile(current_desktop.get_value("active-day-profile-terminal"))
         
     ######################################################################
-        
-    def retrieve_light_theme(self, box):
-        self._light_model = box.get_model()
-        for row in self._light_model:
-            if row[0] == self.cur_light_theme:
-                box.set_active_iter(row.iter)
-
-    def retrieve_dark_theme(self, box):
-        self._dark_model = box.get_model()
-        for row in self._dark_model:
-            if row[0] == self.cur_dark_theme:
-                box.set_active_iter(row.iter)
                 
-    def retrieve_light_default_theme(self, box):
-        self._light_model = box.get_model()
-        for row in self._light_model:
-            if row[0] == "Adwaita":
-                box.set_active_iter(row.iter)
-                
-    def retrieve_dark_default_theme(self, box):
-        self._light_model = box.get_model()
-        for row in self._light_model:
-            if row[0] == "Adwaita-dark":
-                box.set_active_iter(row.iter)
+    def retrieve_theme(self, box, model, current_theme, default=False, theme=None):
+        model = box.get_model()
+        for row in model:
+            if default:
+                if theme == "dark":
+                    if row[0] == "Adwaita-dark":
+                        box.set_active_iter(row.iter)
+                        return
+                elif theme == "light":
+                    if row[0] == "Adwaita":
+                        box.set_active_iter(row.iter)
+                        return
+            else:
+                if row[0] == current_theme:
+                    box.set_active_iter(row.iter)
                 
     def combo_box_changed(self, combo):
         name = combo.get_name()
@@ -314,12 +285,10 @@ class AppWindow(Gtk.ApplicationWindow):
                 image.set_from_icon_name('dialog-error-symbolic', Gtk.IconSize.DIALOG)
             image.show()
             name = button.get_name()
+            
             if name == "night_button":
                 current_desktop.set_value("path-to-night-wallpaper", wallpaper)
-                #add thumbnail
-                
                 self.night_wallpaper_event_box.add(image)
-                
                 is_auto = current_desktop.get_value("auto-switch")
                 if is_auto:
                     current_time = datetime.datetime.now()
@@ -327,8 +296,6 @@ class AppWindow(Gtk.ApplicationWindow):
                         current_desktop.set_wallpapers(wallpaper)
             elif name == "day_button":
                 current_desktop.set_value("path-to-day-wallpaper", wallpaper)
-                #add thumbnail
-                
                 self.day_wallpaper_event_box.add(image)
                 is_auto = current_desktop.get_value("auto-switch")
                 if is_auto:
@@ -387,17 +354,27 @@ class AppWindow(Gtk.ApplicationWindow):
         for profile in terminal_profiles:
             self.day_terminal_combo.append_text(profile)
             self.night_terminal_combo.append_text(profile)
-            
-    def retrieve_day_profile(self, box):
-        self.day_profile = box.get_model()
-        for row in self.day_profile:
-            if row[0] == current_desktop.get_value("active-day-profile-terminal"):
+                
+    def retrieve_profile(self, box, key):
+        profile = box.get_model()
+        for row in profile:
+            if row[0] == current_desktop.get_value(key):
                 box.set_active_iter(row.iter)
+                
+    def set_wallpaper_to_box(self, box, wallpaper):
+        image = Gtk.Image()
+        pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(wallpaper, 114, 64, True)
+        image.set_from_pixbuf(pixbuf)
+        box.add(image)
+        image.show()
         
-    def retrieve_night_profile(self, box):
-        self.night_profile = box.get_model()
-        for row in self.night_profile:
-            if row[0] == current_desktop.get_value("active-night-profile-terminal"):
-                box.set_active_iter(row.iter)
+    def init_box(self, box):
+        box.connect("changed", self.combo_box_changed)
+        renderer_text = Gtk.CellRendererText()
+        box.pack_start(renderer_text, True)
+        box.add_attribute(renderer_text, "text", 0)
 
-
+    def reset_box(self, box):
+        if len(box) > 0:
+            element = box.get_children()[0]
+            box.remove(element)

@@ -53,3 +53,7 @@ class Desktop(ABC):
     @abstractmethod
     def get_terminal_profiles(self):
         raise NotImplementedError
+        
+    @abstractmethod
+    def execute_script(self, script):
+        raise NotImplementedError
