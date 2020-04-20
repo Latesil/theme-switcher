@@ -1,12 +1,3 @@
-desktop_file = i18n.merge_file(
-  input: 'com.github.Latesil.theme-switcher.desktop.in',
-  output: 'com.github.Latesil.theme-switcher.desktop',
-  type: 'desktop',
-  po_dir: '../po',
-  install: true,
-  install_dir: join_paths(get_option('datadir'), 'applications')
-)
-
 desktop_file_gui = i18n.merge_file(
   input: 'com.github.Latesil.theme-switcher-gui.desktop.in',
   output: 'com.github.Latesil.theme-switcher-gui.desktop',
