@@ -10,7 +10,7 @@ desktop_file_gui = i18n.merge_file(
 desktop_utils = find_program('desktop-file-validate', required: false)
 if desktop_utils.found()
   test('Validate desktop file', desktop_utils,
-    args: [desktop_file, desktop_file_gui]
+    args: [desktop_file_gui]
   )
 endif
 

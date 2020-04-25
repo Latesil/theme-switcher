@@ -50,13 +50,13 @@ day_wallpapers = current_desktop.get_value("path-to-day-wallpaper")
 
 if ((current_values <= day_values or current_values >= night_values)):
     current_desktop.set_current_theme(dark_theme)
-    if night_wallpapers is not None:
+    if bool(night_wallpapers):
         current_desktop.set_wallpapers(night_wallpapers)
     if is_terminal is not None:
         current_desktop.set_terminal_profile(night_terminal_profile)
 else:
     current_desktop.set_current_theme(light_theme)
-    if day_wallpapers is not None:
+    if bool(day_wallpapers):
         current_desktop.set_wallpapers(day_wallpapers)
     if is_terminal is not None:
         current_desktop.set_terminal_profile(day_terminal_profile)

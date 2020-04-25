@@ -6,6 +6,7 @@ from Themeswitcher.theme_switcher_constants import theme_switcher_constants as c
 from locale import gettext as _
 import os
 import datetime
+import time
 import subprocess
 
 current_desktop = init_de()
@@ -224,6 +225,10 @@ class AppWindow(Gtk.ApplicationWindow):
                 current_time = datetime.datetime.now()
                 if (current_time.hour <= current_desktop.get_value("daytime")):
                     current_desktop.set_terminal_profile(current_desktop.get_value("active-day-profile-terminal"))
+                    
+    @Gtk.Template.Callback
+    def on_AppWindow_delete_event(self, w, tw):
+        print('on_AppWindow_delete_event')
         
     ######################################################################
                 
