@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-19 16:18+0300\n"
+"POT-Creation-Date: 2020-04-27 00:12+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -143,81 +143,83 @@ msgstr ""
 msgid "Auto"
 msgstr ""
 
-#: themeswitcher/ui/new_window.ui:295
+#: themeswitcher/ui/new_window.ui:296
 msgid "Set day wallpapers"
 msgstr ""
 
-#: themeswitcher/ui/new_window.ui:313 themeswitcher/ui/new_window.ui:628
+#: themeswitcher/ui/new_window.ui:315 themeswitcher/ui/new_window.ui:632
 msgid "Wallpapers"
 msgstr ""
 
-#: themeswitcher/ui/new_window.ui:347
+#: themeswitcher/ui/new_window.ui:349
 msgid "Day theme"
 msgstr ""
 
-#: themeswitcher/ui/new_window.ui:374 themeswitcher/ui/new_window.ui:689
+#: themeswitcher/ui/new_window.ui:377 themeswitcher/ui/new_window.ui:694
 msgid "Theme"
 msgstr ""
 
-#: themeswitcher/ui/new_window.ui:408
+#: themeswitcher/ui/new_window.ui:411
 msgid "Daytime"
 msgstr ""
 
-#: themeswitcher/ui/new_window.ui:424 themeswitcher/ui/new_window.ui:453
-#: themeswitcher/ui/new_window.ui:739 themeswitcher/ui/new_window.ui:768
+#: themeswitcher/ui/new_window.ui:427 themeswitcher/ui/new_window.ui:456
+#: themeswitcher/ui/new_window.ui:744 themeswitcher/ui/new_window.ui:773
 msgid "0"
 msgstr ""
 
-#: themeswitcher/ui/new_window.ui:479 themeswitcher/ui/new_window.ui:794
+#: themeswitcher/ui/new_window.ui:482 themeswitcher/ui/new_window.ui:799
 msgid "Time"
 msgstr ""
 
-#: themeswitcher/ui/new_window.ui:512
+#: themeswitcher/ui/new_window.ui:515
 msgid "Day profile"
 msgstr ""
 
-#: themeswitcher/ui/new_window.ui:552 themeswitcher/ui/new_window.ui:865
+#: themeswitcher/ui/new_window.ui:554 themeswitcher/ui/new_window.ui:870
 msgid "Terminal Profile"
 msgstr ""
 
-#: themeswitcher/ui/new_window.ui:565
+#: themeswitcher/ui/new_window.ui:567
 msgid "Day"
 msgstr ""
 
-#: themeswitcher/ui/new_window.ui:610
+#: themeswitcher/ui/new_window.ui:613
 msgid "Set night wallpapers"
 msgstr ""
 
-#: themeswitcher/ui/new_window.ui:662
+#: themeswitcher/ui/new_window.ui:666
 msgid "Night theme"
 msgstr ""
 
-#: themeswitcher/ui/new_window.ui:723
+#: themeswitcher/ui/new_window.ui:728
 msgid "Night time"
 msgstr ""
 
-#: themeswitcher/ui/new_window.ui:825
+#: themeswitcher/ui/new_window.ui:830
 msgid "Night profile"
 msgstr ""
 
-#: themeswitcher/ui/new_window.ui:878
+#: themeswitcher/ui/new_window.ui:883
 msgid "Night"
 msgstr ""
 
-#: themeswitcher/new_main_window.py:47
 #: themeswitcher/new_main_window.py:49
-#: themeswitcher/new_main_window.py:215
+#: themeswitcher/new_main_window.py:51
+#: themeswitcher/new_main_window.py:198
 msgid "Theme Switcher"
 msgstr ""
 
-#: themeswitcher/new_main_window.py:221
-msgid "A global automated switcher for dark/light GTK theme during day/night and more."
+#: themeswitcher/new_main_window.py:204
+msgid ""
+"A global automated switcher for dark/light GTK theme during day/night and "
+"more."
 msgstr ""
 
-#: themeswitcher/new_main_window.py:223
+#: themeswitcher/new_main_window.py:206
 msgid "Website"
 msgstr ""
 
-#: themeswitcher/new_main_window.py:283
+#: themeswitcher/new_main_window.py:272
 msgid "Choose a file"
 msgstr ""
