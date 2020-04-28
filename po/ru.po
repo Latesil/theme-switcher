@@ -76,11 +76,11 @@ msgstr "Путь для ночных обоев"
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:47
 msgid "Path to the wallpapers that should be in a nighttime."
-msgstr "Путь для ночных обоев."
+msgstr ""
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:51
 msgid "Nighttime for theme switch"
-msgstr "Ночное время для переключения тем"
+msgstr "Путь для ночных обоев."
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:52
 #: data/com.github.Latesil.theme-switcher.gschema.xml:57
@@ -90,11 +90,11 @@ msgstr "Когда нужно переключить темную тему."
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:56
 msgid "Nighttime hours for theme switch"
-msgstr "Часы для ночного переключения тем"
+msgstr "Ночное время для переключения тем"
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:61
 msgid "Nighttime minutes for theme switch"
-msgstr "Минуты для ночного переключения тем"
+msgstr "Когда нужно переключить темную тему."
 
 #: data/com.github.Latesil.theme-switcher.gschema.xml:66
 msgid "Light theme"
@@ -195,7 +195,7 @@ msgstr "Ночная тема"
 
 #: themeswitcher/ui/new_window.ui:728
 msgid "Night time"
-msgstr "Ночное время"
+msgstr "Ночное времяН"
 
 #: themeswitcher/ui/new_window.ui:830
 msgid "Night profile"
@@ -205,9 +205,8 @@ msgstr "Ночной профиль"
 msgid "Night"
 msgstr "Ночь"
 
-#: themeswitcher/new_main_window.py:49
-#: themeswitcher/new_main_window.py:51
-#: themeswitcher/new_main_window.py:198
+#: themeswitcher/new_main_window.py:49 themeswitcher/new_main_window.py:198
+#: themeswitcher/main.py:42 themeswitcher/main.py:45
 msgid "Theme Switcher"
 msgstr "Переключатель тем"
 

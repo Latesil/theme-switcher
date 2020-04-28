@@ -64,6 +64,12 @@ install_data(
 
 theme_switcher_sources = [
 	'__init__.py',
+	'theme-switcher-auto.py',
+	'theme-switcher-manual.py',
+	'Themeswitcher/theme_switcher_constants.py',
+	'Themeswitcher/helper_functions.py',
+	'Themeswitcher/gnome.py',
+	'Themeswitcher/desktop.py',
 	'new_main_window.py',
 	'main.py',
 ]

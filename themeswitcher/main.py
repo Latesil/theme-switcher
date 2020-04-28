@@ -37,17 +37,13 @@ class Application(Gtk.Application):
         super().__init__(*args, application_id="com.github.Latesil.theme-switcher",
                         flags=Gio.ApplicationFlags.FLAGS_NONE, **kwargs)
 
-        self.window = None
-
         GLib.set_application_name(_('Theme Switcher'))
-        GLib.set_prgname('Theme Switcher')
+        #GLib.set_prgname('Theme Switcher')
 
-    def do_startup(self):
-        Gtk.Application.do_startup(self)
 
     def do_activate(self):
-        if not self.window:
-            self.window = AppWindow(self)
-
-        self.window.present()
+        window = self.props.active_window
+        if not window:
+            window = AppWindow(application=self)
+        window.present()
 

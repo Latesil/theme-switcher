@@ -52,3 +52,5 @@ install_data([appname + '-symbolic.svg'],
              rename : [appname + '-symbolic.svg'],
   install_dir: join_paths(get_option('datadir'), 'icons/hicolor/symbolic/apps')
 )
+
+message('done with icons')

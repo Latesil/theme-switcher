@@ -1,6 +1,6 @@
 import gi
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, Gio, GdkPixbuf
+from gi.repository import Gtk, Gio, GdkPixbuf, GLib
 from Themeswitcher.helper_functions import init_de, convert_to_values
 from Themeswitcher.theme_switcher_constants import theme_switcher_constants as constants
 from locale import gettext as _
@@ -45,10 +45,8 @@ class AppWindow(Gtk.ApplicationWindow):
     day_wallpaper_event_box = Gtk.Template.Child()
     night_wallpaper_event_box = Gtk.Template.Child()
     
-    def __init__(self, app, *args, **kwargs):
-        super().__init__(*args, title=_("Theme Switcher"), application=app)
-
-        self.set_wmclass("Theme Switcher", _("Theme Switcher"))
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
         
         self.current_theme = current_desktop.get_current_theme()
         self.cur_light_theme, self.cur_dark_theme = current_desktop.get_current_themes()

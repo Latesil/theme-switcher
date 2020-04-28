@@ -1,0 +1,5 @@
+data/com.github.Latesil.theme-switcher.gschema.xml
+themeswitcher/ui/new_window.ui
+themeswitcher/new_main_window.py
+themeswitcher/main.py
+
