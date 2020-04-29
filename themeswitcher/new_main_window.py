@@ -9,8 +9,13 @@ import datetime
 import time
 import subprocess
 
+#get current DE
 current_desktop = init_de()
+
+#get list of installed themes
 themes = sorted(current_desktop._get_valid_themes())
+
+#get list of terminal profiles
 terminal_profiles = current_desktop.get_terminal_profiles()
 
 @Gtk.Template(resource_path = constants["UI_PATH"] + 'ui/new_window.ui')
@@ -48,21 +53,29 @@ class AppWindow(Gtk.ApplicationWindow):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         
+        #retrieve current theme and dark\light themes from desktop
         self.current_theme = current_desktop.get_current_theme()
         self.cur_light_theme, self.cur_dark_theme = current_desktop.get_current_themes()
         
+        #set one callback for two buttonsf
         self._day_button.connect("clicked", self.wallpaper_button_clicked)
         self._night_button.connect("clicked", self.wallpaper_button_clicked)
         
+        #frames are visible if auto-switch is on
         self.night_time_main_frame.set_visible(current_desktop.get_value("auto-switch"))
         self.day_time_main_frame.set_visible(current_desktop.get_value("auto-switch"))
         
+        #retrieve wallpapers from settings if they exist
         self.current_day_wallpaper = current_desktop.get_value("path-to-day-wallpaper")
         self.current_night_wallpaper = current_desktop.get_value("path-to-night-wallpaper")
         
+        #set checkbox on true if there is a terminal boolean in settings
         self.terminal_checkbox.set_active(current_desktop.get_value("terminal"))
+        
+        #populate terminal profiles 
         self.populate_terminal_profiles()
         
+        #show current terminal profile as a default in combobox
         self.day_terminal_combo.set_active_id(current_desktop.get_value("active-day-profile-terminal"))
         self.night_terminal_combo.set_active_id(current_desktop.get_value("active-night-profile-terminal"))
         
@@ -70,6 +83,7 @@ class AppWindow(Gtk.ApplicationWindow):
         self.retrieve_profile(self.day_terminal_combo, "active-day-profile-terminal")
         self.retrieve_profile(self.night_terminal_combo, "active-night-profile-terminal")
         
+        #if there is some path in wallpapers set it to the box
         if self.current_day_wallpaper != "":
             self.set_wallpaper_to_box(self.day_wallpaper_event_box, self.current_day_wallpaper)
             
@@ -91,23 +105,38 @@ class AppWindow(Gtk.ApplicationWindow):
         #init dark box
         self.init_box(self._dark_combo_box)
         
+        #set values from settings when program is started
         self.set_values_from_settings()
-        self.on_combo_box_changed()
+        
+        #this is probably not a best solution but for now it check time on start according to time section
+        #and change what is needed (and only if auto is on)
+        is_auto = current_desktop.get_value("auto-switch")
+        if is_auto:
+            self.on_combo_box_changed()
 
+    #left switch in header bar. 
+    #triggers when checkbox is clicked
     @Gtk.Template.Callback()
     def on__left_switch_state_set(self, widget, state):
+        #set value to the settings
         current_desktop.set_value("auto-switch", state)
         
+        #set visibillity of time section, is switch is set to true
         if state:
             self.night_time_main_frame.set_visible(True)
             self.day_time_main_frame.set_visible(True)
+            
+            #set systemd timers. maybe it shouldn't stick with systemd but for now it is
             current_desktop.start_systemd_timers()
         else:
             self.night_time_main_frame.set_visible(False)
             self.day_time_main_frame.set_visible(False)
             current_desktop.stop_systemd_timers()
+            
+            #resize the main window to prevent empty space on the bottom
             self.resize_window()
             
+    #same as upper switch but it works for the terminal section
     @Gtk.Template.Callback()
     def on_terminal_checkbox_toggled(self, checkbox):
         if checkbox.get_active():
@@ -118,8 +147,15 @@ class AppWindow(Gtk.ApplicationWindow):
             self.day_terminal_main_frame.set_visible(False)
             self.night_terminal_main_frame.set_visible(False)
             current_desktop.set_value("terminal", False)
+            
+            #resize the main window to prevent empty space on the bottom
             self.resize_window()
+            
+    ###################################################################################
         
+    # 4 functions tracking changes in time section in night\day hours\minutes
+    # and triggers theme changes if needed calling self.on_combo_box_changed() function 
+    
     @Gtk.Template.Callback()
     def on__day_hour_adjustment_value_changed(self, scale):
         current_desktop.set_value("daytime-hour", scale.get_value())
@@ -140,6 +176,8 @@ class AppWindow(Gtk.ApplicationWindow):
         current_desktop.set_value("nighttime-hour", scale.get_value())
         self.on_combo_box_changed()
         
+    #####################################################################################
+        
     #callback for change theme now
     @Gtk.Template.Callback()
     def on__change_theme_button_clicked(self, button):
@@ -147,8 +185,10 @@ class AppWindow(Gtk.ApplicationWindow):
             current_desktop.execute_script('/usr/bin/theme-switcher-manual.py')
         except:
             pass
+            
+    #####################################################################################
 
-    #other callbacks in our popover menu
+    # reset functions for reset parts of values in the program or all parameters 
 
     @Gtk.Template.Callback()
     def on__reset_time_button_clicked(self, button):
@@ -189,7 +229,10 @@ class AppWindow(Gtk.ApplicationWindow):
         self.day_terminal_combo.set_active_id(None)
         self.night_terminal_combo.set_active_id(None)
         self.terminal_checkbox.set_active(False)
+        
+    #######################################################################################
 
+    # about dialog
     @Gtk.Template.Callback()
     def on__about_button_clicked(self, button):
         about = Gtk.AboutDialog()
@@ -206,7 +249,13 @@ class AppWindow(Gtk.ApplicationWindow):
         about.set_license_type(Gtk.License.GPL_3_0)
         about.run()
         about.destroy()
+    
+    #######################################################################################
         
+    # first it checks what widget triggered by user. It looks at the name of the widget
+    # and behave accordingly. If auto-switch is on and time is fit to change it try to set a new
+    # terminal profile. BTW it cannot do it instantly. Instead you should reopen any existing terminals.
+    
     @Gtk.Template.Callback()
     def on_terminal_combo_changed(self, combobox):
         if combobox.props.name == "night_terminal_combobox":
@@ -225,70 +274,149 @@ class AppWindow(Gtk.ApplicationWindow):
                     current_desktop.set_terminal_profile(current_desktop.get_value("active-day-profile-terminal"))
         
     ######################################################################
-                
+    
+    # list of helpers functions that can be triggered by callbacks
+    
+    # set model in comboboxes according to settings
+    # it can retrieve default value from settings or value that is set by user
+    
     def retrieve_theme(self, box, model, current_theme, default=False, theme=None):
+    
+        # get model from the box (we populate them in init function, after a populate theme list from the system)
         model = box.get_model()
         for row in model:
+        
+            #if we want set default value
             if default:
+                #if we want to set a default dark theme
                 if theme == "dark":
+                    
+                    #check all themes until we find default adwaita-dark theme, set it in the combobox and return
                     if row[0] == "Adwaita-dark":
                         box.set_active_iter(row.iter)
                         return
+                        
+                #if we want to set a default light theme
                 elif theme == "light":
+                
+                    #check all themes until we find default adwaita theme, set it in the combobox and return
                     if row[0] == "Adwaita":
                         box.set_active_iter(row.iter)
                         return
+                        
+            #we want to set non-default theme (save current theme to the combobox)
             else:
+                
+                #check all themes until we find current theme, set it to the combobox and return
+                # theme variable here is equal to None (default value), so we dont have to add it to the function calling
+                # if we need to set current theme.
                 if row[0] == current_theme:
                     box.set_active_iter(row.iter)
+                    
+    #-----------------------------------------------------------------------------------------------------------
+    
+    # init light or dark box (from init function)
+    def init_box(self, box):
+    
+        #connect it to the changed event
+        box.connect("changed", self.combo_box_changed)
+        renderer_text = Gtk.CellRendererText()
+        
+        #add model with text
+        box.pack_start(renderer_text, True)
+        box.add_attribute(renderer_text, "text", 0)
+    
+    # triggers when combobox receive changed event
                 
-    def combo_box_changed(self, combo):
+    def combo_box_changed(self, combo):        
+        #get name of triggered combobox
         name = combo.get_name()
+        
+        #get active item in triggered combobox 
         tree_iter = combo.get_active_iter()
+        
+        #get values from day and nighttime (for a better explanation of a concept of values
+        #please go to the on_combo_box_changed function down below)
+        values = self.get_values()
+        current_values = convert_to_values(current_time.hour, int(str(current_time.minute)[:-1]+'0'))
+        day_values = convert_to_values(values[0], values[1])
+        night_values = convert_to_values(values[2], values[3])
+        
+        #if this is not none
         if tree_iter is not None:
+            
             model = combo.get_model()
             combo.set_active_iter(tree_iter)
+            
+            #retrieve theme from the model
             theme = model[tree_iter][0]
 
+            #if we touch light box
             if name == 'light_box':
+                
+                #set values to the settings
                 current_desktop.set_value('light-theme', theme)
                 is_auto = current_desktop.get_value("auto-switch")
+                
+                #check if auto is on
                 if is_auto:
                     current_time = datetime.datetime.now()
-                    if (current_time.hour <= current_desktop.get_value("daytime")):
+                    if (current_time.hour <= day_values):
+                        #set selected theme in the combobox as a day theme
                         current_desktop.set_current_theme(theme)
 
+            #same as light before
             if name == 'dark_box':
                 current_desktop.set_value('dark-theme', theme)
                 is_auto = current_desktop.get_value("auto-switch")
                 if is_auto:
                     current_time = datetime.datetime.now()
-                    if (current_time.hour >= current_desktop.get_value("nighttime")):
+                    if (current_time.hour >= night_values):
                         current_desktop.set_current_theme(theme)
+                        
+    #-----------------------------------------------------------------------------------------
+    
+    # triggers when user click on wallpaper button. Behaviour depends on the widget name
     
     def wallpaper_button_clicked(self, button):
+    
+        #create gtk.dialog window
         dialog = Gtk.FileChooserDialog(_("Choose a file"), None, Gtk.FileChooserAction.OPEN, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
         Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
 
+        # ...with filters, for only pictures to show
         self.add_filters(dialog)
 
         response = dialog.run()
+        
+        #if user click ok
         if response == Gtk.ResponseType.OK:
+        
+            #get file path and create image with it
             wallpaper = dialog.get_filename()
             image = Gtk.Image()
             try:
+                #fixed size for now
                 pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(wallpaper, 114, 64, True)
                 image.set_from_pixbuf(pixbuf)
+                
             except Exception:
                 print('Error occured')
                 image.set_from_icon_name('dialog-error-symbolic', Gtk.IconSize.DIALOG)
             image.show()
+            
+            # checking name of the widget
             name = button.get_name()
             
             if name == "night_button":
+            
+                #set value in settings
                 current_desktop.set_value("path-to-night-wallpaper", wallpaper)
+                
+                #add image in our box
                 self.night_wallpaper_event_box.add(image)
                 is_auto = current_desktop.get_value("auto-switch")
+                #check if auto is on
                 if is_auto:
                     current_time = datetime.datetime.now()
                     if (current_time.hour >= current_desktop.get_value("nighttime")):
@@ -302,7 +430,10 @@ class AppWindow(Gtk.ApplicationWindow):
                     if (current_time.hour <= current_desktop.get_value("daytime")):
                         current_desktop.set_wallpapers(wallpaper)
         dialog.destroy()
-        
+    
+    #--------------------------------------------------------------------------------------
+    
+    #add filters, for pictures only       
     def add_filters(self, dialog):
         filter_text = Gtk.FileFilter()
         filter_text.set_name("Pictures")
@@ -310,6 +441,7 @@ class AppWindow(Gtk.ApplicationWindow):
         filter_text.add_mime_type("image/png")
         dialog.add_filter(filter_text)
         
+    #triggers when program starts. Get all values from settings and set it in the program
     def set_values_from_settings(self):
         self._day_minutes_spin_button.set_value(current_desktop.get_value("daytime-minutes"))
         self._night_hour_spin_button.set_value(current_desktop.get_value("nighttime-hour"))
@@ -319,14 +451,27 @@ class AppWindow(Gtk.ApplicationWindow):
         #state
         self._left_switch.set_state(current_desktop.get_value("auto-switch"))
         
+    #one function for setting abstract value from settings
     def set_value_from_settings(self, widget, key):
         widget.set_value(current_desktop.get_value(key))
         
+        
+    # triggers when program starts or value in time section is changed
     def on_combo_box_changed(self):
         current_time = datetime.datetime.now()
+        
+        #get time values from settings
+        #this is a list of time values [day_hours, day_minutes, night_hours, nught_minutes])
         values = self.get_values()
         
         #find better solution
+        # convert hours to internal values (function convert to values in the helpers file)
+        # values is an amount of minutes rounded by 10, for example if current time if 00:20 then
+        # current values equals to 20. If Night time is set to 20:00 it is equals to 1200 values (because 60 * 20 = 1200)
+        # 570 values is equal 09:30 because 6*9 = 540, and + 30 minutes = 570.
+        # it is obvious that it would be better if someone rewrite that in a better way
+        #TODO
+        #FIXME
         current_values = convert_to_values(current_time.hour, int(str(current_time.minute)[:-1]+'0'))
         
         day_values = convert_to_values(values[0], values[1])
@@ -339,6 +484,7 @@ class AppWindow(Gtk.ApplicationWindow):
             else:
                 current_desktop.set_current_theme(self.cur_light_theme)
     
+    #get time values from settings
     def get_values(self):
         day_hour_values = current_desktop.get_value("daytime-hour")
         day_minutes_values = current_desktop.get_value("daytime-minutes")
@@ -360,19 +506,15 @@ class AppWindow(Gtk.ApplicationWindow):
             if row[0] == current_desktop.get_value(key):
                 box.set_active_iter(row.iter)
                 
+    #triggers in init
     def set_wallpaper_to_box(self, box, wallpaper):
         image = Gtk.Image()
         pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(wallpaper, 114, 64, True)
         image.set_from_pixbuf(pixbuf)
         box.add(image)
         image.show()
-        
-    def init_box(self, box):
-        box.connect("changed", self.combo_box_changed)
-        renderer_text = Gtk.CellRendererText()
-        box.pack_start(renderer_text, True)
-        box.add_attribute(renderer_text, "text", 0)
 
+    #triggers in reset
     def reset_box(self, box):
         if len(box) > 0:
             element = box.get_children()[0]

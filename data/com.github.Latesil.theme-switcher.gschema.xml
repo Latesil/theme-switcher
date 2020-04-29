@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
   <schema id="com.github.Latesil.theme-switcher" path="/com/github/Latesil/theme-switcher/">
-    <key type="i" name="daytime">
-      <default>6</default>
-      <summary>Daytime for theme switch</summary>
-      <description>When theme should be switched.</description>
-    </key>
     <key type="i" name="daytime-minutes">
       <default>0</default>
       <summary>Daytime minutes for theme switch</summary>
@@ -45,11 +40,6 @@
       <default>""</default>
       <summary>Path to night wallpaper</summary>
       <description>Path to the wallpapers that should be in a nighttime.</description>
-    </key>
-    <key type="i" name="nighttime">
-      <default>20</default>
-      <summary>Nighttime for theme switch</summary>
-      <description>When theme should be switched on night.</description>
     </key>
     <key type="i" name="nighttime-hour">
       <default>20</default>
