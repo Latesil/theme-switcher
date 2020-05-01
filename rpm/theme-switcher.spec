@@ -1,7 +1,7 @@
 %global uuid    com.github.Latesil.%{name}
 
 Name:           theme-switcher
-Version:        1.9.6
+Version:        1.9.7
 Release:        1%{?dist}
 Summary:        Switch dark/light GTK theme automatically during day/night
 
@@ -78,6 +78,10 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
 
 %changelog
+
+* Sat May 02 2020 Latesil <vihilantes@gmail.com> - 1.9.7-1
+- Update to 1.9.7
+
 * Mon Apr 27 2020 Latesil <vihilantes@gmail.com> - 1.9.6-1
 - Update to 1.9.6
 
