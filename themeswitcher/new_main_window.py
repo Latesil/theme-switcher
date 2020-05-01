@@ -338,7 +338,7 @@ class AppWindow(Gtk.ApplicationWindow):
         #get values from day and nighttime (for a better explanation of a concept of values
         #please go to the on_combo_box_changed function down below)
         values = self.get_values()
-        current_values = convert_to_values(current_time.hour, int(str(current_time.minute)[:-1]+'0'))
+        current_values = convert_to_values(current_time.hour, current_time.minute)
         day_values = convert_to_values(values[0], values[1])
         night_values = convert_to_values(values[2], values[3])
         
@@ -469,10 +469,8 @@ class AppWindow(Gtk.ApplicationWindow):
         # values is an amount of minutes rounded by 10, for example if current time if 00:20 then
         # current values equals to 20. If Night time is set to 20:00 it is equals to 1200 values (because 60 * 20 = 1200)
         # 570 values is equal 09:30 because 6*9 = 540, and + 30 minutes = 570.
-        # it is obvious that it would be better if someone rewrite that in a better way
-        #TODO
-        #FIXME
-        current_values = convert_to_values(current_time.hour, int(str(current_time.minute)[:-1]+'0'))
+        current_values = convert_to_values(current_time.hour, current_time.minute)
+        print('current_values', current_values)
         
         day_values = convert_to_values(values[0], values[1])
         night_values = convert_to_values(values[2], values[3])

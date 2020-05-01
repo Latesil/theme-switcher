@@ -17,6 +17,7 @@ def convert_to_values(i, j):
     # is an amount of minutes divided by 10 (for example 10, 20, 30, 40 and not 34, 56, 22)
     # (33 became 30, 56 became 50 etc)
     # returns amount of abstract values (equals to minutes divided by 10)
+    j = j - j % 10
     first_value = i * 60
     return first_value + j
     
