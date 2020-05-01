@@ -470,7 +470,6 @@ class AppWindow(Gtk.ApplicationWindow):
         # current values equals to 20. If Night time is set to 20:00 it is equals to 1200 values (because 60 * 20 = 1200)
         # 570 values is equal 09:30 because 6*9 = 540, and + 30 minutes = 570.
         current_values = convert_to_values(current_time.hour, current_time.minute)
-        print('current_values', current_values)
         
         day_values = convert_to_values(values[0], values[1])
         night_values = convert_to_values(values[2], values[3])
