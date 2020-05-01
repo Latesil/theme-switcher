@@ -6,3 +6,4 @@ Icon=com.github.Latesil.theme-switcher
 Terminal=false
 Type=Application
 Categories=Utility
+StartupWMClass=theme-switcher-gui
