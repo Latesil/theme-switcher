@@ -198,7 +198,7 @@ msgstr "Ночь"
 
 #: ../themeswitcher/new_main_window.py:239 ../themeswitcher/main.py:40
 msgid "Theme Switcher"
-msgstr "Переключатель Тем"
+msgstr "Переключатель тем"
 
 #: ../themeswitcher/new_main_window.py:245
 msgid ""
