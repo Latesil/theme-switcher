@@ -115,7 +115,7 @@ class AppWindow(Gtk.ApplicationWindow):
             self.on_combo_box_changed()
 
     #left switch in header bar. 
-    #triggers when checkbox is clicked
+    #triggers when switch is clicked
     @Gtk.Template.Callback()
     def on__left_switch_state_set(self, widget, state):
         #set value to the settings
@@ -286,7 +286,7 @@ class AppWindow(Gtk.ApplicationWindow):
         model = box.get_model()
         for row in model:
         
-            #if we want set default value
+            #if we want to set default value
             if default:
                 #if we want to set a default dark theme
                 if theme == "dark":
@@ -337,7 +337,9 @@ class AppWindow(Gtk.ApplicationWindow):
         
         #get values from day and nighttime (for a better explanation of a concept of values
         #please go to the on_combo_box_changed function down below)
+        
         values = self.get_values()
+        current_time = datetime.datetime.now()
         current_values = convert_to_values(current_time.hour, current_time.minute)
         day_values = convert_to_values(values[0], values[1])
         night_values = convert_to_values(values[2], values[3])
@@ -360,8 +362,7 @@ class AppWindow(Gtk.ApplicationWindow):
                 
                 #check if auto is on
                 if is_auto:
-                    current_time = datetime.datetime.now()
-                    if (current_time.hour <= day_values):
+                    if (current_values <= day_values):
                         #set selected theme in the combobox as a day theme
                         current_desktop.set_current_theme(theme)
 
@@ -370,8 +371,7 @@ class AppWindow(Gtk.ApplicationWindow):
                 current_desktop.set_value('dark-theme', theme)
                 is_auto = current_desktop.get_value("auto-switch")
                 if is_auto:
-                    current_time = datetime.datetime.now()
-                    if (current_time.hour >= night_values):
+                    if (current_values >= night_values):
                         current_desktop.set_current_theme(theme)
                         
     #-----------------------------------------------------------------------------------------
@@ -408,6 +408,12 @@ class AppWindow(Gtk.ApplicationWindow):
             # checking name of the widget
             name = button.get_name()
             
+            values = self.get_values()
+            current_time = datetime.datetime.now()
+            current_values = convert_to_values(current_time.hour, current_time.minute)
+            day_values = convert_to_values(values[0], values[1])
+            night_values = convert_to_values(values[2], values[3])
+            
             if name == "night_button":
             
                 #set value in settings
@@ -419,15 +425,14 @@ class AppWindow(Gtk.ApplicationWindow):
                 #check if auto is on
                 if is_auto:
                     current_time = datetime.datetime.now()
-                    if (current_time.hour >= current_desktop.get_value("nighttime")):
+                    if (current_values >= night_values):
                         current_desktop.set_wallpapers(wallpaper)
             elif name == "day_button":
                 current_desktop.set_value("path-to-day-wallpaper", wallpaper)
                 self.day_wallpaper_event_box.add(image)
                 is_auto = current_desktop.get_value("auto-switch")
                 if is_auto:
-                    current_time = datetime.datetime.now()
-                    if (current_time.hour <= current_desktop.get_value("daytime")):
+                    if (current_values <= day_values):
                         current_desktop.set_wallpapers(wallpaper)
         dialog.destroy()
     

@@ -39,8 +39,8 @@ night_terminal_profile = current_desktop.get_value("active-night-profile-termina
 
 values = get_values()
 
-#find better solution
-current_values = convert_to_values(current_time.hour, int(str(current_time.minute)[:-1]+'0'))
+
+current_values = convert_to_values(current_time.hour, current_time.minute)
 
 day_values = convert_to_values(values[0], values[1])
 night_values = convert_to_values(values[2], values[3])
