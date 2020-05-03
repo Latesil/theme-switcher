@@ -17,8 +17,9 @@ import datetime
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gio
-from Themeswitcher.helper_functions import init_de, convert_to_values
+from Themeswitcher.helper_functions import init_de, Helper
 
+helper = Helper()
 current_desktop = init_de()
     
 def get_values():
@@ -34,16 +35,15 @@ light_theme, dark_theme = current_desktop.get_current_themes()
 current_time = datetime.datetime.now()
 
 is_terminal = current_desktop.get_value("terminal")
+
 day_terminal_profile = current_desktop.get_value("active-day-profile-terminal")
 night_terminal_profile = current_desktop.get_value("active-night-profile-terminal")
 
 values = get_values()
+current_values = helper.convert_to_values(current_time.hour, current_time.minute)
 
-
-current_values = convert_to_values(current_time.hour, current_time.minute)
-
-day_values = convert_to_values(values[0], values[1])
-night_values = convert_to_values(values[2], values[3])
+day_values = helper.convert_to_values(values[0], values[1])
+night_values = helper.convert_to_values(values[2], values[3])
 
 night_wallpapers = current_desktop.get_value("path-to-night-wallpaper")
 day_wallpapers = current_desktop.get_value("path-to-day-wallpaper")
@@ -52,13 +52,13 @@ if ((current_values <= day_values or current_values >= night_values)):
     current_desktop.set_current_theme(dark_theme)
     if bool(night_wallpapers):
         current_desktop.set_wallpapers(night_wallpapers)
-    if is_terminal is not None:
+    if is_terminal:
         current_desktop.set_terminal_profile(night_terminal_profile)
 else:
     current_desktop.set_current_theme(light_theme)
     if bool(day_wallpapers):
         current_desktop.set_wallpapers(day_wallpapers)
-    if is_terminal is not None:
+    if is_terminal:
         current_desktop.set_terminal_profile(day_terminal_profile)
         
     

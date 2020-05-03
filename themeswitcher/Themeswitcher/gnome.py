@@ -37,6 +37,11 @@ class Gnome(Desktop):
         wallpaper_settings = Gio.Settings.new(constants["WALLPAPER_KEY"])
         wallpaper_settings.set_string("picture-uri", wallpaper)
         
+    def get_wallpapers(self):
+        wallpaper_settings = Gio.Settings.new(constants["WALLPAPER_KEY"])
+        wallpapers = wallpaper_settings.get_string("picture-uri")
+        return wallpapers
+        
     def start_systemd_timers(self):
         GLib.spawn_async(['/usr/bin/systemctl','--user','start','theme-switcher-auto.timer'])
         GLib.spawn_async(['/usr/bin/systemctl','--user','enable','theme-switcher-auto.timer'])
@@ -66,7 +71,7 @@ class Gnome(Desktop):
         return values
         
     def get_terminal_profiles(self):
-        terminal_settings = Gio.Settings.new('org.gnome.Terminal.ProfilesList')
+        terminal_settings = Gio.Settings.new(constants["PROFILES_KEY"])
         return terminal_settings.get_value('list').unpack()
         
     def set_terminal_profile(self, profile):

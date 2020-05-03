@@ -34,12 +34,12 @@ if theme == light_theme:
     current_desktop.set_current_theme(dark_theme)
     if bool(night_wallpapers):
         current_desktop.set_wallpapers(night_wallpapers)
-    if is_terminal is not None:
+    if is_terminal:
         current_desktop.set_terminal_profile(night_terminal_profile)
 else:
     current_desktop.set_current_theme(light_theme)
     if bool(day_wallpapers):
         current_desktop.set_wallpapers(day_wallpapers)
-    if is_terminal is not None:
+    if is_terminal:
         current_desktop.set_terminal_profile(day_terminal_profile)
         

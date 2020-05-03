@@ -1,6 +1,6 @@
 project(
 	'theme-switcher',
-	version: '1.9.8',
+	version: '1.9.9',
 	meson_version: '>= 0.50.0',
 )
 

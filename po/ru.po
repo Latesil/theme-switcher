@@ -196,20 +196,20 @@ msgstr "Ночной профиль"
 msgid "Night"
 msgstr "Ночь"
 
-#: ../themeswitcher/new_main_window.py:239 ../themeswitcher/main.py:40
+#: ../themeswitcher/new_main_window.py:241 ../themeswitcher/main.py:40
 msgid "Theme Switcher"
 msgstr "Переключатель тем"
 
-#: ../themeswitcher/new_main_window.py:245
+#: ../themeswitcher/new_main_window.py:247
 msgid ""
 "A global automated switcher for dark/light GTK theme during day/night and "
 "more."
 msgstr "Глобальный автоматический переключатель тем в течении дня и ночи."
 
-#: ../themeswitcher/new_main_window.py:247
+#: ../themeswitcher/new_main_window.py:249
 msgid "Website"
 msgstr "Сайт"
 
-#: ../themeswitcher/new_main_window.py:384
+#: ../themeswitcher/new_main_window.py:363
 msgid "Choose a file"
 msgstr "Выберите файл"
