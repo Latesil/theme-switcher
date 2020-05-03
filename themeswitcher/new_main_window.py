@@ -122,11 +122,6 @@ class AppWindow(Gtk.ApplicationWindow):
     def on__left_switch_state_set(self, widget, state):
         #set value to the settings
         current_desktop.set_value("auto-switch", state)
-        is_terminal = current_desktop.get_value("terminal")
-        
-        #check if wallpapers exists (they may be changed since init so we get it one more time)
-        self.current_day_wallpaper = current_desktop.get_value("path-to-day-wallpaper")
-        self.current_night_wallpaper = current_desktop.get_value("path-to-night-wallpaper")
         
         #set visibillity of time section, is switch is set to true
         if state:
@@ -138,17 +133,9 @@ class AppWindow(Gtk.ApplicationWindow):
             
             #check if niw is the right time for change:
             if self.time_for_night():
-                current_desktop.set_current_theme(self.cur_dark_theme)
-                if is_terminal:
-                    current_desktop.set_terminal_profile(current_desktop.get_value("active-night-profile-terminal"))
-                if self.current_day_wallpaper != "":
-                    current_desktop.set_wallpapers(current_desktop.get_value("path-to-night-wallpaper"))
+                self.trigger_all("night")
             else:
-                current_desktop.set_current_theme(self.cur_light_theme)
-                if is_terminal:
-                    current_desktop.set_terminal_profile(current_desktop.get_value("active-day-profile-terminal"))
-                if self.current_day_wallpaper != "":
-                    current_desktop.set_wallpapers(current_desktop.get_value("path-to-day-wallpaper"))
+                self.trigger_all("day")
         else:
             self.night_time_main_frame.set_visible(False)
             self.day_time_main_frame.set_visible(False)
@@ -355,7 +342,6 @@ class AppWindow(Gtk.ApplicationWindow):
 
             #if we touch light box
             if combo.props.name == 'light_box':
-                
                 #set values to the settings
                 current_desktop.set_value('light-theme', theme)
                 is_auto = current_desktop.get_value("auto-switch")
@@ -456,9 +442,9 @@ class AppWindow(Gtk.ApplicationWindow):
         is_auto = current_desktop.get_value("auto-switch")
         if is_auto:
             if self.time_for_night():
-                current_desktop.set_current_theme(self.cur_dark_theme)
+                self.trigger_all("night")
             else:
-                current_desktop.set_current_theme(self.cur_light_theme)
+                self.trigger_all("day")
     
     #get time values from settings
     def get_time(self):
@@ -478,6 +464,27 @@ class AppWindow(Gtk.ApplicationWindow):
         for row in profile:
             if row[0] == current_desktop.get_value(key):
                 box.set_active_iter(row.iter)
+                
+    #change everything according to day\night time
+    def trigger_all(self, time):
+        is_terminal = current_desktop.get_value("terminal")
+        
+        #check if wallpapers exists (they may be changed since init so we get it one more time)
+        self.current_day_wallpaper = current_desktop.get_value("path-to-day-wallpaper")
+        self.current_night_wallpaper = current_desktop.get_value("path-to-night-wallpaper")
+        
+        if time == "night":
+            current_desktop.set_current_theme(self.cur_dark_theme)
+            if is_terminal:
+                current_desktop.set_terminal_profile(current_desktop.get_value("active-night-profile-terminal"))
+            if self.current_day_wallpaper != "":
+                current_desktop.set_wallpapers(current_desktop.get_value("path-to-night-wallpaper"))
+        else:
+            current_desktop.set_current_theme(self.cur_light_theme)
+            if is_terminal:
+                current_desktop.set_terminal_profile(current_desktop.get_value("active-day-profile-terminal"))
+            if self.current_day_wallpaper != "":
+                current_desktop.set_wallpapers(current_desktop.get_value("path-to-day-wallpaper"))
     
     #retrieve current values and
     #returns True if current value is fit for a daytime
