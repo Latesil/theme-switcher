@@ -78,6 +78,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
 
 %changelog
+* Sun May 03 2020 Latesil <vihilantes@gmail.com> - 1.9.9-1
+- Update to 1.9.9
+
 * Sat May 02 2020 Latesil <vihilantes@gmail.com> - 1.9.8-1
 - Update to 1.9.8
 
