@@ -122,6 +122,11 @@ class AppWindow(Gtk.ApplicationWindow):
     def on__left_switch_state_set(self, widget, state):
         #set value to the settings
         current_desktop.set_value("auto-switch", state)
+        is_terminal = current_desktop.get_value("terminal")
+        
+        #check if wallpapers exists (they may be changed since init so we get it one more time)
+        self.current_day_wallpaper = current_desktop.get_value("path-to-day-wallpaper")
+        self.current_night_wallpaper = current_desktop.get_value("path-to-night-wallpaper")
         
         #set visibillity of time section, is switch is set to true
         if state:
@@ -130,6 +135,20 @@ class AppWindow(Gtk.ApplicationWindow):
             
             #set systemd timers. maybe it shouldn't stick with systemd but for now it is
             current_desktop.start_systemd_timers()
+            
+            #check if niw is the right time for change:
+            if self.time_for_night():
+                current_desktop.set_current_theme(self.cur_dark_theme)
+                if is_terminal:
+                    current_desktop.set_terminal_profile(current_desktop.get_value("active-night-profile-terminal"))
+                if self.current_day_wallpaper != "":
+                    current_desktop.set_wallpapers(current_desktop.get_value("path-to-night-wallpaper"))
+            else:
+                current_desktop.set_current_theme(self.cur_light_theme)
+                if is_terminal:
+                    current_desktop.set_terminal_profile(current_desktop.get_value("active-day-profile-terminal"))
+                if self.current_day_wallpaper != "":
+                    current_desktop.set_wallpapers(current_desktop.get_value("path-to-day-wallpaper"))
         else:
             self.night_time_main_frame.set_visible(False)
             self.day_time_main_frame.set_visible(False)
