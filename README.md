@@ -26,7 +26,7 @@ Fedora [COPR](https://copr.fedorainfracloud.org/coprs/atim/theme-switcher/): `su
 ### Run GUI version:
 
 ```sh
-theme-switcher-gui.py
+theme-switcher-gui
 ```
 
 ### Run CLI version
