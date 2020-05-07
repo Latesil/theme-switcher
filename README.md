@@ -8,8 +8,9 @@ Theme-switcher automatically can switch your:
 - GNOME Terminal profiles
 - Wallpapers
 - More will come...
-
-<div style="text-align: center;"><IMG SRC="theme-switcher-screenshot-1.png" ALT="image"></div>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Latesil/theme-switcher/master/theme-switcher-screenshot-1.png" style="max-width:100%;">
+</p>
 
 ### Prerequisites for building from source
 
