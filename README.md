@@ -21,7 +21,12 @@ sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 
 ### Install
 
-Fedora [COPR](https://copr.fedorainfracloud.org/coprs/atim/theme-switcher/): `sudo dnf copr enable atim/theme-switcher -y && sudo dnf install theme-switcher -y`
+Fedora [COPR](https://copr.fedorainfracloud.org/coprs/atim/theme-switcher/):
+
+```
+sudo dnf copr enable atim/theme-switcher -y
+sudo dnf install theme-switcher -y
+```
 
 ### Run GUI version:
 
