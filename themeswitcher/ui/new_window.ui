@@ -184,37 +184,6 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="show_close_button">True</property>
-        <child>
-          <object class="GtkBox" id="auto_box">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="spacing">5</property>
-            <child>
-              <object class="GtkLabel" id="auto_label">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Auto</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkSwitch" id="_left_switch">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <signal name="state-set" handler="on__left_switch_state_set" swapped="no"/>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-          </object>
-        </child>
         <child type="title">
           <object class="GtkStackSwitcher" id="main_stack_switcher">
             <property name="name">night_terminal_combobox</property>
@@ -245,191 +214,47 @@
       </object>
     </child>
     <child>
-      <object class="GtkStack" id="main_stack">
+      <object class="GtkBox">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="transition_type">slide-left-right</property>
-        <property name="interpolate_size">True</property>
+        <property name="orientation">vertical</property>
         <child>
-          <object class="GtkBox" id="day_box">
+          <object class="GtkFrame">
+            <property name="width_request">400</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="orientation">vertical</property>
-            <property name="spacing">2</property>
+            <property name="margin_left">5</property>
+            <property name="margin_right">5</property>
+            <property name="margin_top">5</property>
+            <property name="label_xalign">0</property>
             <child>
-              <object class="GtkFrame" id="day_wallpaper_main_frame">
+              <object class="GtkListBox">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="margin_left">5</property>
-                <property name="margin_right">5</property>
-                <property name="margin_top">5</property>
-                <property name="margin_bottom">5</property>
-                <property name="label_xalign">0</property>
-                <property name="shadow_type">in</property>
                 <child>
-                  <object class="GtkBox" id="day_upper_box">
+                  <object class="GtkListBoxRow">
+                    <property name="width_request">-1</property>
+                    <property name="height_request">-1</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_left">5</property>
-                    <property name="margin_right">5</property>
-                    <property name="margin_top">5</property>
-                    <property name="margin_bottom">5</property>
-                    <property name="spacing">2</property>
-                    <property name="homogeneous">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="selectable">False</property>
                     <child>
-                      <object class="GtkEventBox" id="day_wallpaper_event_box">
+                      <object class="GtkBox" id="auto_box">
+                        <property name="width_request">-1</property>
+                        <property name="height_request">-1</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <signal name="button-press-event" handler="on_day_image_clicked" swapped="no"/>
-                        <child>
-                          <placeholder/>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkButton" id="_day_button">
-                        <property name="label" translatable="yes">Set day wallpapers</property>
-                        <property name="name">day_button</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">True</property>
                         <property name="valign">center</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                  </object>
-                </child>
-                <child type="label">
-                  <object class="GtkLabel" id="day_wallpaper_frame">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Wallpapers</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkFrame" id="day_theme_main_frame">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="margin_left">5</property>
-                <property name="margin_right">5</property>
-                <property name="margin_top">5</property>
-                <property name="margin_bottom">5</property>
-                <property name="label_xalign">0</property>
-                <property name="shadow_type">in</property>
-                <child>
-                  <object class="GtkBox" id="day_middle_box">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_left">5</property>
-                    <property name="margin_right">5</property>
-                    <property name="margin_top">5</property>
-                    <property name="margin_bottom">5</property>
-                    <property name="spacing">2</property>
-                    <property name="homogeneous">True</property>
-                    <child>
-                      <object class="GtkLabel" id="day_theme_label">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Day theme</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkComboBox" id="_light_combo_box">
-                        <property name="name">light_box</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="halign">center</property>
-                        <property name="model">_light_tree_model</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                  </object>
-                </child>
-                <child type="label">
-                  <object class="GtkLabel" id="day_theme_frame">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Theme</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkFrame" id="day_time_main_frame">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="margin_left">5</property>
-                <property name="margin_right">5</property>
-                <property name="margin_top">5</property>
-                <property name="margin_bottom">5</property>
-                <property name="label_xalign">0</property>
-                <property name="shadow_type">in</property>
-                <child>
-                  <object class="GtkBox" id="day_bottom_box">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_left">5</property>
-                    <property name="margin_right">5</property>
-                    <property name="margin_top">5</property>
-                    <property name="margin_bottom">5</property>
-                    <property name="spacing">5</property>
-                    <property name="homogeneous">True</property>
-                    <child>
-                      <object class="GtkLabel" id="daytime_label">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Daytime</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="margin_left">5</property>
+                        <property name="margin_right">5</property>
+                        <property name="margin_top">5</property>
+                        <property name="margin_bottom">5</property>
+                        <property name="spacing">5</property>
                         <child>
-                          <object class="GtkSpinButton" id="_day_hour_spin_button">
+                          <object class="GtkLabel" id="auto_label">
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="text" translatable="yes">0</property>
-                            <property name="input_purpose">digits</property>
-                            <property name="orientation">vertical</property>
-                            <property name="adjustment">_day_hour_adjustment</property>
-                            <property name="snap_to_ticks">True</property>
-                            <property name="numeric">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Auto</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -438,315 +263,75 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel">
+                          <object class="GtkSwitch" id="_left_switch">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label">:</property>
+                            <property name="can_focus">True</property>
+                            <signal name="state-set" handler="on__left_switch_state_set" swapped="no"/>
                           </object>
                           <packing>
                             <property name="expand">False</property>
                             <property name="fill">True</property>
+                            <property name="pack_type">end</property>
                             <property name="position">1</property>
                           </packing>
                         </child>
-                        <child>
-                          <object class="GtkSpinButton" id="_day_minutes_spin_button">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="text" translatable="yes">0</property>
-                            <property name="input_purpose">digits</property>
-                            <property name="orientation">vertical</property>
-                            <property name="adjustment">_day_minutes_adjustment</property>
-                            <property name="snap_to_ticks">True</property>
-                            <property name="numeric">True</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">2</property>
-                          </packing>
-                        </child>
                       </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">False</property>
-                        <property name="position">1</property>
-                      </packing>
                     </child>
                   </object>
                 </child>
-                <child type="label">
-                  <object class="GtkLabel" id="day_time_frame">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Time</property>
-                  </object>
-                </child>
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">2</property>
-              </packing>
             </child>
-            <child>
-              <object class="GtkFrame" id="day_terminal_main_frame">
+            <child type="label">
+              <object class="GtkLabel">
                 <property name="can_focus">False</property>
-                <property name="margin_left">5</property>
-                <property name="margin_right">5</property>
-                <property name="margin_top">5</property>
-                <property name="margin_bottom">5</property>
-                <property name="label_xalign">0</property>
-                <property name="shadow_type">in</property>
-                <child>
-                  <object class="GtkBox" id="day_terminal_box">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_left">5</property>
-                    <property name="margin_right">5</property>
-                    <property name="margin_top">5</property>
-                    <property name="margin_bottom">5</property>
-                    <property name="spacing">5</property>
-                    <property name="homogeneous">True</property>
-                    <child>
-                      <object class="GtkLabel" id="day_terminal_label">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Day profile</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <child>
-                          <object class="GtkComboBoxText" id="day_terminal_combo">
-                            <property name="name">day_terminal_combobox</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="active">0</property>
-                            <signal name="changed" handler="on_terminal_combo_changed" swapped="no"/>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">False</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                  </object>
-                </child>
-                <child type="label">
-                  <object class="GtkLabel" id="day_terminal_frame">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Terminal Profile</property>
-                  </object>
-                </child>
+                <property name="label" translatable="yes">__glade_unnamed_8</property>
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">3</property>
-              </packing>
             </child>
           </object>
           <packing>
-            <property name="name">day_page</property>
-            <property name="title" translatable="yes">Day</property>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
           </packing>
         </child>
         <child>
-          <object class="GtkBox" id="night_box">
+          <object class="GtkStack" id="main_stack">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="orientation">vertical</property>
-            <property name="spacing">2</property>
+            <property name="transition_type">over-left-right</property>
+            <property name="interpolate_size">True</property>
             <child>
-              <object class="GtkFrame" id="night_wallpapers_main_frame">
+              <object class="GtkBox" id="day_box">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="margin_left">5</property>
-                <property name="margin_right">5</property>
-                <property name="margin_top">5</property>
-                <property name="margin_bottom">5</property>
-                <property name="label_xalign">0</property>
-                <property name="shadow_type">in</property>
+                <property name="orientation">vertical</property>
+                <property name="spacing">2</property>
                 <child>
-                  <object class="GtkBox" id="night_wallpaper_box">
+                  <object class="GtkFrame" id="day_wallpaper_main_frame">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="margin_left">5</property>
-                    <property name="margin_right">5</property>
                     <property name="margin_top">5</property>
                     <property name="margin_bottom">5</property>
-                    <property name="spacing">2</property>
-                    <property name="homogeneous">True</property>
+                    <property name="label_xalign">0.019999999552965164</property>
+                    <property name="shadow_type">in</property>
                     <child>
-                      <object class="GtkEventBox" id="night_wallpaper_event_box">
+                      <object class="GtkBox" id="day_upper_box">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <signal name="button-press-event" handler="on_night_image_clicked" swapped="no"/>
+                        <property name="margin_left">5</property>
+                        <property name="margin_right">5</property>
+                        <property name="margin_top">5</property>
+                        <property name="margin_bottom">5</property>
+                        <property name="spacing">2</property>
+                        <property name="homogeneous">True</property>
                         <child>
-                          <placeholder/>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkButton" id="_night_button">
-                        <property name="label" translatable="yes">Set night wallpapers</property>
-                        <property name="name">night_button</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">True</property>
-                        <property name="valign">center</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                  </object>
-                </child>
-                <child type="label">
-                  <object class="GtkLabel" id="night_wallpapers_frame">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Wallpapers</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkFrame" id="night_theme_main_frame">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="margin_left">5</property>
-                <property name="margin_right">5</property>
-                <property name="margin_top">5</property>
-                <property name="margin_bottom">5</property>
-                <property name="label_xalign">0</property>
-                <property name="shadow_type">in</property>
-                <child>
-                  <object class="GtkBox" id="night_middle_box">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_left">5</property>
-                    <property name="margin_right">5</property>
-                    <property name="margin_top">5</property>
-                    <property name="margin_bottom">5</property>
-                    <property name="spacing">2</property>
-                    <property name="homogeneous">True</property>
-                    <child>
-                      <object class="GtkLabel" id="night_theme_box">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Night theme</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkComboBox" id="_dark_combo_box">
-                        <property name="name">dark_box</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="halign">center</property>
-                        <property name="model">_dark_tree_model</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                  </object>
-                </child>
-                <child type="label">
-                  <object class="GtkLabel" id="night_theme_frame">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Theme</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkFrame" id="night_time_main_frame">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="margin_left">5</property>
-                <property name="margin_right">5</property>
-                <property name="margin_top">5</property>
-                <property name="margin_bottom">5</property>
-                <property name="label_xalign">0</property>
-                <property name="shadow_type">in</property>
-                <child>
-                  <object class="GtkBox" id="night_time_box">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_left">5</property>
-                    <property name="margin_right">5</property>
-                    <property name="margin_top">5</property>
-                    <property name="margin_bottom">5</property>
-                    <property name="spacing">5</property>
-                    <property name="homogeneous">True</property>
-                    <child>
-                      <object class="GtkLabel" id="night_time_label">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Night time</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <child>
-                          <object class="GtkSpinButton" id="_night_hour_spin_button">
+                          <object class="GtkEventBox" id="day_wallpaper_event_box">
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="text" translatable="yes">0</property>
-                            <property name="input_purpose">digits</property>
-                            <property name="orientation">vertical</property>
-                            <property name="adjustment">_night_hour_adjustment</property>
-                            <property name="snap_to_ticks">True</property>
-                            <property name="numeric">True</property>
+                            <property name="can_focus">False</property>
+                            <signal name="button-press-event" handler="on_day_image_clicked" swapped="no"/>
+                            <child>
+                              <placeholder/>
+                            </child>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -755,10 +340,13 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel">
+                          <object class="GtkButton" id="_day_button">
+                            <property name="label" translatable="yes">Set day wallpapers</property>
+                            <property name="name">day_button</property>
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label">:</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">True</property>
+                            <property name="valign">center</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -766,87 +354,45 @@
                             <property name="position">1</property>
                           </packing>
                         </child>
-                        <child>
-                          <object class="GtkSpinButton" id="_night_minutes_spin_button">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="text" translatable="yes">0</property>
-                            <property name="input_purpose">digits</property>
-                            <property name="orientation">vertical</property>
-                            <property name="adjustment">_night_minutes_adjustment</property>
-                            <property name="snap_to_ticks">True</property>
-                            <property name="numeric">True</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">2</property>
-                          </packing>
-                        </child>
                       </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">False</property>
-                        <property name="position">1</property>
-                      </packing>
+                    </child>
+                    <child type="label">
+                      <object class="GtkLabel" id="day_wallpaper_frame">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Wallpapers</property>
+                      </object>
                     </child>
                   </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
                 </child>
-                <child type="label">
-                  <object class="GtkLabel" id="night_time_labe">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Time</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">2</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkFrame" id="night_terminal_main_frame">
-                <property name="can_focus">False</property>
-                <property name="margin_top">5</property>
-                <property name="margin_bottom">5</property>
-                <property name="label_xalign">0</property>
-                <property name="shadow_type">in</property>
                 <child>
-                  <object class="GtkBox" id="night_terminal_box">
+                  <object class="GtkFrame" id="day_theme_main_frame">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="margin_left">5</property>
-                    <property name="margin_right">5</property>
                     <property name="margin_top">5</property>
                     <property name="margin_bottom">5</property>
-                    <property name="spacing">5</property>
-                    <property name="homogeneous">True</property>
+                    <property name="label_xalign">0.019999999552965164</property>
+                    <property name="shadow_type">in</property>
                     <child>
-                      <object class="GtkLabel" id="night_terminal_label">
+                      <object class="GtkBox" id="day_middle_box">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Night profile</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="margin_left">5</property>
+                        <property name="margin_right">5</property>
+                        <property name="margin_top">5</property>
+                        <property name="margin_bottom">5</property>
+                        <property name="spacing">2</property>
+                        <property name="homogeneous">True</property>
                         <child>
-                          <object class="GtkComboBoxText" id="night_terminal_combo">
-                            <property name="name">night_terminal_combobox</property>
+                          <object class="GtkLabel" id="day_theme_label">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="active">0</property>
-                            <property name="active_id">0</property>
-                            <signal name="changed" handler="on_terminal_combo_changed" swapped="no"/>
+                            <property name="label" translatable="yes">Day theme</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -854,35 +400,538 @@
                             <property name="position">0</property>
                           </packing>
                         </child>
+                        <child>
+                          <object class="GtkComboBox" id="_light_combo_box">
+                            <property name="name">light_box</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="halign">center</property>
+                            <property name="model">_light_tree_model</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
                       </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">False</property>
-                        <property name="position">1</property>
-                      </packing>
+                    </child>
+                    <child type="label">
+                      <object class="GtkLabel" id="day_theme_frame">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Theme</property>
+                      </object>
                     </child>
                   </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
                 </child>
-                <child type="label">
-                  <object class="GtkLabel" id="night_terminal_frame">
+                <child>
+                  <object class="GtkFrame" id="day_time_main_frame">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Terminal Profile</property>
+                    <property name="margin_top">5</property>
+                    <property name="margin_bottom">5</property>
+                    <property name="label_xalign">0.019999999552965164</property>
+                    <property name="shadow_type">in</property>
+                    <child>
+                      <object class="GtkBox" id="day_bottom_box">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="margin_left">5</property>
+                        <property name="margin_right">5</property>
+                        <property name="margin_top">5</property>
+                        <property name="margin_bottom">5</property>
+                        <property name="spacing">5</property>
+                        <property name="homogeneous">True</property>
+                        <child>
+                          <object class="GtkLabel" id="daytime_label">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Daytime</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkSpinButton" id="_day_hour_spin_button">
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="text" translatable="yes">0</property>
+                                <property name="input_purpose">digits</property>
+                                <property name="orientation">vertical</property>
+                                <property name="adjustment">_day_hour_adjustment</property>
+                                <property name="snap_to_ticks">True</property>
+                                <property name="numeric">True</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label">:</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkSpinButton" id="_day_minutes_spin_button">
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="text" translatable="yes">0</property>
+                                <property name="input_purpose">digits</property>
+                                <property name="orientation">vertical</property>
+                                <property name="adjustment">_day_minutes_adjustment</property>
+                                <property name="snap_to_ticks">True</property>
+                                <property name="numeric">True</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">2</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">False</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                    </child>
+                    <child type="label">
+                      <object class="GtkLabel" id="day_time_frame">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Time</property>
+                      </object>
+                    </child>
                   </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkFrame" id="day_terminal_main_frame">
+                    <property name="can_focus">False</property>
+                    <property name="margin_top">5</property>
+                    <property name="margin_bottom">5</property>
+                    <property name="label_xalign">0.019999999552965164</property>
+                    <property name="shadow_type">in</property>
+                    <child>
+                      <object class="GtkBox" id="day_terminal_box">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="margin_left">5</property>
+                        <property name="margin_right">5</property>
+                        <property name="margin_top">5</property>
+                        <property name="margin_bottom">5</property>
+                        <property name="spacing">5</property>
+                        <property name="homogeneous">True</property>
+                        <child>
+                          <object class="GtkLabel" id="day_terminal_label">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Day profile</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkComboBoxText" id="day_terminal_combo">
+                                <property name="name">day_terminal_combobox</property>
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="active">0</property>
+                                <signal name="changed" handler="on_terminal_combo_changed" swapped="no"/>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">False</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                    </child>
+                    <child type="label">
+                      <object class="GtkLabel" id="day_terminal_frame">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Terminal Profile</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">3</property>
+                  </packing>
                 </child>
               </object>
               <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">3</property>
+                <property name="name">day_page</property>
+                <property name="title" translatable="yes">Day</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox" id="night_box">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="orientation">vertical</property>
+                <property name="spacing">2</property>
+                <child>
+                  <object class="GtkFrame" id="night_wallpapers_main_frame">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="margin_top">5</property>
+                    <property name="margin_bottom">5</property>
+                    <property name="label_xalign">0.019999999552965164</property>
+                    <property name="shadow_type">in</property>
+                    <child>
+                      <object class="GtkBox" id="night_wallpaper_box">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="margin_left">5</property>
+                        <property name="margin_right">5</property>
+                        <property name="margin_top">5</property>
+                        <property name="margin_bottom">5</property>
+                        <property name="spacing">2</property>
+                        <property name="homogeneous">True</property>
+                        <child>
+                          <object class="GtkEventBox" id="night_wallpaper_event_box">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <signal name="button-press-event" handler="on_night_image_clicked" swapped="no"/>
+                            <child>
+                              <placeholder/>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="_night_button">
+                            <property name="label" translatable="yes">Set night wallpapers</property>
+                            <property name="name">night_button</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">True</property>
+                            <property name="valign">center</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                    </child>
+                    <child type="label">
+                      <object class="GtkLabel" id="night_wallpapers_frame">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Wallpapers</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkFrame" id="night_theme_main_frame">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="margin_top">5</property>
+                    <property name="margin_bottom">5</property>
+                    <property name="label_xalign">0.019999999552965164</property>
+                    <property name="shadow_type">in</property>
+                    <child>
+                      <object class="GtkBox" id="night_middle_box">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="margin_left">5</property>
+                        <property name="margin_right">5</property>
+                        <property name="margin_top">5</property>
+                        <property name="margin_bottom">5</property>
+                        <property name="spacing">2</property>
+                        <property name="homogeneous">True</property>
+                        <child>
+                          <object class="GtkLabel" id="night_theme_box">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Night theme</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="_dark_combo_box">
+                            <property name="name">dark_box</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="halign">center</property>
+                            <property name="model">_dark_tree_model</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                    </child>
+                    <child type="label">
+                      <object class="GtkLabel" id="night_theme_frame">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Theme</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkFrame" id="night_time_main_frame">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="margin_top">5</property>
+                    <property name="margin_bottom">5</property>
+                    <property name="label_xalign">0.019999999552965164</property>
+                    <property name="shadow_type">in</property>
+                    <child>
+                      <object class="GtkBox" id="night_time_box">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="margin_left">5</property>
+                        <property name="margin_right">5</property>
+                        <property name="margin_top">5</property>
+                        <property name="margin_bottom">5</property>
+                        <property name="spacing">5</property>
+                        <property name="homogeneous">True</property>
+                        <child>
+                          <object class="GtkLabel" id="night_time_label">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Night time</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkSpinButton" id="_night_hour_spin_button">
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="text" translatable="yes">0</property>
+                                <property name="input_purpose">digits</property>
+                                <property name="orientation">vertical</property>
+                                <property name="adjustment">_night_hour_adjustment</property>
+                                <property name="snap_to_ticks">True</property>
+                                <property name="numeric">True</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label">:</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkSpinButton" id="_night_minutes_spin_button">
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="text" translatable="yes">0</property>
+                                <property name="input_purpose">digits</property>
+                                <property name="orientation">vertical</property>
+                                <property name="adjustment">_night_minutes_adjustment</property>
+                                <property name="snap_to_ticks">True</property>
+                                <property name="numeric">True</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">2</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">False</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                    </child>
+                    <child type="label">
+                      <object class="GtkLabel" id="night_time_labe">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Time</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkFrame" id="night_terminal_main_frame">
+                    <property name="can_focus">False</property>
+                    <property name="margin_top">5</property>
+                    <property name="margin_bottom">5</property>
+                    <property name="label_xalign">0.019999999552965164</property>
+                    <property name="shadow_type">in</property>
+                    <child>
+                      <object class="GtkBox" id="night_terminal_box">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="margin_left">5</property>
+                        <property name="margin_right">5</property>
+                        <property name="margin_top">5</property>
+                        <property name="margin_bottom">5</property>
+                        <property name="spacing">5</property>
+                        <property name="homogeneous">True</property>
+                        <child>
+                          <object class="GtkLabel" id="night_terminal_label">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Night profile</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkComboBoxText" id="night_terminal_combo">
+                                <property name="name">night_terminal_combobox</property>
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="active">0</property>
+                                <property name="active_id">0</property>
+                                <signal name="changed" handler="on_terminal_combo_changed" swapped="no"/>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">False</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                    </child>
+                    <child type="label">
+                      <object class="GtkLabel" id="night_terminal_frame">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Terminal Profile</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">3</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="name">night_page</property>
+                <property name="title" translatable="yes">Night</property>
+                <property name="position">1</property>
               </packing>
             </child>
           </object>
           <packing>
-            <property name="name">night_page</property>
-            <property name="title" translatable="yes">Night</property>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
             <property name="position">1</property>
           </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
         </child>
       </object>
     </child>

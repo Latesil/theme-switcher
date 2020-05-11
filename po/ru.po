@@ -131,68 +131,68 @@ msgstr "Профили терминала"
 msgid "About"
 msgstr "О программе"
 
-#: ../themeswitcher/ui/new_window.ui:196
+#: ../themeswitcher/ui/new_window.ui:257
 msgid "Auto"
 msgstr "Автопереключение"
 
-#: ../themeswitcher/ui/new_window.ui:296
+#: ../themeswitcher/ui/new_window.ui:344
 msgid "Set day wallpapers"
 msgstr "Установить дневные обои"
 
-#: ../themeswitcher/ui/new_window.ui:315 ../themeswitcher/ui/new_window.ui:632
+#: ../themeswitcher/ui/new_window.ui:363 ../themeswitcher/ui/new_window.ui:672
 msgid "Wallpapers"
 msgstr "Обои"
 
-#: ../themeswitcher/ui/new_window.ui:349
+#: ../themeswitcher/ui/new_window.ui:395
 msgid "Day theme"
 msgstr "Дневная тема"
 
-#: ../themeswitcher/ui/new_window.ui:377 ../themeswitcher/ui/new_window.ui:694
+#: ../themeswitcher/ui/new_window.ui:423 ../themeswitcher/ui/new_window.ui:732
 msgid "Theme"
 msgstr "Тема"
 
-#: ../themeswitcher/ui/new_window.ui:411
+#: ../themeswitcher/ui/new_window.ui:455
 msgid "Daytime"
 msgstr "Дневное время"
 
-#: ../themeswitcher/ui/new_window.ui:427 ../themeswitcher/ui/new_window.ui:456
-#: ../themeswitcher/ui/new_window.ui:744 ../themeswitcher/ui/new_window.ui:773
+#: ../themeswitcher/ui/new_window.ui:471 ../themeswitcher/ui/new_window.ui:500
+#: ../themeswitcher/ui/new_window.ui:780 ../themeswitcher/ui/new_window.ui:809
 msgid "0"
 msgstr "0"
 
-#: ../themeswitcher/ui/new_window.ui:482 ../themeswitcher/ui/new_window.ui:799
+#: ../themeswitcher/ui/new_window.ui:526 ../themeswitcher/ui/new_window.ui:835
 msgid "Time"
 msgstr "Время"
 
-#: ../themeswitcher/ui/new_window.ui:515
+#: ../themeswitcher/ui/new_window.ui:557
 msgid "Day profile"
 msgstr "Дневной профиль"
 
-#: ../themeswitcher/ui/new_window.ui:554 ../themeswitcher/ui/new_window.ui:870
+#: ../themeswitcher/ui/new_window.ui:596 ../themeswitcher/ui/new_window.ui:906
 msgid "Terminal Profile"
 msgstr "Профиль терминала"
 
-#: ../themeswitcher/ui/new_window.ui:567
+#: ../themeswitcher/ui/new_window.ui:609
 msgid "Day"
 msgstr "День"
 
-#: ../themeswitcher/ui/new_window.ui:613
+#: ../themeswitcher/ui/new_window.ui:653
 msgid "Set night wallpapers"
 msgstr "Установить ночные обои"
 
-#: ../themeswitcher/ui/new_window.ui:666
+#: ../themeswitcher/ui/new_window.ui:704
 msgid "Night theme"
 msgstr "Ночная тема"
 
-#: ../themeswitcher/ui/new_window.ui:728
+#: ../themeswitcher/ui/new_window.ui:764
 msgid "Night time"
 msgstr "Ночное время"
 
-#: ../themeswitcher/ui/new_window.ui:830
+#: ../themeswitcher/ui/new_window.ui:866
 msgid "Night profile"
 msgstr "Ночной профиль"
 
-#: ../themeswitcher/ui/new_window.ui:883
+#: ../themeswitcher/ui/new_window.ui:919
 msgid "Night"
 msgstr "Ночь"
 
