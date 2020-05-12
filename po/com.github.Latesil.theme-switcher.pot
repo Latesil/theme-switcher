@@ -129,27 +129,27 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: ../themeswitcher/ui/new_window.ui:257
+#: ../themeswitcher/ui/new_window.ui:863
 msgid "Auto"
 msgstr ""
 
-#: ../themeswitcher/ui/new_window.ui:344
+#: ../themeswitcher/ui/new_window.ui:293
 msgid "Set day wallpapers"
 msgstr ""
 
-#: ../themeswitcher/ui/new_window.ui:363 ../themeswitcher/ui/new_window.ui:672
+#: ../themeswitcher/ui/new_window.ui:313 ../themeswitcher/ui/new_window.ui:632
 msgid "Wallpapers"
 msgstr ""
 
-#: ../themeswitcher/ui/new_window.ui:395
+#: ../themeswitcher/ui/new_window.ui:219
 msgid "Day theme"
 msgstr ""
 
-#: ../themeswitcher/ui/new_window.ui:423 ../themeswitcher/ui/new_window.ui:732
+#: ../themeswitcher/ui/new_window.ui:247 ../themeswitcher/ui/new_window.ui:566
 msgid "Theme"
 msgstr ""
 
-#: ../themeswitcher/ui/new_window.ui:455
+#: ../themeswitcher/ui/new_window.ui:351
 msgid "Daytime"
 msgstr ""
 
@@ -158,39 +158,39 @@ msgstr ""
 msgid "0"
 msgstr ""
 
-#: ../themeswitcher/ui/new_window.ui:526 ../themeswitcher/ui/new_window.ui:835
+#: ../themeswitcher/ui/new_window.ui:422 ../themeswitcher/ui/new_window.ui:741
 msgid "Time"
 msgstr ""
 
-#: ../themeswitcher/ui/new_window.ui:557
+#: ../themeswitcher/ui/new_window.ui:455
 msgid "Day profile"
 msgstr ""
 
-#: ../themeswitcher/ui/new_window.ui:596 ../themeswitcher/ui/new_window.ui:906
+#: ../themeswitcher/ui/new_window.ui:494 ../themeswitcher/ui/new_window.ui:814
 msgid "Terminal Profile"
 msgstr ""
 
-#: ../themeswitcher/ui/new_window.ui:609
+#: ../themeswitcher/ui/new_window.ui:507
 msgid "Day"
 msgstr ""
 
-#: ../themeswitcher/ui/new_window.ui:653
+#: ../themeswitcher/ui/new_window.ui:612
 msgid "Set night wallpapers"
 msgstr ""
 
-#: ../themeswitcher/ui/new_window.ui:704
+#: ../themeswitcher/ui/new_window.ui:538
 msgid "Night theme"
 msgstr ""
 
-#: ../themeswitcher/ui/new_window.ui:764
+#: ../themeswitcher/ui/new_window.ui:670
 msgid "Night time"
 msgstr ""
 
-#: ../themeswitcher/ui/new_window.ui:866
+#: ../themeswitcher/ui/new_window.ui:774
 msgid "Night profile"
 msgstr ""
 
-#: ../themeswitcher/ui/new_window.ui:919
+#: ../themeswitcher/ui/new_window.ui:827
 msgid "Night"
 msgstr ""
 
