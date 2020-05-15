@@ -33,7 +33,7 @@ class Helper:
             box.remove(element)
         
     def resize_window(self, win):
-        win.resize(600, 100)
+        win.resize(400, 100)
 
     #triggers in init
     def set_wallpaper_to_box(self, box, wallpaper):

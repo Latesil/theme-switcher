@@ -51,6 +51,10 @@ class AppWindow(Gtk.ApplicationWindow):
     night_terminal_main_frame = Gtk.Template.Child()
     day_wallpaper_event_box = Gtk.Template.Child()
     night_wallpaper_event_box = Gtk.Template.Child()
+    day_wallpapers_frame = Gtk.Template.Child()
+    night_wallpapers_frame = Gtk.Template.Child()
+    no_day_wallpapers_label = Gtk.Template.Child()
+    no_night_wallpapers_label = Gtk.Template.Child()
     
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -87,9 +91,13 @@ class AppWindow(Gtk.ApplicationWindow):
         
         #if there is some path in wallpapers set it to the box
         if self.current_day_wallpaper != "":
+            self.day_wallpapers_frame.props.visible = True
+            self.no_day_wallpapers_label.props.visible = False
             helper.set_wallpaper_to_box(self.day_wallpaper_event_box, self.current_day_wallpaper)
             
         if self.current_night_wallpaper != "":
+            self.night_wallpapers_frame.props.visible = True
+            self.no_night_wallpapers_label.props.visible = False
             helper.set_wallpaper_to_box(self.night_wallpaper_event_box, self.current_night_wallpaper)
         
         #populate theme list
@@ -222,6 +230,8 @@ class AppWindow(Gtk.ApplicationWindow):
     def on__reset_wallpapers_clicked(self, button):
         current_desktop.reset_value("path-to-night-wallpaper")
         current_desktop.reset_value("path-to-day-wallpaper")
+        self.day_wallpapers_frame.props.visible = False
+        self.no_day_wallpapers_label.props.visible = True
         helper.reset_box(self.night_wallpaper_event_box)
         helper.reset_box(self.day_wallpaper_event_box)
         helper.resize_window(self)
@@ -395,6 +405,8 @@ class AppWindow(Gtk.ApplicationWindow):
                 
                 #add image in our box
                 self.night_wallpaper_event_box.add(image)
+                self.night_wallpapers_frame.props.visible = True
+                self.no_night_wallpapers_label.props.visible = False
                 is_auto = current_desktop.get_value("auto-switch")
                 #check if auto is on
                 if is_auto:
@@ -407,6 +419,8 @@ class AppWindow(Gtk.ApplicationWindow):
                     helper.remove_wallpaper_from_box(self.day_wallpaper_event_box)
                     
                 self.day_wallpaper_event_box.add(image)
+                self.day_wallpapers_frame.props.visible = True
+                self.no_day_wallpapers_label.props.visible = False
                 is_auto = current_desktop.get_value("auto-switch")
                 if is_auto:
                     if self.time_for_day():

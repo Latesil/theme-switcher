@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-15 18:53+0300\n"
+"POT-Creation-Date: 2020-05-15 20:15+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -137,77 +137,115 @@ msgstr ""
 msgid "__glade_unnamed_8"
 msgstr ""
 
-#: ../themeswitcher/ui/new_window.ui:341 ../themeswitcher/ui/new_window.ui:639
-msgid "Day"
+#: ../themeswitcher/ui/new_window.ui:349 ../themeswitcher/ui/new_window.ui:359
+msgid "Day theme"
 msgstr ""
 
-#: ../themeswitcher/ui/new_window.ui:370 ../themeswitcher/ui/new_window.ui:698
+#: ../themeswitcher/ui/new_window.ui:398 ../themeswitcher/ui/new_window.ui:896
 msgid "Theme"
 msgstr ""
 
-#: ../themeswitcher/ui/new_window.ui:418
-msgid "Set"
-msgstr ""
-
-#: ../themeswitcher/ui/new_window.ui:439 ../themeswitcher/ui/new_window.ui:764
-msgid "Wallpapers"
+#: ../themeswitcher/ui/new_window.ui:441
+msgid "Day wallpapers"
 msgstr ""
 
 #: ../themeswitcher/ui/new_window.ui:478
+msgid "__glade_unnamed_11"
+msgstr ""
+
+#: ../themeswitcher/ui/new_window.ui:494
+msgid "No day wallpapers set"
+msgstr ""
+
+#: ../themeswitcher/ui/new_window.ui:518 ../themeswitcher/ui/new_window.ui:1003
+msgid "Set"
+msgstr ""
+
+#: ../themeswitcher/ui/new_window.ui:548 ../themeswitcher/ui/new_window.ui:1033
+msgid "Wallpapers"
+msgstr ""
+
+#: ../themeswitcher/ui/new_window.ui:597
 msgid "Daytime"
 msgstr ""
 
-#: ../themeswitcher/ui/new_window.ui:494 ../themeswitcher/ui/new_window.ui:523
-#: ../themeswitcher/ui/new_window.ui:818 ../themeswitcher/ui/new_window.ui:847
+#: ../themeswitcher/ui/new_window.ui:607
+msgid "Day time"
+msgstr ""
+
+#: ../themeswitcher/ui/new_window.ui:623 ../themeswitcher/ui/new_window.ui:652
+#: ../themeswitcher/ui/new_window.ui:1107
+#: ../themeswitcher/ui/new_window.ui:1136
 msgid "0"
 msgstr ""
 
-#: ../themeswitcher/ui/new_window.ui:550 ../themeswitcher/ui/new_window.ui:873
+#: ../themeswitcher/ui/new_window.ui:689 ../themeswitcher/ui/new_window.ui:1173
 msgid "Time"
 msgstr ""
 
-#: ../themeswitcher/ui/new_window.ui:585
+#: ../themeswitcher/ui/new_window.ui:732
+msgid "Day terminal profile"
+msgstr ""
+
+#: ../themeswitcher/ui/new_window.ui:742
 msgid "Day profile"
 msgstr ""
 
-#: ../themeswitcher/ui/new_window.ui:626 ../themeswitcher/ui/new_window.ui:946
+#: ../themeswitcher/ui/new_window.ui:793 ../themeswitcher/ui/new_window.ui:1278
 msgid "Terminal Profile"
 msgstr ""
 
-#: ../themeswitcher/ui/new_window.ui:670
+#: ../themeswitcher/ui/new_window.ui:806
+msgid "Day"
+msgstr ""
+
+#: ../themeswitcher/ui/new_window.ui:847 ../themeswitcher/ui/new_window.ui:856
 msgid "Night theme"
 msgstr ""
 
-#: ../themeswitcher/ui/new_window.ui:744
-msgid "Set night wallpapers"
+#: ../themeswitcher/ui/new_window.ui:939
+msgid "Night wallpapers"
 msgstr ""
 
-#: ../themeswitcher/ui/new_window.ui:802
+#: ../themeswitcher/ui/new_window.ui:970
+msgid "__glade_unnamed_31"
+msgstr ""
+
+#: ../themeswitcher/ui/new_window.ui:986
+msgid "No night wallpapers set"
+msgstr ""
+
+#: ../themeswitcher/ui/new_window.ui:1082
+#: ../themeswitcher/ui/new_window.ui:1091
 msgid "Night time"
 msgstr ""
 
-#: ../themeswitcher/ui/new_window.ui:906
+#: ../themeswitcher/ui/new_window.ui:1217
+msgid "Night terminal profile"
+msgstr ""
+
+#: ../themeswitcher/ui/new_window.ui:1226
 msgid "Night profile"
 msgstr ""
 
-#: ../themeswitcher/ui/new_window.ui:959
+#: ../themeswitcher/ui/new_window.ui:1291
 msgid "Night"
 msgstr ""
 
-#: ../themeswitcher/new_main_window.py:247 ../themeswitcher/main.py:40
+#: ../themeswitcher/new_main_window.py:257 ../themeswitcher/main.py:40
 msgid "Theme Switcher"
 msgstr ""
 
-#: ../themeswitcher/new_main_window.py:253
+#: ../themeswitcher/new_main_window.py:263
 msgid ""
 "A global automated switcher for dark/light GTK theme during day/night and "
 "more."
 msgstr ""
 
-#: ../themeswitcher/new_main_window.py:255
+#: ../themeswitcher/new_main_window.py:265
 msgid "Website"
 msgstr ""
 
-#: ../themeswitcher/new_main_window.py:368
+#: ../themeswitcher/new_main_window.py:378
 msgid "Choose a file"
 msgstr ""
