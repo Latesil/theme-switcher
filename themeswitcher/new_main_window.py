@@ -47,8 +47,8 @@ class AppWindow(Gtk.ApplicationWindow):
     day_terminal_combo = Gtk.Template.Child()
     night_terminal_combo = Gtk.Template.Child()
     terminal_checkbox = Gtk.Template.Child()
-    day_terminal_main_frame = Gtk.Template.Child()
-    night_terminal_main_frame = Gtk.Template.Child()
+    #day_terminal_main_frame = Gtk.Template.Child()
+    #night_terminal_main_frame = Gtk.Template.Child()
     day_wallpaper_event_box = Gtk.Template.Child()
     night_wallpaper_event_box = Gtk.Template.Child()
     day_wallpapers_frame = Gtk.Template.Child()
@@ -232,6 +232,8 @@ class AppWindow(Gtk.ApplicationWindow):
         current_desktop.reset_value("path-to-day-wallpaper")
         self.day_wallpapers_frame.props.visible = False
         self.no_day_wallpapers_label.props.visible = True
+        self.night_wallpapers_frame.props.visible = False
+        self.no_night_wallpapers_label.props.visible = True
         helper.reset_box(self.night_wallpaper_event_box)
         helper.reset_box(self.day_wallpaper_event_box)
         helper.resize_window(self)
