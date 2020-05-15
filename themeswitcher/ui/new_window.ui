@@ -139,6 +139,42 @@
       </packing>
     </child>
   </object>
+  <object class="GtkListStore" id="_dark_tree_model">
+    <columns>
+      <!-- column-name Theme -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkAdjustment" id="_day_hour_adjustment">
+    <property name="upper">23</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+    <signal name="value-changed" handler="on__day_hour_adjustment_value_changed" swapped="no"/>
+  </object>
+  <object class="GtkAdjustment" id="_day_minutes_adjustment">
+    <property name="upper">50</property>
+    <property name="step_increment">10</property>
+    <property name="page_increment">10</property>
+    <signal name="value-changed" handler="on__day_minutes_adjustment_value_changed" swapped="no"/>
+  </object>
+  <object class="GtkListStore" id="_light_tree_model">
+    <columns>
+      <!-- column-name Theme -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkAdjustment" id="_night_hour_adjustment">
+    <property name="upper">23</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+    <signal name="value-changed" handler="on__night_hour_adjustment_value_changed" swapped="no"/>
+  </object>
+  <object class="GtkAdjustment" id="_night_minutes_adjustment">
+    <property name="upper">50</property>
+    <property name="step_increment">10</property>
+    <property name="page_increment">10</property>
+    <signal name="value-changed" handler="on__night_minutes_adjustment_value_changed" swapped="no"/>
+  </object>
   <template class="AppWindow" parent="GtkApplicationWindow">
     <property name="can_focus">False</property>
     <property name="default_width">600</property>
@@ -182,6 +218,89 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkListBox">
+            <property name="width_request">-1</property>
+            <property name="height_request">-1</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_left">5</property>
+            <property name="margin_right">5</property>
+            <property name="margin_top">5</property>
+            <property name="selection_mode">none</property>
+            <property name="activate_on_single_click">False</property>
+            <child>
+              <object class="GtkListBoxRow">
+                <property name="width_request">100</property>
+                <property name="height_request">-1</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="activatable">False</property>
+                <property name="selectable">False</property>
+                <child>
+                  <object class="GtkFrame" id="auto_frame">
+                    <property name="width_request">400</property>
+                    <property name="height_request">-1</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label_xalign">0</property>
+                    <property name="shadow_type">etched-out</property>
+                    <child>
+                      <object class="GtkBox" id="auto_box">
+                        <property name="width_request">100</property>
+                        <property name="height_request">-1</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="valign">center</property>
+                        <property name="margin_top">5</property>
+                        <property name="margin_bottom">5</property>
+                        <property name="spacing">5</property>
+                        <child>
+                          <object class="GtkLabel" id="auto_label">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="margin_left">5</property>
+                            <property name="label" translatable="yes">Auto</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSwitch" id="_left_switch">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="margin_right">5</property>
+                            <signal name="state-set" handler="on__left_switch_state_set" swapped="no"/>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="pack_type">end</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                    </child>
+                    <child type="label">
+                      <object class="GtkLabel">
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">__glade_unnamed_8</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
         <child>
           <object class="GtkStack" id="main_stack">
             <property name="visible">True</property>
@@ -835,107 +954,9 @@
             <property name="position">1</property>
           </packing>
         </child>
-        <child>
-          <object class="GtkFrame" id="auto_frame">
-            <property name="width_request">400</property>
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="margin_left">5</property>
-            <property name="margin_right">5</property>
-            <property name="margin_top">5</property>
-            <property name="margin_bottom">5</property>
-            <property name="label_xalign">0</property>
-            <child>
-              <object class="GtkBox" id="auto_box">
-                <property name="width_request">100</property>
-                <property name="height_request">-1</property>
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="valign">center</property>
-                <property name="margin_top">5</property>
-                <property name="margin_bottom">5</property>
-                <property name="spacing">5</property>
-                <child>
-                  <object class="GtkLabel" id="auto_label">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_left">5</property>
-                    <property name="label" translatable="yes">Auto</property>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">0</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkSwitch" id="_left_switch">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="margin_right">5</property>
-                    <signal name="state-set" handler="on__left_switch_state_set" swapped="no"/>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="pack_type">end</property>
-                    <property name="position">1</property>
-                  </packing>
-                </child>
-              </object>
-            </child>
-            <child type="label">
-              <object class="GtkLabel">
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">__glade_unnamed_8</property>
-              </object>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">2</property>
-          </packing>
-        </child>
       </object>
     </child>
   </template>
-  <object class="GtkListStore" id="_dark_tree_model">
-    <columns>
-      <!-- column-name Theme -->
-      <column type="gchararray"/>
-    </columns>
-  </object>
-  <object class="GtkAdjustment" id="_day_hour_adjustment">
-    <property name="upper">23</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
-    <signal name="value-changed" handler="on__day_hour_adjustment_value_changed" swapped="no"/>
-  </object>
-  <object class="GtkAdjustment" id="_day_minutes_adjustment">
-    <property name="upper">50</property>
-    <property name="step_increment">10</property>
-    <property name="page_increment">10</property>
-    <signal name="value-changed" handler="on__day_minutes_adjustment_value_changed" swapped="no"/>
-  </object>
-  <object class="GtkListStore" id="_light_tree_model">
-    <columns>
-      <!-- column-name Theme -->
-      <column type="gchararray"/>
-    </columns>
-  </object>
-  <object class="GtkAdjustment" id="_night_hour_adjustment">
-    <property name="upper">23</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
-    <signal name="value-changed" handler="on__night_hour_adjustment_value_changed" swapped="no"/>
-  </object>
-  <object class="GtkAdjustment" id="_night_minutes_adjustment">
-    <property name="upper">50</property>
-    <property name="step_increment">10</property>
-    <property name="page_increment">10</property>
-    <signal name="value-changed" handler="on__night_minutes_adjustment_value_changed" swapped="no"/>
-  </object>
   <object class="GtkFileFilter" id="day_wallpaper_filter">
     <mime-types>
       <mime-type>image/jpeg</mime-type>
