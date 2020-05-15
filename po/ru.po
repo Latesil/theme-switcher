@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-02 00:45+0300\n"
-"PO-Revision-Date: 2020-05-02 00:58+0300\n"
+"POT-Creation-Date: 2020-05-15 18:53+0300\n"
+"PO-Revision-Date: 2020-05-15 19:02+0300\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -131,74 +131,74 @@ msgstr "Профили терминала"
 msgid "About"
 msgstr "О программе"
 
-#: ../themeswitcher/ui/new_window.ui:863
+#: ../themeswitcher/ui/new_window.ui:264
 msgid "Auto"
 msgstr "Автопереключение"
 
-#: ../themeswitcher/ui/new_window.ui:293
-msgid "Set day wallpapers"
-msgstr "Установить дневные обои"
-
-#: ../themeswitcher/ui/new_window.ui:313 ../themeswitcher/ui/new_window.ui:632
-msgid "Wallpapers"
-msgstr "Обои"
-
-#: ../themeswitcher/ui/new_window.ui:219
-msgid "Day theme"
-msgstr "Дневная тема"
-
-#: ../themeswitcher/ui/new_window.ui:247 ../themeswitcher/ui/new_window.ui:566
-msgid "Theme"
-msgstr "Тема"
-
-#: ../themeswitcher/ui/new_window.ui:351
-msgid "Daytime"
-msgstr "Дневное время"
-
-#: ../themeswitcher/ui/new_window.ui:471 ../themeswitcher/ui/new_window.ui:500
-#: ../themeswitcher/ui/new_window.ui:780 ../themeswitcher/ui/new_window.ui:809
-msgid "0"
+#: ../themeswitcher/ui/new_window.ui:291
+msgid "__glade_unnamed_8"
 msgstr "0"
 
-#: ../themeswitcher/ui/new_window.ui:422 ../themeswitcher/ui/new_window.ui:741
-msgid "Time"
-msgstr "Время"
-
-#: ../themeswitcher/ui/new_window.ui:455
-msgid "Day profile"
-msgstr "Дневной профиль"
-
-#: ../themeswitcher/ui/new_window.ui:494 ../themeswitcher/ui/new_window.ui:814
-msgid "Terminal Profile"
-msgstr "Профиль терминала"
-
-#: ../themeswitcher/ui/new_window.ui:507
+#: ../themeswitcher/ui/new_window.ui:341 ../themeswitcher/ui/new_window.ui:639
 msgid "Day"
 msgstr "День"
 
-#: ../themeswitcher/ui/new_window.ui:612
-msgid "Set night wallpapers"
-msgstr "Установить ночные обои"
+#: ../themeswitcher/ui/new_window.ui:370 ../themeswitcher/ui/new_window.ui:698
+msgid "Theme"
+msgstr "Тема"
 
-#: ../themeswitcher/ui/new_window.ui:538
+#: ../themeswitcher/ui/new_window.ui:418
+msgid "Set"
+msgstr "Установить"
+
+#: ../themeswitcher/ui/new_window.ui:439 ../themeswitcher/ui/new_window.ui:764
+msgid "Wallpapers"
+msgstr "Обои"
+
+#: ../themeswitcher/ui/new_window.ui:478
+msgid "Daytime"
+msgstr "Дневное время"
+
+#: ../themeswitcher/ui/new_window.ui:494 ../themeswitcher/ui/new_window.ui:523
+#: ../themeswitcher/ui/new_window.ui:818 ../themeswitcher/ui/new_window.ui:847
+msgid "0"
+msgstr "0"
+
+#: ../themeswitcher/ui/new_window.ui:550 ../themeswitcher/ui/new_window.ui:873
+msgid "Time"
+msgstr "Время"
+
+#: ../themeswitcher/ui/new_window.ui:585
+msgid "Day profile"
+msgstr "Дневной профиль"
+
+#: ../themeswitcher/ui/new_window.ui:626 ../themeswitcher/ui/new_window.ui:946
+msgid "Terminal Profile"
+msgstr "Профиль терминала"
+
+#: ../themeswitcher/ui/new_window.ui:670
 msgid "Night theme"
 msgstr "Ночная тема"
 
-#: ../themeswitcher/ui/new_window.ui:670
+#: ../themeswitcher/ui/new_window.ui:744
+msgid "Set night wallpapers"
+msgstr "Установить ночные обои"
+
+#: ../themeswitcher/ui/new_window.ui:802
 msgid "Night time"
 msgstr "Ночное время"
 
-#: ../themeswitcher/ui/new_window.ui:774
+#: ../themeswitcher/ui/new_window.ui:906
 msgid "Night profile"
 msgstr "Ночной профиль"
 
-#: ../themeswitcher/ui/new_window.ui:827
+#: ../themeswitcher/ui/new_window.ui:959
 msgid "Night"
 msgstr "Ночь"
 
 #: ../themeswitcher/new_main_window.py:247 ../themeswitcher/main.py:40
 msgid "Theme Switcher"
-msgstr "Переключатель тем"
+msgstr "Переключатель Тем"
 
 #: ../themeswitcher/new_main_window.py:253
 msgid ""

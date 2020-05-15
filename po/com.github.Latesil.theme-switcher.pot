@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-02 00:45+0300\n"
+"POT-Creation-Date: 2020-05-15 18:53+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -129,68 +129,68 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: ../themeswitcher/ui/new_window.ui:863
+#: ../themeswitcher/ui/new_window.ui:264
 msgid "Auto"
 msgstr ""
 
-#: ../themeswitcher/ui/new_window.ui:293
-msgid "Set day wallpapers"
+#: ../themeswitcher/ui/new_window.ui:291
+msgid "__glade_unnamed_8"
 msgstr ""
 
-#: ../themeswitcher/ui/new_window.ui:313 ../themeswitcher/ui/new_window.ui:632
-msgid "Wallpapers"
-msgstr ""
-
-#: ../themeswitcher/ui/new_window.ui:219
-msgid "Day theme"
-msgstr ""
-
-#: ../themeswitcher/ui/new_window.ui:247 ../themeswitcher/ui/new_window.ui:566
-msgid "Theme"
-msgstr ""
-
-#: ../themeswitcher/ui/new_window.ui:351
-msgid "Daytime"
-msgstr ""
-
-#: ../themeswitcher/ui/new_window.ui:471 ../themeswitcher/ui/new_window.ui:500
-#: ../themeswitcher/ui/new_window.ui:780 ../themeswitcher/ui/new_window.ui:809
-msgid "0"
-msgstr ""
-
-#: ../themeswitcher/ui/new_window.ui:422 ../themeswitcher/ui/new_window.ui:741
-msgid "Time"
-msgstr ""
-
-#: ../themeswitcher/ui/new_window.ui:455
-msgid "Day profile"
-msgstr ""
-
-#: ../themeswitcher/ui/new_window.ui:494 ../themeswitcher/ui/new_window.ui:814
-msgid "Terminal Profile"
-msgstr ""
-
-#: ../themeswitcher/ui/new_window.ui:507
+#: ../themeswitcher/ui/new_window.ui:341 ../themeswitcher/ui/new_window.ui:639
 msgid "Day"
 msgstr ""
 
-#: ../themeswitcher/ui/new_window.ui:612
-msgid "Set night wallpapers"
+#: ../themeswitcher/ui/new_window.ui:370 ../themeswitcher/ui/new_window.ui:698
+msgid "Theme"
 msgstr ""
 
-#: ../themeswitcher/ui/new_window.ui:538
-msgid "Night theme"
+#: ../themeswitcher/ui/new_window.ui:418
+msgid "Set"
+msgstr ""
+
+#: ../themeswitcher/ui/new_window.ui:439 ../themeswitcher/ui/new_window.ui:764
+msgid "Wallpapers"
+msgstr ""
+
+#: ../themeswitcher/ui/new_window.ui:478
+msgid "Daytime"
+msgstr ""
+
+#: ../themeswitcher/ui/new_window.ui:494 ../themeswitcher/ui/new_window.ui:523
+#: ../themeswitcher/ui/new_window.ui:818 ../themeswitcher/ui/new_window.ui:847
+msgid "0"
+msgstr ""
+
+#: ../themeswitcher/ui/new_window.ui:550 ../themeswitcher/ui/new_window.ui:873
+msgid "Time"
+msgstr ""
+
+#: ../themeswitcher/ui/new_window.ui:585
+msgid "Day profile"
+msgstr ""
+
+#: ../themeswitcher/ui/new_window.ui:626 ../themeswitcher/ui/new_window.ui:946
+msgid "Terminal Profile"
 msgstr ""
 
 #: ../themeswitcher/ui/new_window.ui:670
+msgid "Night theme"
+msgstr ""
+
+#: ../themeswitcher/ui/new_window.ui:744
+msgid "Set night wallpapers"
+msgstr ""
+
+#: ../themeswitcher/ui/new_window.ui:802
 msgid "Night time"
 msgstr ""
 
-#: ../themeswitcher/ui/new_window.ui:774
+#: ../themeswitcher/ui/new_window.ui:906
 msgid "Night profile"
 msgstr ""
 
-#: ../themeswitcher/ui/new_window.ui:827
+#: ../themeswitcher/ui/new_window.ui:959
 msgid "Night"
 msgstr ""
 
