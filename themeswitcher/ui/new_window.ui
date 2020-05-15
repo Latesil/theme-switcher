@@ -739,7 +739,7 @@
                                       <object class="GtkLabel" id="day_terminal_label">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
-                                        <property name="label" translatable="yes">Day profile</property>
+                                        <property name="label" translatable="yes">Day terminal profile</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -763,6 +763,7 @@
                                           <packing>
                                             <property name="expand">False</property>
                                             <property name="fill">True</property>
+                                            <property name="pack_type">end</property>
                                             <property name="position">0</property>
                                           </packing>
                                         </child>
@@ -1223,7 +1224,7 @@
                                       <object class="GtkLabel" id="night_terminal_label">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
-                                        <property name="label" translatable="yes">Night profile</property>
+                                        <property name="label" translatable="yes">Night terminal profile</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -1248,6 +1249,7 @@
                                           <packing>
                                             <property name="expand">False</property>
                                             <property name="fill">True</property>
+                                            <property name="pack_type">end</property>
                                             <property name="position">0</property>
                                           </packing>
                                         </child>
