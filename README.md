@@ -8,8 +8,9 @@ Theme-switcher automatically can switch your:
 - GNOME Terminal profiles
 - Wallpapers
 - More will come...
-
-<div style="text-align: center;"><IMG SRC="theme-switcher-screenshot-1.png" ALT="image"></div>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Latesil/theme-switcher/master/theme-switcher-screenshot-1.png" style="max-width:100%;">
+</p>
 
 ### Prerequisites for building from source
 
@@ -21,7 +22,12 @@ sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 
 ### Install
 
-Fedora [COPR](https://copr.fedorainfracloud.org/coprs/atim/theme-switcher/): `sudo dnf copr enable atim/theme-switcher -y && sudo dnf install theme-switcher -y`
+Fedora [COPR](https://copr.fedorainfracloud.org/coprs/atim/theme-switcher/):
+
+```
+sudo dnf copr enable atim/theme-switcher -y
+sudo dnf install theme-switcher -y
+```
 
 ### Run GUI version:
 

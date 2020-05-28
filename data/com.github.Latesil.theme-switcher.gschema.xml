@@ -16,6 +16,31 @@
       <summary>Enabling auto-switch</summary>
       <description>Determine whether it will be auto switch theme or not</description>
     </key>
+    <key type="b" name="night-light">
+      <default>false</default>
+      <summary>Enabling following night light</summary>
+      <description>Determine whether it will be follow night light for changing themes or not</description>
+    </key>
+    <key type="i" name="night-light-sunrise-minutes">
+      <default>0</default>
+      <summary>Night light sunrise minutes</summary>
+      <description>For internal usage only</description>
+    </key>
+    <key type="i" name="night-light-sunrise-hours">
+      <default>6</default>
+      <summary>Night light sunrise hours</summary>
+      <description>For internal usage only</description>
+    </key>
+    <key type="i" name="night-light-sunset-hours">
+      <default>20</default>
+      <summary>Night light sunset hours</summary>
+      <description>For internal usage only</description>
+    </key>
+    <key type="i" name="night-light-sunset-minutes">
+      <default>0</default>
+      <summary>Night light sunset minutes</summary>
+      <description>For internal usage only</description>
+    </key>
     <key type="b" name="terminal">
       <default>false</default>
       <summary>Enabling terminal profiles switch</summary>

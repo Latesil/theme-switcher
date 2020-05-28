@@ -1,4 +1,5 @@
 import itertools
+import subprocess
 import os
 import gi
 from gi.repository import Gtk, Gio, GLib
@@ -10,6 +11,9 @@ class Gnome(Desktop):
 
     def __init__(self):
         self.init_settings()
+        
+    def __str__(self):
+        return "gnome"
         
     def init_settings(self):
         self.settings = Gio.Settings.new(constants["BASE_KEY"])
@@ -79,6 +83,35 @@ class Gnome(Desktop):
     
     def execute_script(self, script):
         GLib.spawn_async([script])
+        
+    def check_night_light(self):
+        night_light_setting = Gio.Settings.new('org.gnome.settings-daemon.plugins.color')
+        return night_light_setting.get_boolean('night-light-enabled')
+    
+    def is_night_light_auto(self):
+        night_light_setting = Gio.Settings.new('org.gnome.settings-daemon.plugins.color')
+        return night_light_setting.get_boolean('night-light-schedule-automatic')
+        
+    def get_night_light_manual(self):
+        night_light_setting = Gio.Settings.new('org.gnome.settings-daemon.plugins.color')
+        time_from = night_light_setting.get_value('night-light-schedule-from').unpack()
+        time_to = night_light_setting.get_value('night-light-schedule-to').unpack()
+        hours_from = int(time_from)
+        hours_to = int(time_to)
+        t_from = ((time_from % 1) * 60) / 100
+        t_to = ((time_to % 1) * 60) / 100
+        minutes_from = float("{0:.2f}".format(t_from)) * 100
+        minutes_to = float("{0:.2f}".format(t_to)) * 100
+        return hours_to, int(minutes_to), hours_from, int(minutes_from) # dayday nightnight
+        
+    def get_timezone(self):
+        tz = subprocess.check_output(["timedatectl", "show", "--property=Timezone"])
+        return tz.decode("utf-8").split('=')[1].strip()
+        
+    def get_coordinates(self):
+        night_light_setting = Gio.Settings.new('org.gnome.settings-daemon.plugins.color')
+        coords = night_light_setting.get_value('night-light-last-coordinates').unpack()
+        return coords
         
     #taken from GNOME Tweaks
     #by John Stowers.

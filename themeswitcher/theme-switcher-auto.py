@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -14,6 +12,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import datetime
+from astral import LocationInfo
+from astral.sun import sun
+import pytz
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gio
@@ -33,17 +34,34 @@ theme = current_desktop.get_current_theme()
 light_theme, dark_theme = current_desktop.get_current_themes()
 
 current_time = datetime.datetime.now()
+is_night_light = current_desktop.get_value("night-light")
+
+if is_night_light:
+    if current_desktop.check_night_light():
+        if current_desktop.is_night_light_auto():
+            current_timezone = current_desktop.get_timezone()
+            coords = current_desktop.get_coordinates()
+            location = LocationInfo('name', 'region', current_timezone, coords[0], coords[1])
+            s = sun(location.observer, date=current_time.date(), tzinfo=pytz.timezone(location.timezone))
+            day = s["sunrise"].strftime("%H:%M").split(':')
+            night = s["sunset"].strftime("%H:%M").split(':')
+            day_values = helper.convert_to_values(int(day[0]), int(day[1]))
+            night_values = helper.convert_to_values(int(night[0]), int(night[1]))
+        else:
+            times = current_desktop.get_night_light_manual()
+            day_values = helper.convert_to_values(times[0], times[1])
+            night_values = helper.convert_to_values(times[2], times[3])
+else:
+    values = get_values()
+    day_values = helper.convert_to_values(values[0], values[1])
+    night_values = helper.convert_to_values(values[2], values[3])
+
 
 is_terminal = current_desktop.get_value("terminal")
-
 day_terminal_profile = current_desktop.get_value("active-day-profile-terminal")
 night_terminal_profile = current_desktop.get_value("active-night-profile-terminal")
 
-values = get_values()
 current_values = helper.convert_to_values(current_time.hour, current_time.minute)
-
-day_values = helper.convert_to_values(values[0], values[1])
-night_values = helper.convert_to_values(values[2], values[3])
 
 night_wallpapers = current_desktop.get_value("path-to-night-wallpaper")
 day_wallpapers = current_desktop.get_value("path-to-day-wallpaper")

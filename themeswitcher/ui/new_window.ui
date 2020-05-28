@@ -8,8 +8,10 @@
       <object class="GtkBox" id="_popover_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="margin_top">5</property>
-        <property name="margin_bottom">5</property>
+        <property name="margin_left">10</property>
+        <property name="margin_right">10</property>
+        <property name="margin_top">10</property>
+        <property name="margin_bottom">10</property>
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkModelButton" id="_change_theme_button">
@@ -119,6 +121,22 @@
           </packing>
         </child>
         <child>
+          <object class="GtkCheckButton" id="follow_night_light_button">
+            <property name="label" translatable="yes">Follow Night Light</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
+            <property name="tooltip_text" translatable="yes">Minutes will be rounded by 10</property>
+            <property name="draw_indicator">True</property>
+            <signal name="toggled" handler="on_follow_night_light_button_toggled" swapped="no"/>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">8</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkModelButton" id="_about_button">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
@@ -129,7 +147,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">8</property>
+            <property name="position">9</property>
           </packing>
         </child>
       </object>

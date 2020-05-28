@@ -47,17 +47,21 @@ class AppWindow(Gtk.ApplicationWindow):
     day_terminal_combo = Gtk.Template.Child()
     night_terminal_combo = Gtk.Template.Child()
     terminal_checkbox = Gtk.Template.Child()
-    #day_terminal_main_frame = Gtk.Template.Child()
-    #night_terminal_main_frame = Gtk.Template.Child()
+    day_terminal_main_frame = Gtk.Template.Child()
+    night_terminal_main_frame = Gtk.Template.Child()
     day_wallpaper_event_box = Gtk.Template.Child()
     night_wallpaper_event_box = Gtk.Template.Child()
     day_wallpapers_frame = Gtk.Template.Child()
     night_wallpapers_frame = Gtk.Template.Child()
     no_day_wallpapers_label = Gtk.Template.Child()
     no_night_wallpapers_label = Gtk.Template.Child()
+    follow_night_light_button = Gtk.Template.Child()
     
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        
+        if current_desktop == "gnome":
+            self.follow_night_light_button.props.visible = False
         
         #retrieve current theme and dark\light themes from desktop
         self.current_theme = current_desktop.get_current_theme()
@@ -121,6 +125,21 @@ class AppWindow(Gtk.ApplicationWindow):
         #this is probably not a best solution but for now it check time on start according to time section
         #and change what is needed (and only if auto is on)
         is_auto = current_desktop.get_value("auto-switch")
+        is_night_light = current_desktop.get_value("night-light")
+        
+        if is_night_light:
+            self._left_switch.set_active(False)
+            self._left_switch.set_sensitive(False)
+            current_desktop.start_systemd_timers()
+            self.night_time_main_frame.set_visible(False)
+            self.day_time_main_frame.set_visible(False)
+        else:
+            self._left_switch.set_active(True)
+            self._left_switch.set_sensitive(True)
+            current_desktop.stop_systemd_timers()
+            self.night_time_main_frame.set_visible(True)
+            self.day_time_main_frame.set_visible(True)
+            
         if is_auto:
             self.on_combo_box_changed()
 
@@ -139,7 +158,7 @@ class AppWindow(Gtk.ApplicationWindow):
             #set systemd timers. maybe it shouldn't stick with systemd but for now it is
             current_desktop.start_systemd_timers()
             
-            #check if niw is the right time for change:
+            #check if night is the right time for change:
             if self.time_for_night():
                 self.trigger_all("night")
             else:
@@ -166,6 +185,26 @@ class AppWindow(Gtk.ApplicationWindow):
             
             #resize the main window to prevent empty space on the bottom
             helper.resize_window(self)
+         
+    # night light section (same as above)
+    @Gtk.Template.Callback()   
+    def on_follow_night_light_button_toggled(self, checkbox):
+        if checkbox.get_active():
+            current_desktop.set_value('night-light', True)
+            self._left_switch.set_sensitive(False)
+            current_desktop.start_systemd_timers()
+            self.night_time_main_frame.set_visible(False)
+            self.day_time_main_frame.set_visible(False)
+            helper.resize_window(self)
+        else:
+            current_desktop.set_value('night-light', False)
+            self._left_switch.set_sensitive(True)
+            if self._left_switch.get_active():
+                current_desktop.start_systemd_timers()
+                self.night_time_main_frame.set_visible(True)
+                self.day_time_main_frame.set_visible(True)
+            else:
+                current_desktop.stop_systemd_timers()
             
     ###################################################################################
         
@@ -448,6 +487,7 @@ class AppWindow(Gtk.ApplicationWindow):
         
         #state
         self._left_switch.set_state(current_desktop.get_value("auto-switch"))
+        self.follow_night_light_button.set_active(current_desktop.get_value("night-light"))
         
     #one function for setting abstract value from settings
     def set_value_from_settings(self, widget, key):
