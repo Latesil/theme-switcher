@@ -46,6 +46,31 @@
       <summary>Enabling terminal profiles switch</summary>
       <description>Determine whether terminal profiles will be auto switch or not</description>
     </key>
+    <key type="b" name="advanced-wallpapers-management">
+      <default>false</default>
+      <summary>Enabling advanced wallpapers management</summary>
+      <description>Enables advanced wallpapers management</description>
+    </key>
+    <key type="s" name="advanced-wallpapers-day-folder">
+      <default>""</default>
+      <summary>Day wallpapers folder</summary>
+      <description>Path to folder with day wallpapers</description>
+    </key>
+    <key type="s" name="advanced-wallpapers-night-folder">
+      <default>""</default>
+      <summary>Night wallpapers folder</summary>
+      <description>Path to folder with day wallpapers</description>
+    </key>
+    <key type="s" name="advanced-wallpapers-day-trigger-mode">
+      <default>"none"</default>
+      <summary>Day wallpapers trigger mode</summary>
+      <description>Set interval for trigger new day wallpapers from folder</description>
+    </key>
+    <key type="s" name="advanced-wallpapers-night-trigger-mode">
+      <default>"none"</default>
+      <summary>Night wallpapers trigger mode</summary>
+      <description>Set interval for trigger new night wallpapers from folder</description>
+    </key>
     <key type="s" name="active-day-profile-terminal">
       <default>""</default>
       <summary>Active day terminal profile</summary>
