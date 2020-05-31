@@ -97,8 +97,8 @@ class AppWindow(Gtk.ApplicationWindow):
         self.night_terminal_combo.set_active_id(current_desktop.get_value("active-night-profile-terminal"))
         
         #retrieve current light\dark theme and set it as a default option in combo box
-        self.retrieve_profile(self.day_terminal_combo, "active-day-profile-terminal")
-        self.retrieve_profile(self.night_terminal_combo, "active-night-profile-terminal")
+        self.retrieve_item_from_box(self.day_terminal_combo, "active-day-profile-terminal")
+        self.retrieve_item_from_box(self.night_terminal_combo, "active-night-profile-terminal")
         
         #if there is some path in wallpapers set it to the box
         if self.current_day_wallpaper != "":
@@ -129,25 +129,33 @@ class AppWindow(Gtk.ApplicationWindow):
         #set values from settings when program is started
         self.set_values_from_settings()
         
-        #this is probably not a best solution but for now it check time on start according to time section
-        #and change what is needed (and only if auto is on)
-        is_auto = current_desktop.get_value("auto-switch")
-        is_night_light = current_desktop.get_value("night-light")
-        
-        if is_night_light:
+        if current_desktop.get_value("night-light"):
             self._left_switch.set_active(False)
             self._left_switch.set_sensitive(False)
             current_desktop.start_systemd_timers()
             self.night_time_main_frame.set_visible(False)
             self.day_time_main_frame.set_visible(False)
         else:
-            self._left_switch.set_active(True)
+            self._left_switch.set_active(current_desktop.get_value("auto-switch"))
             self._left_switch.set_sensitive(True)
-            current_desktop.stop_systemd_timers()
-            self.night_time_main_frame.set_visible(True)
-            self.day_time_main_frame.set_visible(True)
+            self.night_time_main_frame.set_visible(current_desktop.get_value("auto-switch"))
+            self.day_time_main_frame.set_visible(current_desktop.get_value("auto-switch"))
             
-        if is_auto:
+        if current_desktop.get_value("advanced-wallpapers-management"):
+            self._day_button.props.visible = False
+            self._night_button.props.visible = False
+            self.advanced_day_wallpapers_box.props.visible = True
+            self.advanced_night_wallpapers_box.props.visible = True
+            self.retrieve_item_from_box(self.advanced_day_wallpapers_combo, "advanced-wallpapers-day-trigger-mode")
+            self.retrieve_item_from_box(self.advanced_night_wallpapers_combo, "advanced-wallpapers-night-trigger-mode")
+        else:
+            self.advanced_wallpapers_mode_button.set_active(False)
+            self._day_button.props.visible = True
+            self._night_button.props.visible = True
+            self.advanced_day_wallpapers_box.props.visible = False
+            self.advanced_night_wallpapers_box.props.visible = False
+            
+        if current_desktop.get_value("auto-switch"):
             self.on_combo_box_changed()
 
     #left switch in header bar. 
@@ -280,6 +288,12 @@ class AppWindow(Gtk.ApplicationWindow):
         self.no_day_wallpapers_label.props.visible = True
         self.night_wallpapers_frame.props.visible = False
         self.no_night_wallpapers_label.props.visible = True
+        if current_desktop.get_value("advanced-wallpapers-management"):
+            self.advanced_wallpapers_mode_button.set_active(False)
+            self._day_button.props.visible = True
+            self._night_button.props.visible = True
+            self.advanced_day_wallpapers_box.props.visible = False
+            self.advanced_night_wallpapers_box.props.visible = False
         helper.reset_box(self.night_wallpaper_event_box)
         helper.reset_box(self.day_wallpaper_event_box)
         helper.resize_window(self)
@@ -351,11 +365,13 @@ class AppWindow(Gtk.ApplicationWindow):
         
     @Gtk.Template.Callback()
     def on_advanced_day_wallpapers_combo_changed(self, w):
-        print(w.get_active_id())
+        print(w.get_active_text())
+        current_desktop.set_value("advanced-wallpapers-day-trigger-mode", w.get_active_text())
         
     @Gtk.Template.Callback()
     def on_advanced_night_wallpapers_combo_changed(self, w):
-        print(w.get_active_id())
+        print(w.get_active_text())
+        current_desktop.set_value("advanced-wallpapers-night-trigger-mode", w.get_active_text())
         
     @Gtk.Template.Callback()
     def on_advanced_wallpapers_mode_button_toggled(self, w):
@@ -364,11 +380,13 @@ class AppWindow(Gtk.ApplicationWindow):
             self._night_button.props.visible = False
             self.advanced_day_wallpapers_box.props.visible = True
             self.advanced_night_wallpapers_box.props.visible = True
+            current_desktop.set_value("advanced-wallpapers-management", True)
         else:
             self._day_button.props.visible = True
             self._night_button.props.visible = True
             self.advanced_day_wallpapers_box.props.visible = False
             self.advanced_night_wallpapers_box.props.visible = False
+            current_desktop.set_value("advanced-wallpapers-management", False)
         
     ######################################################################
     
@@ -527,6 +545,7 @@ class AppWindow(Gtk.ApplicationWindow):
         
         #state
         self._left_switch.set_state(current_desktop.get_value("auto-switch"))
+        self.advanced_wallpapers_mode_button.set_active(current_desktop.get_value("advanced-wallpapers-management"))
         self.follow_night_light_button.set_active(current_desktop.get_value("night-light"))
         
     #one function for setting abstract value from settings
@@ -555,9 +574,9 @@ class AppWindow(Gtk.ApplicationWindow):
             self.day_terminal_combo.append_text(profile)
             self.night_terminal_combo.append_text(profile)
                 
-    def retrieve_profile(self, box, key):
-        profile = box.get_model()
-        for row in profile:
+    def retrieve_item_from_box(self, box, key):
+        from_box = box.get_model()
+        for row in from_box:
             if row[0] == current_desktop.get_value(key):
                 box.set_active_iter(row.iter)
                 
