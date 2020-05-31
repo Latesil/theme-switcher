@@ -56,6 +56,13 @@ class AppWindow(Gtk.ApplicationWindow):
     no_day_wallpapers_label = Gtk.Template.Child()
     no_night_wallpapers_label = Gtk.Template.Child()
     follow_night_light_button = Gtk.Template.Child()
+    advanced_wallpapers_mode_button = Gtk.Template.Child()
+    advanced_day_wallpapers_button = Gtk.Template.Child()
+    advanced_night_wallpapers_button = Gtk.Template.Child()
+    advanced_day_wallpapers_combo = Gtk.Template.Child()
+    advanced_night_wallpapers_combo = Gtk.Template.Child()
+    advanced_day_wallpapers_box = Gtk.Template.Child()
+    advanced_night_wallpapers_box = Gtk.Template.Child()
     
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -329,6 +336,39 @@ class AppWindow(Gtk.ApplicationWindow):
             if is_auto:
                 if self.time_for_day():
                     current_desktop.set_terminal_profile(current_desktop.get_value("active-day-profile-terminal"))
+                    
+    ########################################################################################################
+    
+    # Advanced folder management
+    
+    @Gtk.Template.Callback()
+    def on_advanced_day_wallpapers_button_clicked(self, btn):
+        print('advanced_day_wallpapers_button')
+        
+    @Gtk.Template.Callback()
+    def on_advanced_night_wallpapers_button_clicked(self, btn):
+        print('advanced_night_wallpapers_button')
+        
+    @Gtk.Template.Callback()
+    def on_advanced_day_wallpapers_combo_changed(self, w):
+        print(w.get_active_id())
+        
+    @Gtk.Template.Callback()
+    def on_advanced_night_wallpapers_combo_changed(self, w):
+        print(w.get_active_id())
+        
+    @Gtk.Template.Callback()
+    def on_advanced_wallpapers_mode_button_toggled(self, w):
+        if w.get_active():
+            self._day_button.props.visible = False
+            self._night_button.props.visible = False
+            self.advanced_day_wallpapers_box.props.visible = True
+            self.advanced_night_wallpapers_box.props.visible = True
+        else:
+            self._day_button.props.visible = True
+            self._night_button.props.visible = True
+            self.advanced_day_wallpapers_box.props.visible = False
+            self.advanced_night_wallpapers_box.props.visible = False
         
     ######################################################################
     

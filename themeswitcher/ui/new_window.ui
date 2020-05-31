@@ -471,7 +471,6 @@
                                     <property name="height_request">60</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="tooltip_text" translatable="yes">Day wallpapers</property>
                                     <property name="margin_left">5</property>
                                     <property name="margin_right">5</property>
                                     <property name="margin_top">5</property>
@@ -481,6 +480,7 @@
                                       <object class="GtkFrame" id="day_wallpaper_fram">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
+                                        <property name="tooltip_text" translatable="yes">Day wallpapers</property>
                                         <property name="margin_left">2</property>
                                         <property name="margin_right">2</property>
                                         <property name="margin_top">2</property>
@@ -550,7 +550,7 @@
                                       <object class="GtkBox">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
-                                        <property name="orientation">vertical</property>
+                                        <property name="valign">center</property>
                                         <child>
                                           <object class="GtkButton" id="_day_button">
                                             <property name="label" translatable="yes">Set</property>
@@ -568,7 +568,6 @@
                                         </child>
                                         <child>
                                           <object class="GtkBox" id="advanced_day_wallpapers_box">
-                                            <property name="visible">True</property>
                                             <property name="can_focus">False</property>
                                             <child>
                                               <object class="GtkButton" id="advanced_day_wallpapers_button">
@@ -588,6 +587,7 @@
                                               <object class="GtkComboBoxText" id="advanced_day_wallpapers_combo">
                                                 <property name="visible">True</property>
                                                 <property name="can_focus">False</property>
+                                                <property name="tooltip_text" translatable="yes">Wallpapers interval</property>
                                                 <property name="active">0</property>
                                                 <property name="active_id">1</property>
                                                 <items>
@@ -1032,7 +1032,6 @@
                                     <property name="height_request">60</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="tooltip_text" translatable="yes">Day wallpapers</property>
                                     <property name="margin_left">5</property>
                                     <property name="margin_right">5</property>
                                     <property name="margin_top">5</property>
@@ -1042,6 +1041,7 @@
                                       <object class="GtkFrame" id="night_wallpaper_fram">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
+                                        <property name="tooltip_text" translatable="yes">Night wallpapers</property>
                                         <property name="margin_top">2</property>
                                         <property name="margin_bottom">2</property>
                                         <property name="label_xalign">0</property>
@@ -1107,7 +1107,6 @@
                                       <object class="GtkBox">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
-                                        <property name="orientation">vertical</property>
                                         <child>
                                           <object class="GtkButton" id="_night_button">
                                             <property name="label" translatable="yes">Set</property>
@@ -1125,8 +1124,8 @@
                                         </child>
                                         <child>
                                           <object class="GtkBox" id="advanced_night_wallpapers_box">
-                                            <property name="visible">True</property>
                                             <property name="can_focus">False</property>
+                                            <property name="valign">center</property>
                                             <child>
                                               <object class="GtkButton" id="advanced_night_wallpapers_button">
                                                 <property name="label" translatable="yes">Night folder</property>
@@ -1145,6 +1144,7 @@
                                               <object class="GtkComboBoxText" id="advanced_night_wallpapers_combo">
                                                 <property name="visible">True</property>
                                                 <property name="can_focus">False</property>
+                                                <property name="tooltip_text" translatable="yes">Wallpapers interval</property>
                                                 <property name="active">0</property>
                                                 <property name="active_id">1</property>
                                                 <items>
