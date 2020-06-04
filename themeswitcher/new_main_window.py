@@ -146,6 +146,8 @@ class AppWindow(Gtk.ApplicationWindow):
             self._night_button.props.visible = False
             self.advanced_day_wallpapers_box.props.visible = True
             self.advanced_night_wallpapers_box.props.visible = True
+            if current_desktop.get_value('advanced-wallpapers-day-folder') != "":
+                self.advanced_day_wallpapers_button.set_label(current_desktop.get_value('advanced-wallpapers-day-folder').split('/')[-1])
             self.retrieve_item_from_box(self.advanced_day_wallpapers_combo, "advanced-wallpapers-day-trigger-mode")
             self.retrieve_item_from_box(self.advanced_night_wallpapers_combo, "advanced-wallpapers-night-trigger-mode")
         else:
@@ -357,7 +359,17 @@ class AppWindow(Gtk.ApplicationWindow):
     
     @Gtk.Template.Callback()
     def on_advanced_day_wallpapers_button_clicked(self, btn):
-        print('advanced_day_wallpapers_button')
+        dialog = Gtk.FileChooserDialog(_("Choose a folder"), None, Gtk.FileChooserAction.SELECT_FOLDER, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+        Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
+        
+        response = dialog.run()
+        
+        #if user click ok
+        if response == Gtk.ResponseType.OK:
+            folder = dialog.get_filename().split('/')[-1]
+            current_desktop.set_value('advanced-wallpapers-day-folder', dialog.get_filename())
+            btn.set_label(folder)
+        dialog.destroy()
         
     @Gtk.Template.Callback()
     def on_advanced_night_wallpapers_button_clicked(self, btn):
