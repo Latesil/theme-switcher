@@ -298,6 +298,12 @@ class AppWindow(Gtk.ApplicationWindow):
             self._night_button.props.visible = True
             self.advanced_day_wallpapers_box.props.visible = False
             self.advanced_night_wallpapers_box.props.visible = False
+            current_desktop.reset_value("advanced-wallpapers-day-folder")
+            current_desktop.reset_value("advanced-wallpapers-night-folder")
+            current_desktop.reset_value("advanced-wallpapers-day-trigger-mode")
+            current_desktop.reset_value("advanced-wallpapers-night-trigger-mode")
+            self.advanced_day_wallpapers_button.set_label(_('Day folder'))
+            self.advanced_night_wallpapers_button.set_label(_('Night folder'))
         helper.reset_box(self.night_wallpaper_event_box)
         helper.reset_box(self.day_wallpaper_event_box)
         helper.resize_window(self)
