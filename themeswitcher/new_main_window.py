@@ -8,6 +8,7 @@ import os
 import datetime
 import time
 import subprocess
+import random
 
 helper = Helper()
 
@@ -377,8 +378,10 @@ class AppWindow(Gtk.ApplicationWindow):
             folder = dialog.get_filename().split('/')[-1]
             if btn.get_name() == 'advanced_day_wallpapers':
                 current_desktop.set_value('advanced-wallpapers-day-folder', dialog.get_filename())
+                self.set_wallpapers_from_folder("day", dialog.get_filename())
             else:
                 current_desktop.set_value('advanced-wallpapers-night-folder', dialog.get_filename())
+                self.set_wallpapers_from_folder("night", dialog.get_filename())
             btn.set_label(folder)
         dialog.destroy()
         
@@ -501,45 +504,13 @@ class AppWindow(Gtk.ApplicationWindow):
         if response == Gtk.ResponseType.OK:
             #get file path and create image with it
             wallpaper = dialog.get_filename()
-            image = Gtk.Image()
-            try:
-                #fixed size for now
-                pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(wallpaper, 114, 64, True)
-                image.set_from_pixbuf(pixbuf)
-                
-            except Exception:
-                print('Error occured')
-                image.set_from_icon_name('dialog-error-symbolic', Gtk.IconSize.DIALOG)
-            image.show()
+            image = self.prepare_image(wallpaper, 114, 64)
             
             if button.props.name == "night_button":
-                #set value in settings
-                current_desktop.set_value("path-to-night-wallpaper", wallpaper)
-                if self.night_wallpaper_event_box.get_children():
-                    helper.remove_wallpaper_from_box(self.night_wallpaper_event_box)
-                
-                #add image in our box
-                self.night_wallpaper_event_box.add(image)
-                self.night_wallpapers_frame.props.visible = True
-                self.no_night_wallpapers_label.props.visible = False
-                is_auto = current_desktop.get_value("auto-switch")
-                #check if auto is on
-                if is_auto:
-                    if self.time_for_night():
-                        current_desktop.set_wallpapers(wallpaper)
+                self.set_image_and_wallpaper("night", image, wallpaper)
                         
             elif button.props.name == "day_button":
-                current_desktop.set_value("path-to-day-wallpaper", wallpaper)
-                if self.day_wallpaper_event_box.get_children():
-                    helper.remove_wallpaper_from_box(self.day_wallpaper_event_box)
-                    
-                self.day_wallpaper_event_box.add(image)
-                self.day_wallpapers_frame.props.visible = True
-                self.no_day_wallpapers_label.props.visible = False
-                is_auto = current_desktop.get_value("auto-switch")
-                if is_auto:
-                    if self.time_for_day():
-                        current_desktop.set_wallpapers(wallpaper)
+                self.set_image_and_wallpaper("day", image, wallpaper)
         dialog.destroy()
     
     #--------------------------------------------------------------------------------------
@@ -596,6 +567,61 @@ class AppWindow(Gtk.ApplicationWindow):
             if row[0] == current_desktop.get_value(key):
                 box.set_active_iter(row.iter)
                 
+    def set_wallpapers_from_folder(self, time, folder):
+        if time == "day":
+            pict = helper.get_pictures_from_folder(folder)
+            current_desktop.set_value('day-wallpapers-from-folder', pict)
+            wallpaper = random.choice(pict)
+            image = self.prepare_image(wallpaper, 114, 64)
+            self.set_image_and_wallpaper("day", image, wallpaper)
+        else:
+            pict = helper.get_pictures_from_folder(folder)
+            current_desktop.set_value('night-wallpapers-from-folder', pict)
+            wallpaper = random.choice(pict)
+            image = self.prepare_image(wallpaper, 114, 64)
+            self.set_image_and_wallpaper("night", image, wallpaper)
+            
+    def set_image_and_wallpaper(self, time, image, wallpaper):    
+        if time == "day":
+            current_desktop.set_value("path-to-day-wallpaper", wallpaper)
+            if self.day_wallpaper_event_box.get_children():
+                helper.remove_wallpaper_from_box(self.day_wallpaper_event_box)
+                
+            self.day_wallpaper_event_box.add(image)
+            self.day_wallpapers_frame.props.visible = True
+            self.no_day_wallpapers_label.props.visible = False
+            is_auto = current_desktop.get_value("auto-switch")
+            if is_auto:
+                if self.time_for_day():
+                    current_desktop.set_wallpapers(wallpaper)
+        else:
+            #set value in settings
+            current_desktop.set_value("path-to-night-wallpaper", wallpaper)
+            if self.night_wallpaper_event_box.get_children():
+                helper.remove_wallpaper_from_box(self.night_wallpaper_event_box)
+            
+            self.night_wallpaper_event_box.add(image)
+            self.night_wallpapers_frame.props.visible = True
+            self.no_night_wallpapers_label.props.visible = False
+            is_auto = current_desktop.get_value("auto-switch")
+            #check if auto is on
+            if is_auto:
+                if self.time_for_night():
+                    current_desktop.set_wallpapers(wallpaper)
+                    
+    def prepare_image(self, wallpaper, w, h):
+        image = Gtk.Image()
+        try:
+            #fixed size for now
+            pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(wallpaper, w, h, True) #114, 64
+            image.set_from_pixbuf(pixbuf)
+            
+        except Exception as e:
+            print(e)
+            image.set_from_icon_name('dialog-error-symbolic', Gtk.IconSize.DIALOG)
+        image.show()
+        return image
+                            
     #change everything according to day\night time
     def trigger_all(self, time):
         is_terminal = current_desktop.get_value("terminal")

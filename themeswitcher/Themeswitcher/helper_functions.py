@@ -3,6 +3,7 @@ gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, GdkPixbuf
 import itertools
 import os
+from os import walk
 
 #helper functions
 def init_de():
@@ -47,3 +48,16 @@ class Helper:
         #only one child -> Gtk.Image
         child = box.get_children()[0]
         box.remove(child)
+        
+    def get_pictures_from_folder(self, folder):
+        pictures = []
+        extensions = ['.jpg', '.jpeg', '.png']
+        
+        for (root, folders, files) in walk(folder):
+            for f in files:
+                ext = os.path.splitext(f)[-1].lower()
+                if ext in extensions:
+                    pictures.append(root + "/" + f)
+            break
+        
+        return pictures

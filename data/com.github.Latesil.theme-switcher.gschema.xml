@@ -111,5 +111,15 @@
       <summary>Dark theme</summary>
       <description>Current dark theme.</description>
     </key>
+    <key name="day-wallpapers-from-folder" type="as">
+		<default>[]</default>
+		<summary>Day wallpapers from day folders</summary>
+		<description>A list of the day wallpapers from day folder</description>
+	</key>
+    <key name="night-wallpapers-from-folder" type="as">
+		<default>[]</default>
+		<summary>Night wallpapers from night folders</summary>
+		<description>A list of the night wallpapers from night folder</description>
+	</key>
   </schema>
 </schemalist>
