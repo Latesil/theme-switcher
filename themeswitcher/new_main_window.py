@@ -568,18 +568,20 @@ class AppWindow(Gtk.ApplicationWindow):
                 box.set_active_iter(row.iter)
                 
     def set_wallpapers_from_folder(self, time, folder):
-        if time == "day":
-            pict = helper.get_pictures_from_folder(folder)
-            current_desktop.set_value('day-wallpapers-from-folder', pict)
+        pict = helper.get_pictures_from_folder(folder)
+        current_desktop.set_value('%s-wallpapers-from-folder' % time, pict)            
+        if len(pict) != 0:
             wallpaper = random.choice(pict)
-            image = self.prepare_image(wallpaper, 114, 64)
-            self.set_image_and_wallpaper("day", image, wallpaper)
         else:
-            pict = helper.get_pictures_from_folder(folder)
-            current_desktop.set_value('night-wallpapers-from-folder', pict)
-            wallpaper = random.choice(pict)
+            # notification should be placed here
+            print('Error: no files in selected folder')
+            return
+        if len(pict) > 1:
+            if wallpaper == current_desktop.get_wallpapers():
+                while wallpaper == current_desktop.get_wallpapers():
+                    wallpaper = random.choice(pict)
             image = self.prepare_image(wallpaper, 114, 64)
-            self.set_image_and_wallpaper("night", image, wallpaper)
+            self.set_image_and_wallpaper(time, image, wallpaper)
             
     def set_image_and_wallpaper(self, time, image, wallpaper):    
         if time == "day":
