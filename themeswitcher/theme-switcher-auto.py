@@ -16,6 +16,7 @@ from astral import LocationInfo
 from astral.sun import sun
 import pytz
 import sys
+import random
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gio
@@ -24,6 +25,7 @@ from Themeswitcher.helper_functions import init_de, Helper
 helper = Helper()
 current_desktop = init_de()
 current_time = datetime.datetime.now()
+current_values = helper.convert_to_values(current_time.hour, current_time.minute)
     
 def get_values():
     day_hour_values = current_desktop.get_value("daytime-hour")
@@ -31,17 +33,33 @@ def get_values():
     night_hour_values = current_desktop.get_value("nighttime-hour")
     night_minutes_values = current_desktop.get_value("nighttime-minutes")
     return day_hour_values, day_minutes_values, night_hour_values, night_minutes_values
+
+def change_wallpaper():
+    day_wp = current_desktop.get_value('day-wallpapers-from-folder')
+    night_wp = current_desktop.get_value('night-wallpapers-from-folder')
+    values = get_values()
+    night_wallpapers = random.choice(night_wp)
+    day_wallpapers = random.choice(day_wp)
+    
+    if night_wallpapers == current_desktop.get_wallpapers() or day_wallpapers == current_desktop.get_wallpapers():
+        while night_wallpapers == current_desktop.get_wallpapers():
+            night_wallpapers = random.choice(night_wp)
+        while day_wallpapers == current_desktop.get_wallpapers():
+            day_wallpapers = random.choice(day_wp)
+            
+    if ((current_values <= day_values or current_values >= night_values)):
+        current_desktop.set_wallpapers(night_wallpapers)
+    else:
+        current_desktop.set_wallpapers(day_wallpapers)
     
 def trigger_script():
     night_wallpapers = current_desktop.get_value("path-to-night-wallpaper")
     day_wallpapers = current_desktop.get_value("path-to-day-wallpaper")
-    current_values = helper.convert_to_values(current_time.hour, current_time.minute)
     is_terminal = current_desktop.get_value("terminal")
     day_terminal_profile = current_desktop.get_value("active-day-profile-terminal")
     night_terminal_profile = current_desktop.get_value("active-night-profile-terminal")
     theme = current_desktop.get_current_theme()
     light_theme, dark_theme = current_desktop.get_current_themes()
-
     is_night_light = current_desktop.get_value("night-light")
     
     if is_night_light:
@@ -78,31 +96,46 @@ def trigger_script():
             current_desktop.set_terminal_profile(day_terminal_profile)
 
 freq = current_desktop.get_value("advanced-wallpapers-day-trigger-mode")
-if freq == '10 min':
+afm = current_desktop.get_value('advanced-wallpapers-management')
+if afm:
+    if freq == 'sync':
+        trigger_script()
+        sys.exit(0)
+    elif freq == '10 min':
+        change_wallpaper()
+        trigger_script()
+        sys.exit(0)
+    elif freq == '30 min':
+        if (current_time.minute - current_time.minute % 10) % 30 == 0:
+            change_wallpaper()
+            trigger_script()
+            sys.exit(0)
+    elif freq == '1 hour':
+        if (current_time.minute == 00):
+            change_wallpaper()
+            trigger_script()
+            sys.exit(0)
+    elif freq == '2 hour':
+        if (current_time.hour % 2 == 0):
+            change_wallpaper()
+            trigger_script()
+            sys.exit(0)
+    elif freq == '3 hour':
+        if (current_time.hour % 3 == 0):
+            change_wallpaper()
+            trigger_script()
+            sys.exit(0)
+    elif freq == '6 hour':
+        if (current_time.hour % 6 == 0):
+            change_wallpaper()
+            trigger_script()
+            sys.exit(0)
+    elif freq == '12 hour':
+        if (current_time.hour % 12 == 0):
+            change_wallpaper()
+            trigger_script()
+            sys.exit(0)
+else:
     trigger_script()
     sys.exit(0)
-elif freq == '30 min':
-    if (current_time.minute - current_time.minute % 10) % 30 == 0:
-        trigger_script()
-        sys.exit(0)
-elif freq == '1 hour':
-    if (current_time.minute == 00):
-        trigger_script()
-        sys.exit(0)
-elif freq == '2 hour':
-    if (current_time.hour % 2 == 0):
-        trigger_script()
-        sys.exit(0)
-elif freq == '3 hour':
-    if (current_time.hour % 3 == 0):
-        trigger_script()
-        sys.exit(0)
-elif freq == '6 hour':
-    if (current_time.hour % 6 == 0):
-        trigger_script()
-        sys.exit(0)
-elif freq == '12 hour':
-    if (current_time.hour % 12 == 0):
-        trigger_script()
-        sys.exit(0)
 
