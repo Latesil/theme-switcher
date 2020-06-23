@@ -8,6 +8,7 @@ import os
 import datetime
 import time
 import subprocess
+import random
 
 helper = Helper()
 
@@ -56,6 +57,13 @@ class AppWindow(Gtk.ApplicationWindow):
     no_day_wallpapers_label = Gtk.Template.Child()
     no_night_wallpapers_label = Gtk.Template.Child()
     follow_night_light_button = Gtk.Template.Child()
+    advanced_wallpapers_mode_button = Gtk.Template.Child()
+    advanced_day_wallpapers_button = Gtk.Template.Child()
+    advanced_night_wallpapers_button = Gtk.Template.Child()
+    advanced_day_wallpapers_combo = Gtk.Template.Child()
+    advanced_night_wallpapers_combo = Gtk.Template.Child()
+    advanced_day_wallpapers_box = Gtk.Template.Child()
+    advanced_night_wallpapers_box = Gtk.Template.Child()
     
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -90,8 +98,8 @@ class AppWindow(Gtk.ApplicationWindow):
         self.night_terminal_combo.set_active_id(current_desktop.get_value("active-night-profile-terminal"))
         
         #retrieve current light\dark theme and set it as a default option in combo box
-        self.retrieve_profile(self.day_terminal_combo, "active-day-profile-terminal")
-        self.retrieve_profile(self.night_terminal_combo, "active-night-profile-terminal")
+        self.retrieve_item_from_box(self.day_terminal_combo, "active-day-profile-terminal")
+        self.retrieve_item_from_box(self.night_terminal_combo, "active-night-profile-terminal")
         
         #if there is some path in wallpapers set it to the box
         if self.current_day_wallpaper != "":
@@ -122,25 +130,37 @@ class AppWindow(Gtk.ApplicationWindow):
         #set values from settings when program is started
         self.set_values_from_settings()
         
-        #this is probably not a best solution but for now it check time on start according to time section
-        #and change what is needed (and only if auto is on)
-        is_auto = current_desktop.get_value("auto-switch")
-        is_night_light = current_desktop.get_value("night-light")
-        
-        if is_night_light:
+        if current_desktop.get_value("night-light"):
             self._left_switch.set_active(False)
             self._left_switch.set_sensitive(False)
             current_desktop.start_systemd_timers()
             self.night_time_main_frame.set_visible(False)
             self.day_time_main_frame.set_visible(False)
         else:
-            self._left_switch.set_active(True)
+            self._left_switch.set_active(current_desktop.get_value("auto-switch"))
             self._left_switch.set_sensitive(True)
-            current_desktop.stop_systemd_timers()
-            self.night_time_main_frame.set_visible(True)
-            self.day_time_main_frame.set_visible(True)
+            self.night_time_main_frame.set_visible(current_desktop.get_value("auto-switch"))
+            self.day_time_main_frame.set_visible(current_desktop.get_value("auto-switch"))
             
-        if is_auto:
+        if current_desktop.get_value("advanced-wallpapers-management"):
+            self._day_button.props.visible = False
+            self._night_button.props.visible = False
+            self.advanced_day_wallpapers_box.props.visible = True
+            self.advanced_night_wallpapers_box.props.visible = True
+            if current_desktop.get_value('advanced-wallpapers-day-folder') != "":
+                self.advanced_day_wallpapers_button.set_label(current_desktop.get_value('advanced-wallpapers-day-folder').split('/')[-1])
+            if current_desktop.get_value('advanced-wallpapers-night-folder') != "":
+                self.advanced_night_wallpapers_button.set_label(current_desktop.get_value('advanced-wallpapers-night-folder').split('/')[-1])
+            self.retrieve_item_from_box(self.advanced_day_wallpapers_combo, "advanced-wallpapers-day-trigger-mode")
+            self.retrieve_item_from_box(self.advanced_night_wallpapers_combo, "advanced-wallpapers-night-trigger-mode")
+        else:
+            self.advanced_wallpapers_mode_button.set_active(False)
+            self._day_button.props.visible = True
+            self._night_button.props.visible = True
+            self.advanced_day_wallpapers_box.props.visible = False
+            self.advanced_night_wallpapers_box.props.visible = False
+            
+        if current_desktop.get_value("auto-switch"):
             self.on_combo_box_changed()
 
     #left switch in header bar. 
@@ -273,6 +293,18 @@ class AppWindow(Gtk.ApplicationWindow):
         self.no_day_wallpapers_label.props.visible = True
         self.night_wallpapers_frame.props.visible = False
         self.no_night_wallpapers_label.props.visible = True
+        if current_desktop.get_value("advanced-wallpapers-management"):
+            self.advanced_wallpapers_mode_button.set_active(False)
+            self._day_button.props.visible = True
+            self._night_button.props.visible = True
+            self.advanced_day_wallpapers_box.props.visible = False
+            self.advanced_night_wallpapers_box.props.visible = False
+            current_desktop.reset_value("advanced-wallpapers-day-folder")
+            current_desktop.reset_value("advanced-wallpapers-night-folder")
+            current_desktop.reset_value("advanced-wallpapers-day-trigger-mode")
+            current_desktop.reset_value("advanced-wallpapers-night-trigger-mode")
+            self.advanced_day_wallpapers_button.set_label(_('Day folder'))
+            self.advanced_night_wallpapers_button.set_label(_('Night folder'))
         helper.reset_box(self.night_wallpaper_event_box)
         helper.reset_box(self.day_wallpaper_event_box)
         helper.resize_window(self)
@@ -329,6 +361,51 @@ class AppWindow(Gtk.ApplicationWindow):
             if is_auto:
                 if self.time_for_day():
                     current_desktop.set_terminal_profile(current_desktop.get_value("active-day-profile-terminal"))
+                    
+    ########################################################################################################
+    
+    # Advanced folder management
+    
+    @Gtk.Template.Callback()
+    def on_advanced_wallpapers_button_clicked(self, btn):
+        dialog = Gtk.FileChooserDialog(_("Choose a folder"), None, Gtk.FileChooserAction.SELECT_FOLDER, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+        Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
+        
+        response = dialog.run()
+        
+        #if user click ok
+        if response == Gtk.ResponseType.OK:
+            folder = dialog.get_filename().split('/')[-1]
+            if btn.get_name() == 'advanced_day_wallpapers':
+                current_desktop.set_value('advanced-wallpapers-day-folder', dialog.get_filename())
+                self.set_wallpapers_from_folder("day", dialog.get_filename())
+            else:
+                current_desktop.set_value('advanced-wallpapers-night-folder', dialog.get_filename())
+                self.set_wallpapers_from_folder("night", dialog.get_filename())
+            btn.set_label(folder)
+        dialog.destroy()
+        
+    @Gtk.Template.Callback()
+    def on_advanced_wallpapers_combo_changed(self, w):
+        if w.get_name() == 'advanced_day_wallpapers_combo':
+            current_desktop.set_value("advanced-wallpapers-day-trigger-mode", w.get_active_text())
+        else:
+            current_desktop.set_value("advanced-wallpapers-night-trigger-mode", w.get_active_text())        
+        
+    @Gtk.Template.Callback()
+    def on_advanced_wallpapers_mode_button_toggled(self, w):
+        if w.get_active():
+            self._day_button.props.visible = False
+            self._night_button.props.visible = False
+            self.advanced_day_wallpapers_box.props.visible = True
+            self.advanced_night_wallpapers_box.props.visible = True
+            current_desktop.set_value("advanced-wallpapers-management", True)
+        else:
+            self._day_button.props.visible = True
+            self._night_button.props.visible = True
+            self.advanced_day_wallpapers_box.props.visible = False
+            self.advanced_night_wallpapers_box.props.visible = False
+            current_desktop.set_value("advanced-wallpapers-management", False)
         
     ######################################################################
     
@@ -427,45 +504,13 @@ class AppWindow(Gtk.ApplicationWindow):
         if response == Gtk.ResponseType.OK:
             #get file path and create image with it
             wallpaper = dialog.get_filename()
-            image = Gtk.Image()
-            try:
-                #fixed size for now
-                pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(wallpaper, 114, 64, True)
-                image.set_from_pixbuf(pixbuf)
-                
-            except Exception:
-                print('Error occured')
-                image.set_from_icon_name('dialog-error-symbolic', Gtk.IconSize.DIALOG)
-            image.show()
+            image = self.prepare_image(wallpaper, 114, 64)
             
             if button.props.name == "night_button":
-                #set value in settings
-                current_desktop.set_value("path-to-night-wallpaper", wallpaper)
-                if self.night_wallpaper_event_box.get_children():
-                    helper.remove_wallpaper_from_box(self.night_wallpaper_event_box)
-                
-                #add image in our box
-                self.night_wallpaper_event_box.add(image)
-                self.night_wallpapers_frame.props.visible = True
-                self.no_night_wallpapers_label.props.visible = False
-                is_auto = current_desktop.get_value("auto-switch")
-                #check if auto is on
-                if is_auto:
-                    if self.time_for_night():
-                        current_desktop.set_wallpapers(wallpaper)
+                self.set_image_and_wallpaper("night", image, wallpaper)
                         
             elif button.props.name == "day_button":
-                current_desktop.set_value("path-to-day-wallpaper", wallpaper)
-                if self.day_wallpaper_event_box.get_children():
-                    helper.remove_wallpaper_from_box(self.day_wallpaper_event_box)
-                    
-                self.day_wallpaper_event_box.add(image)
-                self.day_wallpapers_frame.props.visible = True
-                self.no_day_wallpapers_label.props.visible = False
-                is_auto = current_desktop.get_value("auto-switch")
-                if is_auto:
-                    if self.time_for_day():
-                        current_desktop.set_wallpapers(wallpaper)
+                self.set_image_and_wallpaper("day", image, wallpaper)
         dialog.destroy()
     
     #--------------------------------------------------------------------------------------
@@ -487,6 +532,7 @@ class AppWindow(Gtk.ApplicationWindow):
         
         #state
         self._left_switch.set_state(current_desktop.get_value("auto-switch"))
+        self.advanced_wallpapers_mode_button.set_active(current_desktop.get_value("advanced-wallpapers-management"))
         self.follow_night_light_button.set_active(current_desktop.get_value("night-light"))
         
     #one function for setting abstract value from settings
@@ -515,12 +561,69 @@ class AppWindow(Gtk.ApplicationWindow):
             self.day_terminal_combo.append_text(profile)
             self.night_terminal_combo.append_text(profile)
                 
-    def retrieve_profile(self, box, key):
-        profile = box.get_model()
-        for row in profile:
+    def retrieve_item_from_box(self, box, key):
+        from_box = box.get_model()
+        for row in from_box:
             if row[0] == current_desktop.get_value(key):
                 box.set_active_iter(row.iter)
                 
+    def set_wallpapers_from_folder(self, time, folder):
+        pict = helper.get_pictures_from_folder(folder)
+        current_desktop.set_value('%s-wallpapers-from-folder' % time, pict)            
+        if len(pict) != 0:
+            wallpaper = random.choice(pict)
+        else:
+            # notification should be placed here
+            print('Error: no files in selected folder')
+            return
+        if len(pict) > 1:
+            if wallpaper == current_desktop.get_wallpapers():
+                while wallpaper == current_desktop.get_wallpapers():
+                    wallpaper = random.choice(pict)
+            image = self.prepare_image(wallpaper, 114, 64)
+            self.set_image_and_wallpaper(time, image, wallpaper)
+            
+    def set_image_and_wallpaper(self, time, image, wallpaper):    
+        if time == "day":
+            current_desktop.set_value("path-to-day-wallpaper", wallpaper)
+            if self.day_wallpaper_event_box.get_children():
+                helper.remove_wallpaper_from_box(self.day_wallpaper_event_box)
+                
+            self.day_wallpaper_event_box.add(image)
+            self.day_wallpapers_frame.props.visible = True
+            self.no_day_wallpapers_label.props.visible = False
+            is_auto = current_desktop.get_value("auto-switch")
+            if is_auto:
+                if self.time_for_day():
+                    current_desktop.set_wallpapers(wallpaper)
+        else:
+            #set value in settings
+            current_desktop.set_value("path-to-night-wallpaper", wallpaper)
+            if self.night_wallpaper_event_box.get_children():
+                helper.remove_wallpaper_from_box(self.night_wallpaper_event_box)
+            
+            self.night_wallpaper_event_box.add(image)
+            self.night_wallpapers_frame.props.visible = True
+            self.no_night_wallpapers_label.props.visible = False
+            is_auto = current_desktop.get_value("auto-switch")
+            #check if auto is on
+            if is_auto:
+                if self.time_for_night():
+                    current_desktop.set_wallpapers(wallpaper)
+                    
+    def prepare_image(self, wallpaper, w, h):
+        image = Gtk.Image()
+        try:
+            #fixed size for now
+            pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(wallpaper, w, h, True) #114, 64
+            image.set_from_pixbuf(pixbuf)
+            
+        except Exception as e:
+            print(e)
+            image.set_from_icon_name('dialog-error-symbolic', Gtk.IconSize.DIALOG)
+        image.show()
+        return image
+                            
     #change everything according to day\night time
     def trigger_all(self, time):
         is_terminal = current_desktop.get_value("terminal")

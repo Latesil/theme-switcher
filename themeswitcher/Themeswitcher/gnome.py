@@ -34,6 +34,10 @@ class Gnome(Desktop):
         if isinstance(value, str):
             self.settings.set_string(key, value)
             
+        # string array only
+        if isinstance(value, list):
+            self.settings.set_value(key, GLib.Variant('as', value))
+            
     def reset_value(self, key):
         self.settings.reset(key)
             
