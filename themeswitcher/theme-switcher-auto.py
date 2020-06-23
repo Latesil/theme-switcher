@@ -38,6 +38,8 @@ def change_wallpaper():
     day_wp = current_desktop.get_value('day-wallpapers-from-folder')
     night_wp = current_desktop.get_value('night-wallpapers-from-folder')
     values = get_values()
+    day_values = helper.convert_to_values(values[0], values[1])
+    night_values = helper.convert_to_values(values[2], values[3])
     night_wallpapers = random.choice(night_wp)
     day_wallpapers = random.choice(day_wp)
     
