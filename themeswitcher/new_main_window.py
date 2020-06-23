@@ -569,7 +569,8 @@ class AppWindow(Gtk.ApplicationWindow):
                 
     def set_wallpapers_from_folder(self, time, folder):
         pict = helper.get_pictures_from_folder(folder)
-        current_desktop.set_value('%s-wallpapers-from-folder' % time, pict)            
+        current_desktop.set_value('%s-wallpapers-from-folder' % time, pict)
+        current_wp = current_desktop.get_wallpapers()    
         if len(pict) != 0:
             wallpaper = random.choice(pict)
         else:
@@ -577,8 +578,8 @@ class AppWindow(Gtk.ApplicationWindow):
             print('Error: no files in selected folder')
             return
         if len(pict) > 1:
-            if wallpaper == current_desktop.get_wallpapers():
-                while wallpaper == current_desktop.get_wallpapers():
+            if wallpaper == current_wp:
+                while wallpaper == current_wp:
                     wallpaper = random.choice(pict)
             image = self.prepare_image(wallpaper, 114, 64)
             self.set_image_and_wallpaper(time, image, wallpaper)

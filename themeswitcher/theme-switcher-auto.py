@@ -42,11 +42,12 @@ def change_wallpaper():
     night_values = helper.convert_to_values(values[2], values[3])
     night_wallpapers = random.choice(night_wp)
     day_wallpapers = random.choice(day_wp)
+    current_wp = current_desktop.get_wallpapers()
     
     if night_wallpapers == current_desktop.get_wallpapers() or day_wallpapers == current_desktop.get_wallpapers():
-        while night_wallpapers == current_desktop.get_wallpapers():
+        while night_wallpapers == current_wp:
             night_wallpapers = random.choice(night_wp)
-        while day_wallpapers == current_desktop.get_wallpapers():
+        while day_wallpapers == current_wp:
             day_wallpapers = random.choice(day_wp)
             
     current_desktop.set_value("path-to-day-wallpaper", day_wallpapers)
