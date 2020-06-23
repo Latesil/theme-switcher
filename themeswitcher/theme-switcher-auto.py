@@ -49,6 +49,9 @@ def change_wallpaper():
         while day_wallpapers == current_desktop.get_wallpapers():
             day_wallpapers = random.choice(day_wp)
             
+    current_desktop.set_value("path-to-day-wallpaper", day_wallpapers)
+    current_desktop.set_value("path-to-night-wallpaper", night_wallpapers)
+            
     if ((current_values <= day_values or current_values >= night_values)):
         current_desktop.set_wallpapers(night_wallpapers)
     else:
