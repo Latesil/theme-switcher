@@ -22,12 +22,9 @@ sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 
 ### Install
 
-Fedora [COPR](https://copr.fedorainfracloud.org/coprs/atim/theme-switcher/):
+- [Fedora](https://src.fedoraproject.org/rpms/theme-switcher): `sudo dnf install theme-switcher`
 
-```
-sudo dnf copr enable atim/theme-switcher -y
-sudo dnf install theme-switcher -y
-```
+- openSUSE: [Available in OBS](https://software.opensuse.org//download.html?project=home%3ADead_Mozay&package=theme-switcher)
 
 ### Run GUI version:
 
