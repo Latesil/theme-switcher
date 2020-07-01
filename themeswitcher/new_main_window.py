@@ -9,7 +9,7 @@ import datetime
 import time
 import subprocess
 import random
-#test
+
 helper = Helper()
 
 #get current DE
