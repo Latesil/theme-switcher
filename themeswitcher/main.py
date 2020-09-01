@@ -14,36 +14,37 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import locale
-import sys
 import os
+import sys
 from locale import gettext as _
 
 import gi
+
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, Gio, GLib
+from gi.repository import Gio, GLib, Gtk
 
 from .new_main_window import AppWindow
 
-#locales
+# locales
 locale.textdomain('com.github.Latesil.theme-switcher')
 
+
 def main():
-	app = Application()
-	return app.run(sys.argv)
+    app = Application()
+    return app.run(sys.argv)
+
 
 class Application(Gtk.Application):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, application_id="com.github.Latesil.theme-switcher",
-                        flags=Gio.ApplicationFlags.FLAGS_NONE, **kwargs)
+                         flags=Gio.ApplicationFlags.FLAGS_NONE, **kwargs)
 
         GLib.set_application_name(_('Theme Switcher'))
-        #GLib.set_prgname('Theme Switcher')
-
+        # GLib.set_prgname('Theme Switcher')
 
     def do_activate(self):
         window = self.props.active_window
         if not window:
             window = AppWindow(application=self)
         window.present()
-

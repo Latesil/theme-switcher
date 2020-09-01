@@ -14,9 +14,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import datetime
+
 import gi
+
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gio
+
 from Themeswitcher.helper_functions import init_de
 
 current_desktop = init_de()
@@ -30,8 +33,8 @@ night_terminal_profile = current_desktop.get_value("active-night-profile-termina
 night_wallpapers = current_desktop.get_value("path-to-night-wallpaper")
 day_wallpapers = current_desktop.get_value("path-to-day-wallpaper")
 
-#known issue: wallpapers don't change. IDK why, cause there are no errors.
-#so, right now it douesn't change wp
+# known issue: wallpapers don't change. IDK why, cause there are no errors.
+# so, right now it doesn't change wp
 if theme == light_theme:
     current_desktop.set_current_theme(dark_theme)
     if bool(night_wallpapers):
@@ -44,4 +47,3 @@ else:
         current_desktop.set_wallpapers(day_wallpapers)
     if is_terminal:
         current_desktop.set_terminal_profile(day_terminal_profile)
-        
