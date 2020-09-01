@@ -1,87 +1,90 @@
 import itertools
 import os
-import gi
-from gi.repository import Gtk, Gio, GLib
 
-from .theme_switcher_constants import theme_switcher_constants as constants
+import gi
+from gi.repository import Gio, GLib, Gtk
+
 from .desktop import Desktop
+from .theme_switcher_constants import theme_switcher_constants as constants
+
 
 class Gnome(Desktop):
 
     def __init__(self):
         self.init_settings()
-        
+
     def init_settings(self):
         self.settings = Gio.Settings.new(constants["BASE_KEY"])
-        
+
     def get_value(self, key):
         return self.settings.get_value(key).unpack()
-        
+
     def set_value(self, key, value):
         if isinstance(value, float):
             self.settings.set_int(key, value)
-            
+
         if isinstance(value, bool):
             self.settings.set_boolean(key, value)
-            
+
         if isinstance(value, int):
             self.settings.set_int(key, value)
-            
+
         if isinstance(value, str):
             self.settings.set_string(key, value)
-            
+
     def reset_value(self, key):
         self.settings.reset(key)
-            
+
     def set_wallpapers(self, wallpaper):
         wallpaper_settings = Gio.Settings.new(constants["WALLPAPER_KEY"])
         wallpaper_settings.set_string("picture-uri", wallpaper)
-        
+
     def get_wallpapers(self):
         wallpaper_settings = Gio.Settings.new(constants["WALLPAPER_KEY"])
         wallpapers = wallpaper_settings.get_string("picture-uri")
         return wallpapers
-        
+
     def start_systemd_timers(self):
-        GLib.spawn_async(['/usr/bin/systemctl','--user','start','theme-switcher-auto.timer'])
-        GLib.spawn_async(['/usr/bin/systemctl','--user','enable','theme-switcher-auto.timer'])
-        
+        GLib.spawn_async(['/usr/bin/systemctl', '--user', 'start', 'theme-switcher-auto.timer'])
+        GLib.spawn_async(['/usr/bin/systemctl', '--user', 'enable', 'theme-switcher-auto.timer'])
+
     def stop_systemd_timers(self):
-        GLib.spawn_async(['/usr/bin/systemctl','--user','stop','theme-switcher-auto.timer'])
-        GLib.spawn_async(['/usr/bin/systemctl','--user','disable', 'theme-switcher-auto.timer'])
-        
+        GLib.spawn_async(['/usr/bin/systemctl', '--user', 'stop', 'theme-switcher-auto.timer'])
+        GLib.spawn_async(['/usr/bin/systemctl', '--user', 'disable', 'theme-switcher-auto.timer'])
+
     def get_current_themes(self):
         current_light_theme = self.settings.get_string('light-theme')
         current_dark_theme = self.settings.get_string('dark-theme')
         return current_light_theme, current_dark_theme
-        
+
     def set_current_theme(self, theme):
         theme_settings = Gio.Settings.new(constants["THEME_KEY"])
         theme_settings.set_string("gtk-theme", theme)
-        
+
     def get_current_theme(self):
         theme_settings = Gio.Settings.new(constants["THEME_KEY"])
         current_theme = theme_settings.get_string("gtk-theme")
         return current_theme
-        
+
     def get_all_values(self):
         values = {}
         for k in self.settings.list_keys():
             values[k] = self.settings.get_value(k).unpack()
         return values
-        
+
     def get_terminal_profiles(self):
         terminal_settings = Gio.Settings.new(constants["PROFILES_KEY"])
         return terminal_settings.get_value('list').unpack()
-        
+
     def set_terminal_profile(self, profile):
-        GLib.spawn_async(['/usr/bin/gsettings','set','org.gnome.Terminal.ProfilesList','default', profile])
-    
+        GLib.spawn_async(
+            ['/usr/bin/gsettings', 'set', 'org.gnome.Terminal.ProfilesList', 'default', profile])
+
     def execute_script(self, script):
         GLib.spawn_async([script])
-        
-    #taken from GNOME Tweaks
-    #by John Stowers.
+
+    # taken from GNOME Tweaks
+    # by John Stowers.
 
     def get_resource_dirs(self, resource):
         dirs = [os.path.join(dir, resource)
@@ -92,15 +95,15 @@ class Gnome(Desktop):
 
     def _get_valid_themes(self):
         gtk_ver = Gtk.MINOR_VERSION
-        if gtk_ver % 2: # Want even number
+        if gtk_ver % 2:  # Want even number
             gtk_ver += 1
 
         valid = ['Adwaita', 'HighContrast', 'HighContrastInverse']
         valid += self.walk_directories(self.get_resource_dirs("themes"), lambda d:
-                    os.path.exists(os.path.join(d, "gtk-3.0", "gtk.css")) or \
-                         os.path.exists(os.path.join(d, "gtk-3.{}".format(gtk_ver))))
+        os.path.exists(os.path.join(d, "gtk-3.0", "gtk.css")) or \
+        os.path.exists(os.path.join(d, "gtk-3.{}".format(gtk_ver))))
         return set(valid)
-        
+
     def walk_directories(self, dirs, filter_func):
         valid = []
         try:
@@ -113,5 +116,3 @@ class Gnome(Desktop):
             pass
 
         return valid
-
-        

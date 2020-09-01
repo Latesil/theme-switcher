@@ -14,21 +14,26 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import datetime
+
 import gi
+
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gio
-from Themeswitcher.helper_functions import init_de, Helper
+
+from Themeswitcher.helper_functions import Helper, init_de
 
 helper = Helper()
 current_desktop = init_de()
-    
+
+
 def get_values():
     day_hour_values = current_desktop.get_value("daytime-hour")
     day_minutes_values = current_desktop.get_value("daytime-minutes")
     night_hour_values = current_desktop.get_value("nighttime-hour")
     night_minutes_values = current_desktop.get_value("nighttime-minutes")
     return day_hour_values, day_minutes_values, night_hour_values, night_minutes_values
-    
+
+
 theme = current_desktop.get_current_theme()
 light_theme, dark_theme = current_desktop.get_current_themes()
 
@@ -60,5 +65,3 @@ else:
         current_desktop.set_wallpapers(day_wallpapers)
     if is_terminal:
         current_desktop.set_terminal_profile(day_terminal_profile)
-        
-    
